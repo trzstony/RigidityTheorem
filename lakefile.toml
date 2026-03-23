@@ -1,0 +1,33 @@
+name = "RigidityTheorem"
+version = "0.1.0"
+defaultTargets = ["rigiditytheorem"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.28.0"
+
+[[lean_lib]]
+name = "RigidityTheorem"
+
+[[lean_lib]]
+name = "Quantum"
+srcDir = "RigidityTheorem"
+
+[[lean_lib]]
+name = "Entropy_Bound"
+srcDir = "RigidityTheorem"
+
+[[lean_lib]]
+name = "Approximate_Rigidity"
+srcDir = "RigidityTheorem"
+
+[[lean_exe]]
+name = "rigiditytheorem"
+root = "Main"

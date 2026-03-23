@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dependency graph</title>
+  <meta name="generator" content="plasTeX" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/theme-white.css" />
+  <link rel="stylesheet" href="styles/dep_graph.css" />
+  
+  <script type="text/x-mathjax-config">
+  
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  
+  </script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+
+
+<link rel="stylesheet" href="styles/extra_styles.css" />
+
+</head>
+
+<body>
+<header>
+  <a class="toc" href="index.html">Home</a>
+  <h1 id="doc_title">Dependencies</h1>
+</header>
+<div class="wrapper">
+<div class="content">
+  <div id="Legend">
+    <span id="legend_title" class="title">Legend
+    <div class="btn">
+       <div class="bar"></div>
+       <div class="bar"></div>
+       <div class="bar"></div>
+    </div></span> 
+    <dl class="legend">
+      
+      <dt>Boxes</dt><dd>definitions</dd>
+      
+      <dt>Ellipses</dt><dd>theorems and lemmas</dd>
+      
+      <dt>Blue border</dt><dd>the <em>statement</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Orange border</dt><dd>the <em>statement</em> of this result is not ready to be formalized; the blueprint needs more work</dd>
+      
+      <dt>Blue background</dt><dd>the <em>proof</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Green border</dt><dd>the <em>statement</em> of this result is formalized</dd>
+      
+      <dt>Green background</dt><dd>the <em>proof</em> of this result is formalized</dd>
+      
+      <dt>Dark green background</dt><dd>the <em>proof</em> of this result and all its ancestors are formalized</dd>
+      
+      <dt>Dark green border</dt><dd>this is in Mathlib</dd>
+      
+    </dl>
+  </div>
+    <div id="graph"></div>
+<div id="statements">
+
+    
+    <div class="dep-modal-container" id="def:bell-phi-plus_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:bell-phi-plus" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">2</span><span class="definition_thmtitle">Bell state</span></div>
+    <div class="thm_thmcontent"><p>   The Bell state \(|\Phi ^+\rangle \in A\otimes B\) is </p>
+<div class="displaymath" id="a0000000011">
+  \[  |\Phi ^+\rangle := \frac{|00\rangle + |11\rangle }{\sqrt{2}},\qquad \Phi := |\Phi ^+\rangle \! \langle \Phi ^+|.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:bell-phi-plus">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.PhiPlus">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:chsh-operator_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:chsh-operator" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">3</span><span class="definition_thmtitle">Canonical CHSH operator on two qubits</span></div>
+    <div class="thm_thmcontent"><p>    Let \(X,Z\) denote Pauli operators on a qubit. Define observables </p>
+<div class="displaymath" id="a0000000012">
+  \[  A_0:=Z,\quad A_1:=X,\quad B_0:=\frac{Z+X}{\sqrt2},\quad B_1:=\frac{Z-X}{\sqrt2}.  \]
+</div>
+<p> The associated CHSH operator on \(A\otimes B\) is </p>
+<div class="displaymath" id="a0000000013">
+  \[  \mathrm{CHSH} := A_0\otimes B_0 + A_0\otimes B_1 + A_1\otimes B_0 - A_1\otimes B_1.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:chsh-operator">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.CHSH">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:pguess_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:pguess" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">5</span><span class="definition_thmtitle">Guessing probability</span></div>
+    <div class="thm_thmcontent"><p>    For the classical–quantum state \(\rho _{XE}\), the guessing probability is </p>
+<div class="displaymath" id="a0000000016">
+  \[  p_{\mathrm{guess}}(X\mid E)_{\rho } :=\sup _{\{ M_0,M_1\} } \sum _{x\in \{ 0,1\} } \operatorname {Tr}(M_x\, \rho _E^x),  \]
+</div>
+<p> where the supremum ranges over POVMs on \(E\), i.e. \(M_x\succeq 0\) and \(M_0+M_1=I_E\). </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:pguess">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pGuess">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:postselected_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:postselected" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">9</span><span class="definition_thmtitle">Postselected state</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\Pi :=\Phi \otimes I_E\) where \(\Phi =|\Phi ^+\rangle \! \langle \Phi ^+|\). Assume \(p:=\operatorname {Tr}(\Pi \rho _{ABE}){\gt}0\). Define the normalised postselected state </p>
+<div class="displaymath" id="a0000000025">
+  \[  \widetilde\rho _{ABE} := \frac{\Pi \rho _{ABE}\Pi }{p}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0004.html#def:postselected">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.postselected">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:rho-xe_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:rho-xe" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">4</span><span class="definition_thmtitle">Classical–quantum state after Alice’s key measurement</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\{ |0\rangle ,|1\rangle \} \) be the computational basis of \(A\), and set \(P_x:=|x\rangle \! \langle x|_A\). From \(\rho _{ABE}\) define subnormalised conditional states </p>
+<div class="displaymath" id="a0000000014">
+  \[  \rho _E^x := \operatorname {Tr}_{AB}\big((P_x\otimes I_{BE})\, \rho _{ABE}\, (P_x\otimes I_{BE})\big),\qquad x\in \{ 0,1\} .  \]
+</div>
+<p> The induced classical–quantum state is </p>
+<div class="displaymath" id="a0000000015">
+  \[  \rho _{XE} := \sum _{x\in \{ 0,1\} } |x\rangle \! \langle x|_X\otimes \rho _E^x.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:rho-xe">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.rhoXE">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:systems_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:systems" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">1</span><span class="definition_thmtitle">Systems and reduced states</span></div>
+    <div class="thm_thmcontent"><p>   Let \(A\) and \(B\) be qubit systems and let \(E\) be an arbitrary quantum system. A tripartite state is a density operator \(\rho _{ABE}\) on \(A\otimes B\otimes E\). We write \(\rho _{AB}:=\operatorname {Tr}_E(\rho _{ABE})\) for the reduced state on \(AB\). </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:systems">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.Systems">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:bell-overlap_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:bell-overlap" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">8</span><span class="lemma_thmtitle">CHSH expectation upper bounds Bell infidelity</span></div>
+    <div class="thm_thmcontent"><p>    Assume \(\operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH})\ge 2\sqrt2-\varepsilon \). Let \(p:=\langle \Phi ^+|\rho _{AB}|\Phi ^+\rangle \) and define \(\delta :=1-p\). Then </p>
+<div class="displaymath" id="a0000000023">
+  \[  \delta \le \frac{\varepsilon }{2\sqrt2}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0003.html#lem:bell-overlap">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.bell_overlap">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:chsh-eigenvalues_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:chsh-eigenvalues" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">7</span><span class="lemma_thmtitle">Bell basis eigenvalues</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\Phi :=|\Phi ^+\rangle \! \langle \Phi ^+|\). Then \(|\Phi ^+\rangle \) is an eigenvector of \(\mathrm{CHSH}\) with eigenvalue \(2\sqrt2\). Moreover, the spectrum of \(\mathrm{CHSH}\) is </p>
+<div class="displaymath" id="a0000000021">
+  \[  \{ 2\sqrt2,\  0,\  0,\  -2\sqrt2\} ,  \]
+</div>
+<p> and the top eigenvalue \(2\sqrt2\) is non-degenerate. </p>
+</div>
+
+    <a class="latex_link" href="sect0002.html#lem:chsh-eigenvalues">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_eigenvalues">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:chsh-simplify_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:chsh-simplify" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">6</span><span class="lemma_thmtitle">Simplified form of CHSH</span></div>
+    <div class="thm_thmcontent"><p>    With the canonical choice of observables in Definition&#160;<a href="sect0001.html#def:chsh-operator">3</a>, </p>
+<div class="displaymath" id="a0000000018">
+  \[  \mathrm{CHSH} = \sqrt2\, (Z\otimes Z + X\otimes X).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0002.html#lem:chsh-simplify">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_simplify">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:gentle-postselect_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:gentle-postselect" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">11</span><span class="lemma_thmtitle">Gentle postselection bound</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\Pi \) and \(p=\operatorname {Tr}(\Pi \rho _{ABE})\) be as in Definition&#160;<a href="sect0004.html#def:postselected">9</a>, and set \(\widetilde\rho _{ABE}=\Pi \rho _{ABE}\Pi /p\). Then </p>
+<div class="displaymath" id="a0000000030">
+  \[  \| \rho _{ABE}-\widetilde\rho _{ABE}\| _1 \le 2\sqrt{1-p}+2(1-p).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0005.html#lem:gentle-postselect">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.gentle_postselect">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:isometry-norm_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:isometry-norm" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">14</span><span class="lemma_thmtitle">Isometries preserve the trace norm</span></div>
+    <div class="thm_thmcontent"><p>   Let \(W\) be an isometry (\(W^\dagger W = I\)). Then \(\| WHW^\dagger \| _1=\| H\| _1\) for all operators \(H\). </p>
+</div>
+
+    <a class="latex_link" href="sect0006.html#lem:isometry-norm">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.isometry_trace_norm">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:measure-contract_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:measure-contract" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">15</span><span class="lemma_thmtitle">Measurement and discarding systems does not increase trace norm</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\rho _{ABE}\) and \(\sigma _{ABE}\) be two states. Let \(\rho _{XE}\) and \(\sigma _{XE}\) be the associated classical–quantum states obtained by measuring \(A\) in the computational basis and discarding \(B\) as in Definition&#160;<a href="sect0001.html#def:rho-xe">4</a>. Then </p>
+<div class="displaymath" id="a0000000054">
+  \[  \| \rho _{XE}-\sigma _{XE}\| _1 \le \| \rho _{ABE}-\sigma _{ABE}\| _1.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0006.html#lem:measure-contract">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.measure_contract">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:partial-trace-contractive_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:partial-trace-contractive" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">13</span><span class="lemma_thmtitle">Partial trace is contractive for the trace norm</span></div>
+    <div class="thm_thmcontent"><p>    For any operator \(H\) on \(R\otimes S\), </p>
+<div class="displaymath" id="a0000000049">
+  \[  \| \operatorname {Tr}_S(H)\| _1 \le \| H\| _1.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0006.html#lem:partial-trace-contractive">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.partial_trace_contractive">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:pguess-continuity_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:pguess-continuity" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">17</span><span class="lemma_thmtitle">Continuity of \(p_{\mathrm{guess}}\)</span></div>
+    <div class="thm_thmcontent"><p>    For any two classical–quantum states \(\rho _{XE}\) and \(\sigma _{XE}\), </p>
+<div class="displaymath" id="a0000000061">
+  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le p_{\mathrm{guess}}(X\mid E)_\sigma + \frac12\| \rho _{XE}-\sigma _{XE}\| _1.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0007.html#lem:pguess-continuity">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_continuity">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:pguess-decision_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:pguess-decision" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">16</span><span class="lemma_thmtitle">Decision-operator form of \(p_{\mathrm{guess}}\)</span></div>
+    <div class="thm_thmcontent"><p>    For a classical–quantum state \(\rho _{XE}\) with \(X\in \{ 0,1\} \), </p>
+<div class="displaymath" id="a0000000059">
+  \[  p_{\mathrm{guess}}(X\mid E)_\rho = \sup _{0\preceq \Pi \preceq I_{XE}} \operatorname {Tr}(\Pi \rho _{XE}),  \]
+</div>
+<p> where the supremum is over operators of the form \(\Pi =|0\rangle \! \langle 0|\otimes M_0 + |1\rangle \! \langle 1|\otimes M_1\) with \(\{ M_0,M_1\} \) a POVM on \(E\). </p>
+</div>
+
+    <a class="latex_link" href="sect0007.html#lem:pguess-decision">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_decision">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:pguess-uniform_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:pguess-uniform" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">18</span><span class="lemma_thmtitle">Guessing probability for a uniform and independent bit</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\tau _E\) be any state. If </p>
+<div class="displaymath" id="a0000000067">
+  \[  \sigma _{XE}=\frac{I_X}{2}\otimes \tau _E,  \]
+</div>
+<p> then \(p_{\mathrm{guess}}(X\mid E)_\sigma =\tfrac 12\). </p>
+</div>
+
+    <a class="latex_link" href="sect0007.html#lem:pguess-uniform">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_uniform">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:postselect-factor_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:postselect-factor" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">10</span><span class="lemma_thmtitle">Rank-one postselection gives exact factorisation</span></div>
+    <div class="thm_thmcontent"><p>    With the notation of Definition&#160;<a href="sect0004.html#def:postselected">9</a>, there exists a state \(\tau _E\) on \(E\) such that </p>
+<div class="displaymath" id="a0000000027">
+  \[  \widetilde\rho _{ABE} = \Phi \otimes \tau _E.  \]
+</div>
+<p> Moreover, one can take </p>
+<div class="displaymath" id="a0000000028">
+  \[  \tau _E = \frac{1}{p}\, (\langle \Phi ^+|_{AB}\otimes I_E)\rho _{ABE}(|\Phi ^+\rangle _{AB}\otimes I_E).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0004.html#lem:postselect-factor">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.postselect_factor">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:trace-variational_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:trace-variational" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">12</span><span class="lemma_thmtitle">Variational form of trace norm (unitary maximum)</span></div>
+    <div class="thm_thmcontent"><p>   For any operator \(A\) on a finite-dimensional Hilbert space, one has </p>
+<div class="displaymath" id="a0000000034">
+  \[  \| A\| _1 = \sup _{U\  \mathrm{unitary}} \left|\operatorname {Tr}(UA)\right|.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0006.html#lem:trace-variational">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.trace_variational">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:chsh-to-pguess_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:chsh-to-pguess" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">19</span><span class="theorem_thmtitle">CHSH bound implies guessing bound (no purification)</span></div>
+    <div class="thm_thmcontent"><p>    Let \(\rho _{ABE}\) be a tripartite state with qubit registers \(A,B\) and arbitrary \(E\), and let \(\rho _{AB}=\operatorname {Tr}_E(\rho _{ABE})\). Assume </p>
+<div class="displaymath" id="a0000000070">
+  \[  \varepsilon \le 2\sqrt2-2, \qquad \operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH})\ge 2\sqrt2-\varepsilon ,  \]
+</div>
+<p> where \(\mathrm{CHSH}\) is the canonical two-qubit operator from Definition&#160;<a href="sect0001.html#def:chsh-operator">3</a>. Let \(X\) be the computational-basis measurement outcome on \(A\) as in Definition&#160;<a href="sect0001.html#def:rho-xe">4</a>. Then </p>
+<div class="displaymath" id="a0000000071">
+  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \sqrt{\frac{\varepsilon }{2\sqrt2}} + \frac{\varepsilon }{2\sqrt2}.  \]
+</div>
+<p> In particular, \(p_{\mathrm{guess}}(X\mid E)_\rho \le \tfrac 12 + O(\sqrt\varepsilon )\). </p>
+</div>
+
+    <a class="latex_link" href="sect0008.html#thm:chsh-to-pguess">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_to_pguess">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+</div>
+</div> <!-- content -->
+</div> <!-- wrapper -->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+<script src="js/d3.min.js"></script>
+<script src="js/hpcc.min.js"></script>
+<script src="js/d3-graphviz.js"></script>
+
+<script type="text/javascript">
+const graphContainer = d3.select("#graph");
+const width = graphContainer.node().clientWidth;
+const height = graphContainer.node().clientHeight;
+
+
+graphContainer.graphviz({useWorker: true})
+    .width(width)
+    .height(height)
+    .fit(true)
+    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"lem:postselect-factor"	[color="#FFAA33",		label="postselect-factor",		shape=ellipse];	"thm:chsh-to-pguess"	[color="#FFAA33",		label="chsh-to-pguess",		shape=ellipse];	"lem:postselect-factor" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:partial-trace-contractive"	[color=green,		fillcolor="#A3D6FF",		label="partial-trace-contractive",		shape=ellipse,		style=filled];	"lem:measure-contract"	[color=green,		label="measure-contract",		shape=ellipse];	"lem:partial-trace-contractive" -> "lem:measure-contract"	[style=dashed];	"lem:measure-contract" -> "thm:chsh-to-pguess"	[style=dashed];	"def:systems"	[color="#FFAA33",		label=systems,		shape=box];	"def:chsh-operator"	[color="#FFAA33",		label="chsh-operator",		shape=box];	"def:systems" -> "def:chsh-operator"	[style=dashed];	"def:postselected"	[color="#FFAA33",		label=postselected,		shape=box];	"def:systems" -> "def:postselected"	[style=dashed];	"def:rho-xe"	[color="#FFAA33",		label="rho-xe",		shape=box];	"def:systems" -> "def:rho-xe"	[style=dashed];	"lem:chsh-simplify"	[color="#FFAA33",		label="chsh-simplify",		shape=ellipse];	"def:chsh-operator" -> "lem:chsh-simplify"	[style=dashed];	"def:postselected" -> "lem:postselect-factor"	[style=dashed];	"lem:gentle-postselect"	[color="#FFAA33",		label="gentle-postselect",		shape=ellipse];	"def:postselected" -> "lem:gentle-postselect"	[style=dashed];	"def:rho-xe" -> "lem:measure-contract"	[style=dashed];	"def:pguess"	[color="#FFAA33",		label=pguess,		shape=box];	"def:rho-xe" -> "def:pguess"	[style=dashed];	"lem:chsh-eigenvalues"	[color="#FFAA33",		label="chsh-eigenvalues",		shape=ellipse];	"lem:chsh-simplify" -> "lem:chsh-eigenvalues"	[style=dashed];	"lem:gentle-postselect" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:bell-overlap"	[color="#FFAA33",		label="bell-overlap",		shape=ellipse];	"lem:bell-overlap" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:pguess-uniform"	[color="#FFAA33",		label="pguess-uniform",		shape=ellipse];	"def:pguess" -> "lem:pguess-uniform"	[style=dashed];	"lem:pguess-decision"	[color="#FFAA33",		label="pguess-decision",		shape=ellipse];	"def:pguess" -> "lem:pguess-decision"	[style=dashed];	"lem:chsh-eigenvalues" -> "lem:bell-overlap"	[style=dashed];	"lem:pguess-uniform" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:trace-variational"	[color=green,		fillcolor="#A3D6FF",		label="trace-variational",		shape=ellipse,		style=filled];	"lem:trace-variational" -> "lem:partial-trace-contractive"	[style=dashed];	"lem:isometry-norm"	[color=green,		fillcolor="#A3D6FF",		label="isometry-norm",		shape=ellipse,		style=filled];	"lem:isometry-norm" -> "lem:measure-contract"	[style=dashed];	"lem:pguess-continuity"	[color="#FFAA33",		label="pguess-continuity",		shape=ellipse];	"lem:pguess-decision" -> "lem:pguess-continuity"	[style=dashed];	"lem:pguess-continuity" -> "thm:chsh-to-pguess"	[style=dashed];	"def:bell-phi-plus"	[color="#FFAA33",		label="bell-phi-plus",		shape=box];	"def:bell-phi-plus" -> "def:postselected"	[style=dashed];	"def:bell-phi-plus" -> "lem:chsh-eigenvalues"	[style=dashed];}`)
+    .on("end", interactive);
+
+latexLabelEscaper = function(label) {
+  return label.replace(/\./g, '\\.').replace(/:/g, '\\:')
+}
+
+clickNode = function() {
+  $("#statements div").hide()
+  var node_id = $('text', this).text();
+  $('.thm').hide();
+  $('#'+latexLabelEscaper(node_id)).show().children().show();
+}
+function interactive() {
+    $("span#legend_title").on("click", function () {
+           $(this).siblings('dl').toggle();
+        })
+
+    d3.selectAll('.node')
+        .attr('pointer-events', 'fill')
+        .on('click', function () {
+           var title = d3.select(this).selectAll('title').text().trim();
+           $('#statements > div').hide()
+           $('.thm').hide();
+           $('#'+latexLabelEscaper(title)+'_modal').show().children().show().children().show();
+           $('#statements').show()
+        });
+
+    d3.selectAll('.dep-closebtn').on('click', function() {
+        var modal =
+            d3.select(this).node().parentNode.parentNode.parentNode ;
+        d3.select(modal).style('display', 'none');
+    });
+}
+
+</script>
+
+</body>
+</html>

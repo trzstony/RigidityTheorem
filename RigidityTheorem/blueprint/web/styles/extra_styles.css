@@ -1,0 +1,20 @@
+/* CSS tweaks for theorem/proof blocks in the HTML blueprint. */
+div.theorem_thmcontent {
+  border-left: 0.15rem solid black;
+}
+
+div.proposition_thmcontent {
+  border-left: 0.15rem solid black;
+}
+
+div.lemma_thmcontent {
+  border-left: 0.1rem solid black;
+}
+
+div.corollary_thmcontent {
+  border-left: 0.1rem solid black;
+}
+
+div.proof_content {
+  border-left: 0.08rem solid grey;
+}

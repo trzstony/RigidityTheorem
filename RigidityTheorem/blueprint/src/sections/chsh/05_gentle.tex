@@ -1,0 +1,41 @@
+\section{A gentle-measurement bound for Bell postselection}
+
+\begin{lemma}[Gentle postselection bound]
+\label{lem:gentle-postselect}
+\uses{def:postselected}
+\lean{RigidityToPguess.gentle_postselect}
+\notready
+Let $\Pi$ and $p=\Tr(\Pi\rho_{ABE})$ be as in Definition~\ref{def:postselected}, and set $\widetilde\rho_{ABE}=\Pi\rho_{ABE}\Pi/p$.
+Then
+\[
+\|\rho_{ABE}-\widetilde\rho_{ABE}\|_1 \le 2\sqrt{1-p}+2(1-p).
+\]
+\end{lemma}
+
+\begin{proof}
+Write $\Pi^\perp:=I-\Pi$.
+Decompose
+\[
+\rho_{ABE}-\Pi\rho_{ABE}\Pi
+= \Pi\rho_{ABE}\Pi^\perp + \Pi^\perp\rho_{ABE}\Pi + \Pi^\perp\rho_{ABE}\Pi^\perp.
+\]
+By triangle inequality,
+\[
+\|\rho_{ABE}-\Pi\rho_{ABE}\Pi\|_1
+\le \|\Pi\rho_{ABE}\Pi^\perp\|_1+\|\Pi^\perp\rho_{ABE}\Pi\|_1 + \Tr(\Pi^\perp\rho_{ABE}).
+\]
+The last term equals $1-p$.
+For the cross term, use the Schatten inequality $\|AB\|_1\le \|A\|_2\|B\|_2$ with
+$A:=\Pi\rho_{ABE}^{1/2}$ and $B:=\rho_{ABE}^{1/2}\Pi^\perp$. Then
+\(
+\|A\|_2^2=\Tr(\Pi\rho_{ABE})=p
+\) and \(
+\|B\|_2^2=\Tr(\Pi^\perp\rho_{ABE})=1-p
+\), so
+\(
+\|\Pi\rho_{ABE}\Pi^\perp\|_1\le \sqrt{p(1-p)}\le\sqrt{1-p}.
+\)
+The same bound holds for $\|\Pi^\perp\rho_{ABE}\Pi\|_1$.
+Hence $\|\rho_{ABE}-\Pi\rho_{ABE}\Pi\|_1\le 2\sqrt{1-p}+(1-p)$.
+Finally, since $\widetilde\rho_{ABE}=\Pi\rho_{ABE}\Pi/p$ and $\|\Pi\rho_{ABE}\Pi - \widetilde\rho_{ABE}\|_1 = |1-p|$, another triangle inequality gives the stated bound.
+\end{proof}

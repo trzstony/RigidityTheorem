@@ -1,0 +1,157 @@
+\section{Bounding trace-norm distance after Alice's measurement}
+
+\begin{lemma}[Variational form of trace norm (unitary maximum)]
+\label{lem:trace-variational}
+\lean{RigidityToPguess.trace_variational}
+\leanok
+For any operator $A$ on a finite-dimensional Hilbert space,
+one has
+\[
+\|A\|_1 = \sup_{U\ \mathrm{unitary}} \left|\Tr(UA)\right|.
+\]
+\end{lemma}
+
+\begin{proof}
+\textbf{Step 1 (upper bound).}
+For any unitary $U$, Hölder duality for Schatten norms gives
+\[
+\left|\Tr(UA)\right|
+\le \|U\|_\infty\,\|A\|_1
+= \|A\|_1
+\]
+because $\|U\|_\infty=1$. Therefore
+\[
+\sup_{U\ \mathrm{unitary}} \left|\Tr(UA)\right| \le \|A\|_1.
+\]
+
+\textbf{Step 2 (lower bound by explicit construction).}
+Let
+\[
+T:=\sqrt{A^\dagger A}.
+\]
+Choose an orthonormal eigenbasis $(b_i)_i$ of $T$, with eigenvalues
+$\sigma_i\ge 0$ (the singular values of $A$). Then
+\[
+\|A\|_1=\sum_i \sigma_i.
+\]
+
+Define $s:=\{i:\sigma_i\neq 0\}$ and, for $i\in s$, set
+\[
+v_i:=\sigma_i^{-1}A b_i.
+\]
+For $i\notin s$, put $v_i:=0$.
+Using
+\[
+\langle A b_i, A b_j\rangle
+=\langle b_j,A^\dagger A b_i\rangle
+=\sigma_i^2\langle b_i,b_j\rangle
+\]
+and $\|A b_i\|=\sigma_i$, one checks that $(v_i)_{i\in s}$ is orthonormal.
+Extend it to an orthonormal basis $(c_i)_i$ of the whole space.
+
+Now define the unitary $U$ by
+\[
+U(c_i)=b_i\quad\text{for all }i.
+\]
+If $\sigma_i\neq 0$, then $A b_i=\sigma_i c_i$, hence
+\[
+U A b_i=\sigma_i b_i
+\quad\Rightarrow\quad
+\langle b_i,U A b_i\rangle=\sigma_i.
+\]
+If $\sigma_i=0$, then $A b_i=0$, so the same identity
+$\langle b_i,U A b_i\rangle=\sigma_i$ still holds.
+Therefore, for every $i$,
+\[
+\langle b_i,U A b_i\rangle=\sigma_i.
+\]
+Summing over $i$,
+\[
+\Tr(UA)=\sum_i \sigma_i=\|A\|_1.
+\]
+Since the right-hand side is nonnegative,
+\[
+\left|\Tr(UA)\right|=\|A\|_1.
+\]
+Hence
+\[
+\sup_{U\ \mathrm{unitary}} \left|\Tr(UA)\right|\ge \|A\|_1.
+\]
+
+\textbf{Step 3 (conclusion).}
+Combining Steps 1 and 2 yields
+\[
+\|A\|_1=\sup_{U\ \mathrm{unitary}} \left|\Tr(UA)\right|.
+\]
+\end{proof}
+
+\begin{lemma}[Partial trace is contractive for the trace norm]
+\label{lem:partial-trace-contractive}
+\uses{lem:trace-variational}
+\lean{RigidityToPguess.partial_trace_contractive}
+\leanok
+For any operator $H$ on $R\otimes S$,
+\[
+\|\Tr_S(H)\|_1 \le \|H\|_1.
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:trace-variational},
+\[
+\|\Tr_S(H)\|_1
+=\sup_{U_R\ \mathrm{unitary}}\left|\Tr\!\left(U_R\,\Tr_S(H)\right)\right|
+=\sup_{U_R\ \mathrm{unitary}}\left|\Tr\!\left((U_R\otimes I_S)H\right)\right|.
+\]
+\[
+\text{Since }U_R\otimes I_S\text{ is unitary on }R\otimes S,\quad
+\left|\Tr\!\left((U_R\otimes I_S)H\right)\right|
+\le
+\sup_{V\ \mathrm{unitary\ on}\ R\otimes S}\left|\Tr(VH)\right|
+=\|H\|_1.
+\]
+Taking the supremum over $U_R$ gives $\|\Tr_S(H)\|_1\le \|H\|_1$.
+\end{proof}
+
+\begin{lemma}[Isometries preserve the trace norm]
+\label{lem:isometry-norm}
+\lean{RigidityToPguess.isometry_trace_norm}
+\leanok
+Let $W$ be an isometry ($W^\dagger W = I$). Then $\|WHW^\dagger\|_1=\|H\|_1$ for all operators $H$.
+\end{lemma}
+
+\begin{proof}
+If $H=U\Sigma V^\dagger$ is a singular value decomposition, then $WHW^\dagger=(WU)\Sigma(WV)^\dagger$ is also a singular value decomposition because $WU$ and $WV$ are isometries. Hence the singular values (and their sum) are unchanged.
+\end{proof}
+
+\begin{lemma}[Measurement and discarding systems does not increase trace norm]
+\label{lem:measure-contract}
+\uses{def:rho-xe,lem:partial-trace-contractive,lem:isometry-norm}
+\lean{RigidityToPguess.measure_contract}
+\leanok
+Let $\rho_{ABE}$ and $\sigma_{ABE}$ be two states.
+Let $\rho_{XE}$ and $\sigma_{XE}$ be the associated classical--quantum states obtained by measuring $A$ in the computational basis and discarding $B$ as in Definition~\ref{def:rho-xe}.
+Then
+\[
+\|\rho_{XE}-\sigma_{XE}\|_1 \le \|\rho_{ABE}-\sigma_{ABE}\|_1.
+\]
+\end{lemma}
+
+\begin{proof}
+Define the measurement isometry $W:A\to X\otimes A$ by
+\[
+W := |0\rangle_X\otimes |0\rangle\!\langle 0|_A + |1\rangle_X\otimes |1\rangle\!\langle 1|_A.
+\]
+Let $\rho^{\mathrm{meas}}:=(W\otimes I_{BE})\rho_{ABE}(W^\dagger\otimes I_{BE})$ and define $\sigma^{\mathrm{meas}}$ similarly.
+By construction, tracing out $AB$ produces exactly the states $\rho_{XE}$ and $\sigma_{XE}$.
+Hence
+\[
+\|\rho_{XE}-\sigma_{XE}\|_1 = \|\Tr_{AB}(\rho^{\mathrm{meas}}-\sigma^{\mathrm{meas}})\|_1\le \|\rho^{\mathrm{meas}}-\sigma^{\mathrm{meas}}\|_1,
+\]
+where the inequality is Lemma~\ref{lem:partial-trace-contractive} applied to
+$H:=\rho^{\mathrm{meas}}-\sigma^{\mathrm{meas}}$.
+Finally, Lemma~\ref{lem:isometry-norm} gives
+\[
+\|\rho^{\mathrm{meas}}-\sigma^{\mathrm{meas}}\|_1 = \|(W\otimes I)(\rho_{ABE}-\sigma_{ABE})(W^\dagger\otimes I)\|_1 = \|\rho_{ABE}-\sigma_{ABE}\|_1.
+\]
+\end{proof}

@@ -1,0 +1,51 @@
+\section[Main theorem: CHSH forces pguess close to 1/2]{Main theorem: CHSH forces $p_{\mathrm{guess}}$ close to $\tfrac12$}
+
+\begin{theorem}[CHSH bound implies guessing bound (no purification)]
+\label{thm:chsh-to-pguess}
+\uses{lem:bell-overlap,def:postselected,lem:postselect-factor,lem:gentle-postselect,lem:measure-contract,lem:pguess-continuity,lem:pguess-uniform}
+\lean{RigidityToPguess.chsh_to_pguess}
+\notready
+Let $\rho_{ABE}$ be a tripartite state with qubit registers $A,B$ and arbitrary $E$, and let $\rho_{AB}=\Tr_E(\rho_{ABE})$.
+Assume
+\[
+\varepsilon \le 2\sqrt2-2,
+\qquad
+\Tr(\rho_{AB}\,\mathrm{CHSH})\ge 2\sqrt2-\varepsilon,
+\]
+where $\mathrm{CHSH}$ is the canonical two-qubit operator from Definition~\ref{def:chsh-operator}.
+Let $X$ be the computational-basis measurement outcome on $A$ as in Definition~\ref{def:rho-xe}.
+Then
+\[
+ p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \sqrt{\frac{\varepsilon}{2\sqrt2}} + \frac{\varepsilon}{2\sqrt2}.
+\]
+In particular, $p_{\mathrm{guess}}(X\mid E)_\rho\le \tfrac12 + O(\sqrt\varepsilon)$.
+\end{theorem}
+
+\begin{proof}
+Set $\Phi=|\Phi^+\rangle\!\langle\Phi^+|$ and define $p:=\langle\Phi^+|\rho_{AB}|\Phi^+\rangle$ and $\delta:=1-p$.
+By Lemma~\ref{lem:bell-overlap}, $\delta\le \varepsilon/(2\sqrt2)$.
+Since $\varepsilon\le 2\sqrt2-2$, we have
+\[
+\delta \le \frac{\varepsilon}{2\sqrt2} \le 1-\frac{1}{\sqrt2}<1,
+\]
+so $p=1-\delta>0$.
+
+Consider the projector $\Pi:=\Phi\otimes I_E$ and define the postselected state $\widetilde\rho_{ABE}=\Pi\rho_{ABE}\Pi/p$ as in Definition~\ref{def:postselected}.
+Since $\Tr(\Pi\rho_{ABE})=\Tr(\Phi\rho_{AB})=p$, Lemma~\ref{lem:postselect-factor} gives a state $\tau_E$ such that $\widetilde\rho_{ABE}=\Phi\otimes\tau_E$.
+
+Let $\rho_{XE}$ be induced from $\rho_{ABE}$ and let $\sigma_{XE}$ be induced from $\widetilde\rho_{ABE}$ by measuring $A$ in the computational basis and discarding $B$.
+From $\widetilde\rho_{ABE}=\Phi\otimes\tau_E$, measuring $A$ yields a uniform bit independent of $E$, hence $\sigma_{XE}=\tfrac{I_X}{2}\otimes\tau_E$ and $p_{\mathrm{guess}}(X\mid E)_\sigma=\tfrac12$ by Lemma~\ref{lem:pguess-uniform}.
+
+By Lemma~\ref{lem:pguess-continuity},
+\[
+ p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \frac12\|\rho_{XE}-\sigma_{XE}\|_1.
+\]
+By Lemma~\ref{lem:measure-contract} and Lemma~\ref{lem:gentle-postselect},
+\[
+\|\rho_{XE}-\sigma_{XE}\|_1 \le \|\rho_{ABE}-\widetilde\rho_{ABE}\|_1 \le 2\sqrt{1-p}+2(1-p)=2\sqrt\delta+2\delta.
+\]
+Combining gives
+\[
+ p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \sqrt\delta+\delta \le \frac12 + \sqrt{\frac{\varepsilon}{2\sqrt2}} + \frac{\varepsilon}{2\sqrt2}.
+\]
+\end{proof}

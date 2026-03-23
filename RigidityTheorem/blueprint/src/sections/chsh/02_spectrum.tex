@@ -1,0 +1,37 @@
+\section{Spectrum of the canonical CHSH operator}
+
+\begin{lemma}[Simplified form of CHSH]
+\label{lem:chsh-simplify}
+\uses{def:chsh-operator}
+\lean{RigidityToPguess.chsh_simplify}
+\notready
+With the canonical choice of observables in Definition~\ref{def:chsh-operator},
+\[
+\mathrm{CHSH} = \sqrt 2\,(Z\otimes Z + X\otimes X).
+\]
+\end{lemma}
+
+\begin{proof}
+Using $B_0+B_1=\tfrac{2Z}{\sqrt2}$ and $B_0-B_1=\tfrac{2X}{\sqrt2}$,
+\[
+\mathrm{CHSH}=Z\otimes(B_0+B_1)+X\otimes(B_0-B_1)=\sqrt2\,(Z\otimes Z + X\otimes X).
+\]
+\end{proof}
+
+\begin{lemma}[Bell basis eigenvalues]
+\label{lem:chsh-eigenvalues}
+\uses{def:bell-phi-plus,lem:chsh-simplify}
+\lean{RigidityToPguess.chsh_eigenvalues}
+\notready
+Let $\Phi:=|\Phi^+\rangle\!\langle\Phi^+|$.
+Then $|\Phi^+\rangle$ is an eigenvector of $\mathrm{CHSH}$ with eigenvalue $2\sqrt2$.
+Moreover, the spectrum of $\mathrm{CHSH}$ is
+\[
+\{2\sqrt2,\ 0,\ 0,\ -2\sqrt2\},
+\]
+and the top eigenvalue $2\sqrt2$ is non-degenerate.
+\end{lemma}
+
+\begin{proof}
+In the Bell basis $\{|\Phi^\pm\rangle,|\Psi^\pm\rangle\}$, one checks that $Z\otimes Z$ has eigenvalue $+1$ on $|\Phi^\pm\rangle$ and $-1$ on $|\Psi^\pm\rangle$, while $X\otimes X$ has eigenvalue $+1$ on $|\Phi^+\rangle,|\Psi^+\rangle$ and $-1$ on $|\Phi^-\rangle,|\Psi^-\rangle$. Using Lemma~\ref{lem:chsh-simplify} gives the stated spectrum.
+\end{proof}

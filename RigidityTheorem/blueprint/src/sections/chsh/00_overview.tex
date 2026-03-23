@@ -1,0 +1,18 @@
+\chapter{From CHSH to guessing probability}
+\label{ch:chsh-pguess}
+
+This chapter gives a self-contained blueprint proof of the implication
+\[
+\varepsilon \le 2\sqrt{2}-2
+\quad\Longrightarrow\quad
+\Tr(\rho_{AB}\,\mathrm{CHSH})\ge 2\sqrt{2}-\varepsilon
+\quad\Longrightarrow\quad
+p_{\mathrm{guess}}(X\mid E)_{\rho}\le \tfrac12+O(\sqrt\varepsilon),
+\]
+for qubit systems $A$ and $B$, where $X$ is Alice's outcome when measuring in the key basis.
+The key idea is to
+\emph{postselect} on the (rank-one) Bell projector on $AB$ and use a gentle-measurement bound.
+
+\medskip
+
+All statements are written in a way that is compatible with the dependency-graph style used by the blueprint.

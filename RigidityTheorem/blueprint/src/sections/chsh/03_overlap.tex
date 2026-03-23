@@ -1,0 +1,28 @@
+\section{From CHSH expectation to Bell overlap}
+
+\begin{lemma}[CHSH expectation upper bounds Bell infidelity]
+\label{lem:bell-overlap}
+\uses{def:systems,def:bell-phi-plus,def:chsh-operator,lem:chsh-eigenvalues}
+\lean{RigidityToPguess.bell_overlap}
+\notready
+Assume $\Tr(\rho_{AB}\,\mathrm{CHSH})\ge 2\sqrt2-\varepsilon$.
+Let $p:=\langle\Phi^+|\rho_{AB}|\Phi^+\rangle$ and define $\delta:=1-p$.
+Then
+\[
+\delta \le \frac{\varepsilon}{2\sqrt2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\mathrm{CHSH}$ have spectral decomposition
+\(
+\mathrm{CHSH}=2\sqrt2\,|\Phi^+\rangle\langle\Phi^+| -2\sqrt2\,|\Psi^-\rangle\langle\Psi^-|.
+\)
+(This uses Lemma~\ref{lem:chsh-eigenvalues}; the two remaining Bell states have eigenvalue $0$.)
+Then
+\[
+\Tr(\rho_{AB}\,\mathrm{CHSH}) = 2\sqrt2\,(p-q)\le 2\sqrt2\,p,
+\]
+where $q:=\langle\Psi^-|\rho_{AB}|\Psi^-\rangle\ge 0$.
+Rearranging gives $p\ge 1-\varepsilon/(2\sqrt2)$, i.e. $\delta\le\varepsilon/(2\sqrt2)$.
+\end{proof}

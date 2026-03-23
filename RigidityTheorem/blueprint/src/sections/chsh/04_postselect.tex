@@ -1,0 +1,37 @@
+\section{Postselection on the Bell projector}
+
+\begin{definition}[Postselected state]
+\label{def:postselected}
+\uses{def:systems,def:bell-phi-plus}
+\lean{RigidityToPguess.postselected}
+\notready
+Let $\Pi:=\Phi\otimes I_E$ where $\Phi=|\Phi^+\rangle\!\langle\Phi^+|$.
+Assume $p:=\Tr(\Pi\rho_{ABE})>0$.
+Define the normalised postselected state
+\[
+\widetilde\rho_{ABE} := \frac{\Pi\rho_{ABE}\Pi}{p}.
+\]
+\end{definition}
+
+\begin{lemma}[Rank-one postselection gives exact factorisation]
+\label{lem:postselect-factor}
+\uses{def:postselected}
+\lean{RigidityToPguess.postselect_factor}
+\notready
+With the notation of Definition~\ref{def:postselected}, there exists a state $\tau_E$ on $E$ such that
+\[
+\widetilde\rho_{ABE} = \Phi\otimes \tau_E.
+\]
+Moreover, one can take
+\[
+\tau_E = \frac{1}{p}\,(\langle\Phi^+|_{AB}\otimes I_E)\rho_{ABE}(|\Phi^+\rangle_{AB}\otimes I_E).
+\]
+\end{lemma}
+
+\begin{proof}
+Since $\Phi$ is a rank-one projector, the operator $\Pi\rho_{ABE}\Pi$ has support contained in the one-dimensional subspace $\mathrm{span}\{|\Phi^+\rangle\}$ on $AB$. Hence there is a positive semidefinite operator $\tau'_E$ on $E$ such that
+\(
+\Pi\rho_{ABE}\Pi=\Phi\otimes\tau'_E
+\).
+Taking the partial matrix element of $\rho_{ABE}$ in the vector $|\Phi^+\rangle$ yields the explicit formula for $\tau'_E$ and gives $\Tr(\tau'_E)=p$. Normalising $\tau_E:=\tau'_E/p$ gives the claim.
+\end{proof}

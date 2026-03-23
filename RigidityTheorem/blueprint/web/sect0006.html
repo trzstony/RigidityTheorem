@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bounding trace-norm distance after Alice’s measurement</title>
+<link rel="next" href="sect0007.html" title="Continuity of guessing probability" />
+<link rel="prev" href="sect0005.html" title="A gentle-measurement bound for Bell postselection" />
+<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">Rigidity Theorem Blueprint</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class=" active">
+  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000007">1.6 Bounding trace-norm distance after Alice’s measurement</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:trace-variational">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">12</span>
+    <span class="lemma_thmtitle">Variational form of trace norm (unitary maximum)</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0006.html#lem:trace-variational">#</a>
+    
+    <a class="icon proof" href="sect0006.html#a0000000033"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.trace_variational" class="lean_decl">RigidityToPguess.trace_variational</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   For any operator \(A\) on a finite-dimensional Hilbert space, one has </p>
+<div class="displaymath" id="a0000000034">
+  \[  \| A\| _1 = \sup _{U\  \mathrm{unitary}} \left|\operatorname {Tr}(UA)\right|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000033">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p><b class="bfseries">Step 1 (upper bound).</b> For any unitary \(U\), Hölder duality for Schatten norms gives </p>
+<div class="displaymath" id="a0000000035">
+  \[  \left|\operatorname {Tr}(UA)\right| \le \| U\| _\infty \, \| A\| _1 = \| A\| _1  \]
+</div>
+<p> because \(\| U\| _\infty =1\). Therefore </p>
+<div class="displaymath" id="a0000000036">
+  \[  \sup _{U\  \mathrm{unitary}} \left|\operatorname {Tr}(UA)\right| \le \| A\| _1.  \]
+</div>
+<p><b class="bfseries">Step 2 (lower bound by explicit construction).</b> Let </p>
+<div class="displaymath" id="a0000000037">
+  \[  T:=\sqrt{A^\dagger A}.  \]
+</div>
+<p> Choose an orthonormal eigenbasis \((b_i)_i\) of \(T\), with eigenvalues \(\sigma _i\ge 0\) (the singular values of \(A\)). Then </p>
+<div class="displaymath" id="a0000000038">
+  \[  \| A\| _1=\sum _i \sigma _i.  \]
+</div>
+<p>Define \(s:=\{ i:\sigma _i\neq 0\} \) and, for \(i\in s\), set </p>
+<div class="displaymath" id="a0000000039">
+  \[  v_i:=\sigma _i^{-1}A b_i.  \]
+</div>
+<p> For \(i\notin s\), put \(v_i:=0\). Using </p>
+<div class="displaymath" id="a0000000040">
+  \[  \langle A b_i, A b_j\rangle =\langle b_j,A^\dagger A b_i\rangle =\sigma _i^2\langle b_i,b_j\rangle  \]
+</div>
+<p> and \(\| A b_i\| =\sigma _i\), one checks that \((v_i)_{i\in s}\) is orthonormal. Extend it to an orthonormal basis \((c_i)_i\) of the whole space. </p>
+<p>Now define the unitary \(U\) by </p>
+<div class="displaymath" id="a0000000041">
+  \[  U(c_i)=b_i\quad \text{for all }i.  \]
+</div>
+<p> If \(\sigma _i\neq 0\), then \(A b_i=\sigma _i c_i\), hence </p>
+<div class="displaymath" id="a0000000042">
+  \[  U A b_i=\sigma _i b_i \quad \Rightarrow \quad \langle b_i,U A b_i\rangle =\sigma _i.  \]
+</div>
+<p> If \(\sigma _i=0\), then \(A b_i=0\), so the same identity \(\langle b_i,U A b_i\rangle =\sigma _i\) still holds. Therefore, for every \(i\), </p>
+<div class="displaymath" id="a0000000043">
+  \[  \langle b_i,U A b_i\rangle =\sigma _i.  \]
+</div>
+<p> Summing over \(i\), </p>
+<div class="displaymath" id="a0000000044">
+  \[  \operatorname {Tr}(UA)=\sum _i \sigma _i=\| A\| _1.  \]
+</div>
+<p> Since the right-hand side is nonnegative, </p>
+<div class="displaymath" id="a0000000045">
+  \[  \left|\operatorname {Tr}(UA)\right|=\| A\| _1.  \]
+</div>
+<p> Hence </p>
+<div class="displaymath" id="a0000000046">
+  \[  \sup _{U\  \mathrm{unitary}} \left|\operatorname {Tr}(UA)\right|\ge \| A\| _1.  \]
+</div>
+<p><b class="bfseries">Step 3 (conclusion).</b> Combining Steps 1 and 2 yields </p>
+<div class="displaymath" id="a0000000047">
+  \[  \| A\| _1=\sup _{U\  \mathrm{unitary}} \left|\operatorname {Tr}(UA)\right|.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:partial-trace-contractive">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">13</span>
+    <span class="lemma_thmtitle">Partial trace is contractive for the trace norm</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0006.html#lem:partial-trace-contractive">#</a>
+    
+    <a class="icon proof" href="sect0006.html#a0000000048"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#lem:trace-variational">Lemma 12</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.partial_trace_contractive" class="lean_decl">RigidityToPguess.partial_trace_contractive</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any operator \(H\) on \(R\otimes S\), </p>
+<div class="displaymath" id="a0000000049">
+  \[  \| \operatorname {Tr}_S(H)\| _1 \le \| H\| _1.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000048">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>By Lemma&#160;<a href="sect0006.html#lem:trace-variational">12</a>, </p>
+<div class="displaymath" id="a0000000050">
+  \[  \| \operatorname {Tr}_S(H)\| _1 =\sup _{U_R\  \mathrm{unitary}}\left|\operatorname {Tr}\! \left(U_R\, \operatorname {Tr}_S(H)\right)\right| =\sup _{U_R\  \mathrm{unitary}}\left|\operatorname {Tr}\! \left((U_R\otimes I_S)H\right)\right|.  \]
+</div>
+<div class="displaymath" id="a0000000051">
+  \[  \text{Since }U_R\otimes I_S\text{ is unitary on }R\otimes S,\quad \left|\operatorname {Tr}\! \left((U_R\otimes I_S)H\right)\right| \le \sup _{V\  \mathrm{unitary\  on}\  R\otimes S}\left|\operatorname {Tr}(VH)\right| =\| H\| _1.  \]
+</div>
+<p> Taking the supremum over \(U_R\) gives \(\| \operatorname {Tr}_S(H)\| _1\le \| H\| _1\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:isometry-norm">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">14</span>
+    <span class="lemma_thmtitle">Isometries preserve the trace norm</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0006.html#lem:isometry-norm">#</a>
+    
+    <a class="icon proof" href="sect0006.html#a0000000052"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.isometry_trace_norm" class="lean_decl">RigidityToPguess.isometry_trace_norm</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>   Let \(W\) be an isometry (\(W^\dagger W = I\)). Then \(\| WHW^\dagger \| _1=\| H\| _1\) for all operators \(H\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000052">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>If \(H=U\Sigma V^\dagger \) is a singular value decomposition, then \(WHW^\dagger =(WU)\Sigma (WV)^\dagger \) is also a singular value decomposition because \(WU\) and \(WV\) are isometries. Hence the singular values (and their sum) are unchanged. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:measure-contract">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">15</span>
+    <span class="lemma_thmtitle">Measurement and discarding systems does not increase trace norm</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0006.html#lem:measure-contract">#</a>
+    
+    <a class="icon proof" href="sect0006.html#a0000000053"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:rho-xe">Definition 4</a></li>
+          
+          <li><a href="sect0006.html#lem:partial-trace-contractive">Lemma 13</a></li>
+          
+          <li><a href="sect0006.html#lem:isometry-norm">Lemma 14</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.measure_contract" class="lean_decl">RigidityToPguess.measure_contract</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\rho _{ABE}\) and \(\sigma _{ABE}\) be two states. Let \(\rho _{XE}\) and \(\sigma _{XE}\) be the associated classical–quantum states obtained by measuring \(A\) in the computational basis and discarding \(B\) as in Definition&#160;<a href="sect0001.html#def:rho-xe">4</a>. Then </p>
+<div class="displaymath" id="a0000000054">
+  \[  \| \rho _{XE}-\sigma _{XE}\| _1 \le \| \rho _{ABE}-\sigma _{ABE}\| _1.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000053">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>Define the measurement isometry \(W:A\to X\otimes A\) by </p>
+<div class="displaymath" id="a0000000055">
+  \[  W := |0\rangle _X\otimes |0\rangle \! \langle 0|_A + |1\rangle _X\otimes |1\rangle \! \langle 1|_A.  \]
+</div>
+<p> Let \(\rho ^{\mathrm{meas}}:=(W\otimes I_{BE})\rho _{ABE}(W^\dagger \otimes I_{BE})\) and define \(\sigma ^{\mathrm{meas}}\) similarly. By construction, tracing out \(AB\) produces exactly the states \(\rho _{XE}\) and \(\sigma _{XE}\). Hence </p>
+<div class="displaymath" id="a0000000056">
+  \[  \| \rho _{XE}-\sigma _{XE}\| _1 = \| \operatorname {Tr}_{AB}(\rho ^{\mathrm{meas}}-\sigma ^{\mathrm{meas}})\| _1\le \| \rho ^{\mathrm{meas}}-\sigma ^{\mathrm{meas}}\| _1,  \]
+</div>
+<p> where the inequality is Lemma&#160;<a href="sect0006.html#lem:partial-trace-contractive">13</a> applied to \(H:=\rho ^{\mathrm{meas}}-\sigma ^{\mathrm{meas}}\). Finally, Lemma&#160;<a href="sect0006.html#lem:isometry-norm">14</a> gives </p>
+<div class="displaymath" id="a0000000057">
+  \[  \| \rho ^{\mathrm{meas}}-\sigma ^{\mathrm{meas}}\| _1 = \| (W\otimes I)(\rho _{ABE}-\sigma _{ABE})(W^\dagger \otimes I)\| _1 = \| \rho _{ABE}-\sigma _{ABE}\| _1.  \]
+</div>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <a href="sect0005.html" title="A gentle-measurement bound for Bell postselection"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0007.html" title="Continuity of guessing probability"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+</body>
+</html>
