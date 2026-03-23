@@ -28,7 +28,7 @@ The repository currently has two main threads:
 The blueprint and entropy-bound files formalize the implication
 
 $$
-\operatorname{Tr}(\rho_{AB}\,\mathrm{CHSH}) \ge 2\sqrt{2} - \varepsilon
+\text{Tr}(\rho_{AB}\,\mathrm{CHSH}) \ge 2\sqrt{2} - \varepsilon
 \quad\Longrightarrow\quad
 p_{\mathrm{guess}}(X \mid E)_\rho \le \tfrac12 + O(\sqrt{\varepsilon}),
 $$
