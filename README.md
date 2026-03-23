@@ -23,6 +23,8 @@ The repository currently has two main threads:
 
 ## Main theorem direction
 
+### From CHSH to guessing probability
+
 The blueprint and entropy-bound files formalize the implication
 
 $$
@@ -31,4 +33,40 @@ $$
 p_{\mathrm{guess}}(X \mid E)_\rho \le \tfrac12 + O(\sqrt{\varepsilon}),
 $$
 
-for Alice and Bob qubits, where `X` is Alice's key-basis measurement outcome.
+for Alice and Bob qubits, where $X$ is Alice's key-basis measurement outcome.
+
+### Approximate CHSH rigidity
+
+The approximate-rigidity files also target the standard CHSH rigidity direction: if an entangled strategy
+
+$$
+\left(|\psi\rangle, A_0, A_1, B_0, B_1\right)
+$$
+
+with local dimension $d$ achieves CHSH success probability at least
+
+$$
+\frac{1 + 1/\sqrt{2} - \epsilon}{2},
+$$
+
+then there exist local isometries
+
+$$
+V_A, V_B : \mathbb{C}^d \to \mathbb{C}^2 \otimes \mathbb{C}^d
+$$
+
+and a junk state
+
+$$
+|\Phi_{\mathrm{junk}}\rangle \in \mathbb{C}^d \otimes \mathbb{C}^d
+$$
+
+such that, up to $O(\sqrt{\epsilon})$ error,
+
+- $(V_A \otimes V_B)|\psi\rangle$ is close to $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \otimes |\Phi_{\mathrm{junk}}\rangle$.
+- $(V_A \otimes V_B)(A_0 \otimes I)|\psi\rangle$ is close to $(Z \otimes I)\left(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\right) \otimes |\Phi_{\mathrm{junk}}\rangle$.
+- $(V_A \otimes V_B)(A_1 \otimes I)|\psi\rangle$ is close to $(X \otimes I)\left(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\right) \otimes |\Phi_{\mathrm{junk}}\rangle$.
+- $(V_A \otimes V_B)(I \otimes B_0)|\psi\rangle$ is close to $(I \otimes H)\left(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\right) \otimes |\Phi_{\mathrm{junk}}\rangle$.
+- $(V_A \otimes V_B)(I \otimes B_1)|\psi\rangle$ is close to $(I \otimes (Z H Z))\left(\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\right) \otimes |\Phi_{\mathrm{junk}}\rangle$.
+
+This is the rigidity statement developed in [RigidityTheorem.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/RigidityTheorem.lean) together with the supporting files in [Approximate_Rigidity](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity).
