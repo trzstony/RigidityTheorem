@@ -12,10 +12,10 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Continuity of guessing probability</title>
-<link rel="next" href="sect0008.html" title="Main theorem: CHSH forces pguess close to 12" />
-<link rel="prev" href="sect0006.html" title="Bounding trace-norm distance after Alice’s measurement" />
-<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<title>Operator Extraction</title>
+<link rel="next" href="sect0008.html" title="Formalization Map" />
+<link rel="prev" href="sect0006.html" title="State Extraction" />
+<link rel="up" href="ch-robust-chsh.html" title="Robust Rigidity of CHSH" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
@@ -32,32 +32,32 @@
 <nav class="toc">
 <ul class="sub-toc-0">
 <li class=" active">
-  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <a href="ch-robust-chsh.html"><span class="toc_ref">1</span> <span class="toc_entry">Robust Rigidity of CHSH</span></a>
   <span class="expand-toc">▼</span>
   <ul class="sub-toc-1 active">
      <li class="">
-  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">CHSH Setup</span></a>
  </li>
 <li class="">
-  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Bell-Basis Spectral Input</span></a>
  </li>
 <li class="">
-  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">Local Isometries and Exact Extracted Relations</span></a>
  </li>
 <li class="">
-  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Approximate Anti-Commutation and Extracted Operators</span></a>
  </li>
 <li class="">
-  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">From Physical CHSH to the Ideal Bell Operator</span></a>
  </li>
 <li class="">
-  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">State Extraction</span></a>
  </li>
 <li class=" active current">
-  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Operator Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Formalization Map</span></a>
  </li>
 
   </ul>
@@ -71,23 +71,20 @@
 
 
 <div class="main-text">
-<h1 id="a0000000008">1.7 Continuity of guessing probability</h1>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:pguess-decision">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
+<h1 id="a0000000008">1.7 Operator Extraction</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:alice-operator-extraction">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
     </span>
-    <span class="lemma_thmlabel">16</span>
-    <span class="lemma_thmtitle">Decision-operator form of \(p_{\mathrm{guess}}\)</span>
+    <span class="theorem_thmlabel">21</span>
+    <span class="theorem_thmtitle">Alice operator extraction</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0007.html#lem:pguess-decision">#</a>
-    
-    <a class="icon proof" href="sect0007.html#a0000000058"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
+    <a class="icon proof" href="sect0007.html#thm:alice-operator-extraction">#</a>
     
     
     <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
@@ -102,7 +99,15 @@
         
         <ul class="uses">
           
-          <li><a href="sect0001.html#def:pguess">Definition 5</a></li>
+          <li><a href="sect0006.html#thm:state-extraction">Theorem 20</a></li>
+          
+          <li><a href="sect0003.html#thm:a0-exact">Theorem 11</a></li>
+          
+          <li><a href="sect0004.html#thm:a1-approx">Theorem 16</a></li>
+          
+          <li><a href="sect0003.html#thm:va-vb-isometries">Theorem 10</a></li>
+          
+          <li><a href="sect0001.html#def:delta">Definition 4</a></li>
           
         </ul>
     
@@ -122,7 +127,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_decision" class="lean_decl">RigidityToPguess.pguess_decision</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.Alice_operator_extraction" class="lean_decl">Approximate_Rigidity.Alice_operator_extraction</a></li>
           
         </ul>
     
@@ -132,43 +137,31 @@
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    For a classical–quantum state \(\rho _{XE}\) with \(X\in \{ 0,1\} \), </p>
-<div class="displaymath" id="a0000000059">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho = \sup _{0\preceq \Pi \preceq I_{XE}} \operatorname {Tr}(\Pi \rho _{XE}),  \]
+  <div class="theorem_thmcontent">
+  <p>    Assume \(\varepsilon \ge 0\) and \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \). Then there exist isometries \(V_A\), \(V_B\) and a junk state \(\Phi _{\mathrm{junk}}\) such that </p>
+<div class="displaymath" id="a0000000039">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(A_0 \otimes \mathrm{Id})\psi \bigr) - (Z \otimes \mathrm{Id})\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{2\sqrt{2}\, \delta (\varepsilon )},  \]
 </div>
-<p> where the supremum is over operators of the form \(\Pi =|0\rangle \! \langle 0|\otimes M_0 + |1\rangle \! \langle 1|\otimes M_1\) with \(\{ M_0,M_1\} \) a POVM on \(E\). </p>
+<p> and </p>
+<div class="displaymath" id="a0000000040">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(A_1 \otimes \mathrm{Id})\psi \bigr) - (X \otimes \mathrm{Id})\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon } + \sqrt{2\sqrt{2}\, \delta (\varepsilon )}.  \]
+</div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000058">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:bob-operator-extraction">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
     </span>
-    <span class="expand-proof">▼</span>
-  </div>
-  <div class="proof_content">
-  <p>Expanding Definition&#160;<a href="sect0001.html#def:pguess">5</a> gives \(\sum _x\operatorname {Tr}(M_x\rho _E^x)=\operatorname {Tr}(\Pi \rho _{XE})\) with the stated \(\Pi \). Conversely, any such \(\Pi \) corresponds to a valid POVM. Taking the supremum over POVMs is the same as taking the supremum over such \(\Pi \). </p>
-
-  </div>
-</div>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:pguess-continuity">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
-    </span>
-    <span class="lemma_thmlabel">17</span>
-    <span class="lemma_thmtitle">Continuity of \(p_{\mathrm{guess}}\)</span>
+    <span class="theorem_thmlabel">22</span>
+    <span class="theorem_thmtitle">Bob operator extraction</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0007.html#lem:pguess-continuity">#</a>
-    
-    <a class="icon proof" href="sect0007.html#a0000000060"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
+    <a class="icon proof" href="sect0007.html#thm:bob-operator-extraction">#</a>
     
     
     <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
@@ -183,7 +176,15 @@
         
         <ul class="uses">
           
-          <li><a href="sect0007.html#lem:pguess-decision">Lemma 16</a></li>
+          <li><a href="sect0006.html#thm:state-extraction">Theorem 20</a></li>
+          
+          <li><a href="sect0003.html#thm:b0-exact">Theorem 12</a></li>
+          
+          <li><a href="sect0004.html#thm:b1-approx">Theorem 17</a></li>
+          
+          <li><a href="sect0003.html#thm:va-vb-isometries">Theorem 10</a></li>
+          
+          <li><a href="sect0001.html#def:delta">Definition 4</a></li>
           
         </ul>
     
@@ -203,7 +204,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_continuity" class="lean_decl">RigidityToPguess.pguess_continuity</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.Bob_operator_extraction" class="lean_decl">Approximate_Rigidity.Bob_operator_extraction</a></li>
           
         </ul>
     
@@ -213,125 +214,37 @@
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    For any two classical–quantum states \(\rho _{XE}\) and \(\sigma _{XE}\), </p>
-<div class="displaymath" id="a0000000061">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le p_{\mathrm{guess}}(X\mid E)_\sigma + \frac12\| \rho _{XE}-\sigma _{XE}\| _1.  \]
+  <div class="theorem_thmcontent">
+  <p>    Assume \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \). Then there exist isometries \(V_A\), \(V_B\) and a junk state \(\Phi _{\mathrm{junk}}\) such that </p>
+<div class="displaymath" id="a0000000041">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(\mathrm{Id}\otimes B_0)\psi \bigr) - (\mathrm{Id}\otimes H)\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{2\sqrt{2}\, \delta (\varepsilon )},  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000042">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(\mathrm{Id}\otimes B_1)\psi \bigr) - (\mathrm{Id}\otimes ZHZ)\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon } + \sqrt{2\sqrt{2}\, \delta (\varepsilon )}.  \]
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000060">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
+<div class="remark_thmwrapper theorem-style-definition" id="a0000000043">
+  <div class="remark_thmheading">
+    <span class="remark_thmcaption">
+    Remark
     </span>
-    <span class="expand-proof">▼</span>
-  </div>
-  <div class="proof_content">
-  <p>Set \(\Delta :=\rho _{XE}-\sigma _{XE}\). Since \(\rho _{XE}\) and \(\sigma _{XE}\) are states, \(\Delta \) is Hermitian and \(\operatorname {Tr}(\Delta )=0\). </p>
-<p>Fix any feasible decision operator \(\Pi \). Then </p>
-<div class="displaymath" id="a0000000062">
-  \[  \operatorname {Tr}(\Pi \rho _{XE}) = \operatorname {Tr}(\Pi \sigma _{XE}) + \operatorname {Tr}(\Pi \Delta ).  \]
-</div>
-<p>Write the Jordan decomposition \(\Delta =\Delta _+-\Delta _-\) with \(\Delta _\pm \succeq 0\) and orthogonal supports. Because \(\operatorname {Tr}(\Delta )=0\), </p>
-<div class="displaymath" id="a0000000063">
-  \[  \operatorname {Tr}(\Delta _+)=\operatorname {Tr}(\Delta _-)=\frac12\| \Delta \| _1.  \]
-</div>
-<p> Since \(0\preceq \Pi \preceq I\) and \(\Delta _-\succeq 0\), </p>
-<div class="displaymath" id="a0000000064">
-  \[  \operatorname {Tr}(\Pi \Delta )=\operatorname {Tr}(\Pi \Delta _+)-\operatorname {Tr}(\Pi \Delta _-)\le \operatorname {Tr}(\Pi \Delta _+)\le \operatorname {Tr}(\Delta _+)=\frac12\| \Delta \| _1.  \]
-</div>
-<p> Therefore </p>
-<div class="displaymath" id="a0000000065">
-  \[  \operatorname {Tr}(\Pi \rho _{XE})\le \operatorname {Tr}(\Pi \sigma _{XE})+\frac12\| \rho _{XE}-\sigma _{XE}\| _1.  \]
-</div>
-<p> Now take the supremum over feasible \(\Pi \) and use Lemma&#160;<a href="sect0007.html#lem:pguess-decision">16</a>. </p>
-
-  </div>
-</div>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:pguess-uniform">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
-    </span>
-    <span class="lemma_thmlabel">18</span>
-    <span class="lemma_thmtitle">Guessing probability for a uniform and independent bit</span>
+    <span class="remark_thmlabel">23</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0007.html#lem:pguess-uniform">#</a>
-    
-    <a class="icon proof" href="sect0007.html#a0000000066"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
+    <a class="icon proof" href="sect0007.html#a0000000043">#</a>
     
     
-    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
-</button>
-        <div class="modal-container">
-      <div class="modal-content">
-        <header>
-          <h1>Uses</h1>
-          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        </header>
-        
-        <ul class="uses">
-          
-          <li><a href="sect0001.html#def:pguess">Definition 5</a></li>
-          
-        </ul>
-    
-      </div>
-    </div>
-
-    
-    
-    <button class="modal lean">L∃∀N</button>
-        <div class="modal-container">
-      <div class="modal-content">
-        <header>
-          <h1>Lean declarations</h1>
-          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        </header>
-        
-        <ul class="uses">
-          
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_uniform" class="lean_decl">RigidityToPguess.pguess_uniform</a></li>
-          
-        </ul>
-    
-      </div>
-    </div>
-
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    Let \(\tau _E\) be any state. If </p>
-<div class="displaymath" id="a0000000067">
-  \[  \sigma _{XE}=\frac{I_X}{2}\otimes \tau _E,  \]
-</div>
-<p> then \(p_{\mathrm{guess}}(X\mid E)_\sigma =\tfrac 12\). </p>
-
-  </div>
-</div>
-<div class="proof_wrapper" id="a0000000066">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
-    </span>
-    <span class="expand-proof">▼</span>
-  </div>
-  <div class="proof_content">
-  <p>For any POVM \(\{ M_0,M_1\} \), one has </p>
-<div class="displaymath" id="a0000000068">
-  \[  \sum _x \operatorname {Tr}(M_x\sigma _E^x)=\frac12\operatorname {Tr}(M_0\tau _E)+\frac12\operatorname {Tr}(M_1\tau _E)=\frac12\operatorname {Tr}((M_0+M_1)\tau _E)=\frac12.  \]
-</div>
-<p> Taking the supremum gives \(p_{\mathrm{guess}}=\tfrac 12\). </p>
+  <div class="remark_thmcontent">
+  <p>These two theorems are the Lean-facing version of the robust rigidity conclusion in the approximately extremal case: after local isometries, both the state and the designated observables behave like the ideal CHSH realization up to \(O(\sqrt{\varepsilon })\). </p>
 
   </div>
 </div>
@@ -342,11 +255,11 @@
 </div> <!-- wrapper -->
 
 <nav class="prev_up_next">
-  <a href="sect0006.html" title="Bounding trace-norm distance after Alice’s measurement"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0006.html" title="State Extraction"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
-  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+  <a href="ch-robust-chsh.html" title="Robust Rigidity of CHSH"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0008.html" title="Main theorem: CHSH forces \(p_{\mathrm{guess}}\) close to \(\tfrac 12\)"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0008.html" title="Formalization Map"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 

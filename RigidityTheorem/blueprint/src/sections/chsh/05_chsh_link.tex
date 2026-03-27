@@ -1,0 +1,32 @@
+\section{From Physical CHSH to the Ideal Bell Operator}
+
+\begin{lemma}[Bias after extraction]
+\label{lem:chsh-bias-regswap}
+\uses{thm:va-vb-isometries,def:chsh-bias}
+\lean{Approximate_Rigidity.chshBias_eq_re_inner_regSwap_isometryV}
+Let
+\[
+\Psi = \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi\bigr).
+\]
+Then the physical CHSH bias of the strategy is the real part of an inner product between $\Psi$ and the extracted physical CHSH action.
+\end{lemma}
+
+\begin{theorem}[CHSH bias gives a lower bound on the $K$-expectation]
+\label{thm:chsh-to-k}
+\uses{lem:chsh-bias-regswap,thm:a0-exact,thm:b0-exact,thm:a1-approx,thm:b1-approx,def:delta}
+\lean{Approximate_Rigidity.chsh_to_K_expectation}
+If $\Bias(S) \ge 2\sqrt{2} - \eps$ and
+\[
+\Psi = \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi\bigr),
+\]
+then
+\[
+\Re \ip{\Psi}{(K \otimes \id)\Psi}
+\ge 2\sqrt{2} - \delta(\eps).
+\]
+\end{theorem}
+
+\begin{proof}
+This is the bookkeeping-heavy step formalized in `chsh_link.lean`.
+The exact $A_0$ and $B_0$ identities contribute no error, while the approximate $A_1$ and $B_1$ relations contribute the $\sqrt{\eps}$ losses absorbed into $\delta(\eps)$.
+\end{proof}

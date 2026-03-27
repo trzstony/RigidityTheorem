@@ -1,0 +1,56 @@
+\section{Operator Extraction}
+
+\begin{theorem}[Alice operator extraction]
+\label{thm:alice-operator-extraction}
+\uses{thm:state-extraction,thm:a0-exact,thm:a1-approx,thm:va-vb-isometries,def:delta}
+\lean{Approximate_Rigidity.Alice_operator_extraction}
+Assume $\eps \ge 0$ and $\Bias(S) \ge 2\sqrt{2} - \eps$.
+Then there exist isometries $V_A$, $V_B$ and a junk state $\Phi_{\mathrm{junk}}$ such that
+\[
+\norm{
+\mathrm{regSwap}\bigl((V_A \otimes V_B)(A_0 \otimes \id)\psi\bigr)
+-
+(Z \otimes \id)\Phi^+ \otimes \Phi_{\mathrm{junk}}
+}
+\le \sqrt{2\sqrt{2}\,\delta(\eps)},
+\]
+and
+\[
+\norm{
+\mathrm{regSwap}\bigl((V_A \otimes V_B)(A_1 \otimes \id)\psi\bigr)
+-
+(X \otimes \id)\Phi^+ \otimes \Phi_{\mathrm{junk}}
+}
+\le \sqrt{\cconst \eps} + \sqrt{2\sqrt{2}\,\delta(\eps)}.
+\]
+\end{theorem}
+
+\begin{theorem}[Bob operator extraction]
+\label{thm:bob-operator-extraction}
+\uses{thm:state-extraction,thm:b0-exact,thm:b1-approx,thm:va-vb-isometries,def:delta}
+\lean{Approximate_Rigidity.Bob_operator_extraction}
+Assume $\Bias(S) \ge 2\sqrt{2} - \eps$.
+Then there exist isometries $V_A$, $V_B$ and a junk state $\Phi_{\mathrm{junk}}$ such that
+\[
+\norm{
+\mathrm{regSwap}\bigl((V_A \otimes V_B)(\id \otimes B_0)\psi\bigr)
+-
+(\id \otimes H)\Phi^+ \otimes \Phi_{\mathrm{junk}}
+}
+\le \sqrt{2\sqrt{2}\,\delta(\eps)},
+\]
+and
+\[
+\norm{
+\mathrm{regSwap}\bigl((V_A \otimes V_B)(\id \otimes B_1)\psi\bigr)
+-
+(\id \otimes ZHZ)\Phi^+ \otimes \Phi_{\mathrm{junk}}
+}
+\le \sqrt{\cconst \eps} + \sqrt{2\sqrt{2}\,\delta(\eps)}.
+\]
+\end{theorem}
+
+\begin{remark}
+These two theorems are the Lean-facing version of the robust rigidity conclusion in the approximately extremal case:
+after local isometries, both the state and the designated observables behave like the ideal CHSH realization up to $O(\sqrt{\eps})$.
+\end{remark}

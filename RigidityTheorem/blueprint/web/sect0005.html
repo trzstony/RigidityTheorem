@@ -12,10 +12,10 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>A gentle-measurement bound for Bell postselection</title>
-<link rel="next" href="sect0006.html" title="Bounding trace-norm distance after Alice’s measurement" />
-<link rel="prev" href="sect0004.html" title="Postselection on the Bell projector" />
-<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<title>From Physical CHSH to the Ideal Bell Operator</title>
+<link rel="next" href="sect0006.html" title="State Extraction" />
+<link rel="prev" href="sect0004.html" title="Approximate Anti-Commutation and Extracted Operators" />
+<link rel="up" href="ch-robust-chsh.html" title="Robust Rigidity of CHSH" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
@@ -32,32 +32,32 @@
 <nav class="toc">
 <ul class="sub-toc-0">
 <li class=" active">
-  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <a href="ch-robust-chsh.html"><span class="toc_ref">1</span> <span class="toc_entry">Robust Rigidity of CHSH</span></a>
   <span class="expand-toc">▼</span>
   <ul class="sub-toc-1 active">
      <li class="">
-  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">CHSH Setup</span></a>
  </li>
 <li class="">
-  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Bell-Basis Spectral Input</span></a>
  </li>
 <li class="">
-  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">Local Isometries and Exact Extracted Relations</span></a>
  </li>
 <li class="">
-  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Approximate Anti-Commutation and Extracted Operators</span></a>
  </li>
 <li class=" active current">
-  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">From Physical CHSH to the Ideal Bell Operator</span></a>
  </li>
 <li class="">
-  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">State Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Operator Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Formalization Map</span></a>
  </li>
 
   </ul>
@@ -71,23 +71,20 @@
 
 
 <div class="main-text">
-<h1 id="a0000000006">1.5 A gentle-measurement bound for Bell postselection</h1>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:gentle-postselect">
+<h1 id="a0000000006">1.5 From Physical CHSH to the Ideal Bell Operator</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:chsh-bias-regswap">
   <div class="lemma_thmheading">
     <span class="lemma_thmcaption">
     Lemma
     </span>
-    <span class="lemma_thmlabel">11</span>
-    <span class="lemma_thmtitle">Gentle postselection bound</span>
+    <span class="lemma_thmlabel">18</span>
+    <span class="lemma_thmtitle">Bias after extraction</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0005.html#lem:gentle-postselect">#</a>
-    
-    <a class="icon proof" href="sect0005.html#a0000000029"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
+    <a class="icon proof" href="sect0005.html#lem:chsh-bias-regswap">#</a>
     
     
     <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
@@ -102,7 +99,9 @@
         
         <ul class="uses">
           
-          <li><a href="sect0004.html#def:postselected">Definition 9</a></li>
+          <li><a href="sect0003.html#thm:va-vb-isometries">Theorem 10</a></li>
+          
+          <li><a href="sect0001.html#def:chsh-bias">Definition 3</a></li>
           
         </ul>
     
@@ -122,7 +121,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.gentle_postselect" class="lean_decl">RigidityToPguess.gentle_postselect</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.chshBias_eq_re_inner_regSwap_isometryV" class="lean_decl">Approximate_Rigidity.chshBias_eq_re_inner_regSwap_isometryV</a></li>
           
         </ul>
     
@@ -133,14 +132,97 @@
         </div>
   </div>
   <div class="lemma_thmcontent">
-  <p>    Let \(\Pi \) and \(p=\operatorname {Tr}(\Pi \rho _{ABE})\) be as in Definition&#160;<a href="sect0004.html#def:postselected">9</a>, and set \(\widetilde\rho _{ABE}=\Pi \rho _{ABE}\Pi /p\). Then </p>
-<div class="displaymath" id="a0000000030">
-  \[  \| \rho _{ABE}-\widetilde\rho _{ABE}\| _1 \le 2\sqrt{1-p}+2(1-p).  \]
+  <p>    Let </p>
+<div class="displaymath" id="a0000000032">
+  \[  \Psi = \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi \bigr).  \]
+</div>
+<p> Then the physical CHSH bias of the strategy is the real part of an inner product between \(\Psi \) and the extracted physical CHSH action. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:chsh-to-k">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">19</span>
+    <span class="theorem_thmtitle">CHSH bias gives a lower bound on the \(K\)-expectation</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#thm:chsh-to-k">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000033"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#lem:chsh-bias-regswap">Lemma 18</a></li>
+          
+          <li><a href="sect0003.html#thm:a0-exact">Theorem 11</a></li>
+          
+          <li><a href="sect0003.html#thm:b0-exact">Theorem 12</a></li>
+          
+          <li><a href="sect0004.html#thm:a1-approx">Theorem 16</a></li>
+          
+          <li><a href="sect0004.html#thm:b1-approx">Theorem 17</a></li>
+          
+          <li><a href="sect0001.html#def:delta">Definition 4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.chsh_to_K_expectation" class="lean_decl">Approximate_Rigidity.chsh_to_K_expectation</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \) and </p>
+<div class="displaymath" id="a0000000034">
+  \[  \Psi = \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi \bigr),  \]
+</div>
+<p> then </p>
+<div class="displaymath" id="a0000000035">
+  \[  \Re \langle \Psi , (K \otimes \mathrm{Id})\Psi  \rangle  \ge 2\sqrt{2} - \delta (\varepsilon ).  \]
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000029">
+<div class="proof_wrapper" id="a0000000033">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -148,15 +230,7 @@
     <span class="expand-proof">▼</span>
   </div>
   <div class="proof_content">
-  <p>Write \(\Pi ^\perp :=I-\Pi \). Decompose </p>
-<div class="displaymath" id="a0000000031">
-  \[  \rho _{ABE}-\Pi \rho _{ABE}\Pi = \Pi \rho _{ABE}\Pi ^\perp + \Pi ^\perp \rho _{ABE}\Pi + \Pi ^\perp \rho _{ABE}\Pi ^\perp .  \]
-</div>
-<p> By triangle inequality, </p>
-<div class="displaymath" id="a0000000032">
-  \[  \| \rho _{ABE}-\Pi \rho _{ABE}\Pi \| _1 \le \| \Pi \rho _{ABE}\Pi ^\perp \| _1+\| \Pi ^\perp \rho _{ABE}\Pi \| _1 + \operatorname {Tr}(\Pi ^\perp \rho _{ABE}).  \]
-</div>
-<p> The last term equals \(1-p\). For the cross term, use the Schatten inequality \(\| AB\| _1\le \| A\| _2\| B\| _2\) with \(A:=\Pi \rho _{ABE}^{1/2}\) and \(B:=\rho _{ABE}^{1/2}\Pi ^\perp \). Then \( \| A\| _2^2=\operatorname {Tr}(\Pi \rho _{ABE})=p \) and \( \| B\| _2^2=\operatorname {Tr}(\Pi ^\perp \rho _{ABE})=1-p \), so \( \| \Pi \rho _{ABE}\Pi ^\perp \| _1\le \sqrt{p(1-p)}\le \sqrt{1-p}. \) The same bound holds for \(\| \Pi ^\perp \rho _{ABE}\Pi \| _1\). Hence \(\| \rho _{ABE}-\Pi \rho _{ABE}\Pi \| _1\le 2\sqrt{1-p}+(1-p)\). Finally, since \(\widetilde\rho _{ABE}=\Pi \rho _{ABE}\Pi /p\) and \(\| \Pi \rho _{ABE}\Pi - \widetilde\rho _{ABE}\| _1 = |1-p|\), another triangle inequality gives the stated bound. </p>
+  <p>This is the bookkeeping-heavy step formalized in ‘chsh_link.lean‘. The exact \(A_0\) and \(B_0\) identities contribute no error, while the approximate \(A_1\) and \(B_1\) relations contribute the \(\sqrt{\varepsilon }\) losses absorbed into \(\delta (\varepsilon )\). </p>
 
   </div>
 </div>
@@ -167,11 +241,11 @@
 </div> <!-- wrapper -->
 
 <nav class="prev_up_next">
-  <a href="sect0004.html" title="Postselection on the Bell projector"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0004.html" title="Approximate Anti-Commutation and Extracted Operators"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
-  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+  <a href="ch-robust-chsh.html" title="Robust Rigidity of CHSH"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0006.html" title="Bounding trace-norm distance after Alice’s measurement"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0006.html" title="State Extraction"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 

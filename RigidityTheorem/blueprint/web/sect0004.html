@@ -12,10 +12,10 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Postselection on the Bell projector</title>
-<link rel="next" href="sect0005.html" title="A gentle-measurement bound for Bell postselection" />
-<link rel="prev" href="sect0003.html" title="From CHSH expectation to Bell overlap" />
-<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<title>Approximate Anti-Commutation and Extracted Operators</title>
+<link rel="next" href="sect0005.html" title="From Physical CHSH to the Ideal Bell Operator" />
+<link rel="prev" href="sect0003.html" title="Local Isometries and Exact Extracted Relations" />
+<link rel="up" href="ch-robust-chsh.html" title="Robust Rigidity of CHSH" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
@@ -32,32 +32,32 @@
 <nav class="toc">
 <ul class="sub-toc-0">
 <li class=" active">
-  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <a href="ch-robust-chsh.html"><span class="toc_ref">1</span> <span class="toc_entry">Robust Rigidity of CHSH</span></a>
   <span class="expand-toc">▼</span>
   <ul class="sub-toc-1 active">
      <li class="">
-  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">CHSH Setup</span></a>
  </li>
 <li class="">
-  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Bell-Basis Spectral Input</span></a>
  </li>
 <li class="">
-  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">Local Isometries and Exact Extracted Relations</span></a>
  </li>
 <li class=" active current">
-  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Approximate Anti-Commutation and Extracted Operators</span></a>
  </li>
 <li class="">
-  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">From Physical CHSH to the Ideal Bell Operator</span></a>
  </li>
 <li class="">
-  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">State Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Operator Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Formalization Map</span></a>
  </li>
 
   </ul>
@@ -71,20 +71,20 @@
 
 
 <div class="main-text">
-<h1 id="a0000000005">1.4 Postselection on the Bell projector</h1>
-<div class="definition_thmwrapper theorem-style-definition" id="def:postselected">
-  <div class="definition_thmheading">
-    <span class="definition_thmcaption">
-    Definition
+<h1 id="a0000000005">1.4 Approximate Anti-Commutation and Extracted Operators</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:chsh-square">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
     </span>
-    <span class="definition_thmlabel">9</span>
-    <span class="definition_thmtitle">Postselected state</span>
+    <span class="theorem_thmlabel">14</span>
+    <span class="theorem_thmtitle">Square of the CHSH operator</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0004.html#def:postselected">#</a>
+    <a class="icon proof" href="sect0004.html#thm:chsh-square">#</a>
     
     
     <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
@@ -99,9 +99,9 @@
         
         <ul class="uses">
           
-          <li><a href="sect0001.html#def:systems">Definition 1</a></li>
+          <li><a href="sect0001.html#def:binary-observable">Definition 1</a></li>
           
-          <li><a href="sect0001.html#def:bell-phi-plus">Definition 2</a></li>
+          <li><a href="sect0001.html#def:chsh-bias">Definition 3</a></li>
           
         </ul>
     
@@ -121,7 +121,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.postselected" class="lean_decl">RigidityToPguess.postselected</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.CHSH_op_sq" class="lean_decl">Approximate_Rigidity.CHSH_op_sq</a></li>
           
         </ul>
     
@@ -131,29 +131,166 @@
     
         </div>
   </div>
-  <div class="definition_thmcontent">
-  <p>    Let \(\Pi :=\Phi \otimes I_E\) where \(\Phi =|\Phi ^+\rangle \! \langle \Phi ^+|\). Assume \(p:=\operatorname {Tr}(\Pi \rho _{ABE}){\gt}0\). Define the normalised postselected state </p>
-<div class="displaymath" id="a0000000025">
-  \[  \widetilde\rho _{ABE} := \frac{\Pi \rho _{ABE}\Pi }{p}.  \]
+  <div class="theorem_thmcontent">
+  <p>    If \(A_0,A_1,B_0,B_1\) are binary observables, then </p>
+<div class="displaymath" id="a0000000027">
+  \[  \mathrm{CHSH}(A_0,A_1,B_0,B_1)^2 = 4 \mathrm{Id}- [A_0,A_1] \otimes [B_0,B_1].  \]
 </div>
 
   </div>
 </div>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:postselect-factor">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:approx-anticomm">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
     </span>
-    <span class="lemma_thmlabel">10</span>
-    <span class="lemma_thmtitle">Rank-one postselection gives exact factorisation</span>
+    <span class="theorem_thmlabel">15</span>
+    <span class="theorem_thmtitle">Approximate anti-commutation</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0004.html#lem:postselect-factor">#</a>
+    <a class="icon proof" href="sect0004.html#thm:approx-anticomm">#</a>
     
-    <a class="icon proof" href="sect0004.html#a0000000026"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#thm:chsh-square">Theorem 14</a></li>
+          
+          <li><a href="sect0001.html#def:chsh-bias">Definition 3</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.approx_anticomm_A" class="lean_decl">Approximate_Rigidity.approx_anticomm_A</a></li>
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.approx_anticomm_B" class="lean_decl">Approximate_Rigidity.approx_anticomm_B</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \), then both local anti-commutators are small on the strategy state. More precisely, the Lean development proves </p>
+<div class="displaymath" id="a0000000028">
+  \[  \Re \langle \psi , ((A_1A_0 + A_0A_1)^2 \otimes \mathrm{Id})\psi  \rangle  \le c_{\mathrm{CHSH}}\varepsilon ,  \]
+</div>
+<p> and the analogous bound with Alice and Bob swapped. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:a1-approx">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">16</span>
+    <span class="theorem_thmtitle">Approximate extracted action of \(A_1\)</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0004.html#thm:a1-approx">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#thm:approx-anticomm">Theorem 15</a></li>
+          
+          <li><a href="sect0003.html#thm:va-vb-isometries">Theorem 10</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.eq218_A1_approx" class="lean_decl">Approximate_Rigidity.eq218_A1_approx</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Under the same bias assumption, </p>
+<div class="displaymath" id="a0000000029">
+  \[  \left\lVert  ((V_A \otimes V_B)(A_1 \otimes \mathrm{Id})\psi ) - \bigl(((X \otimes \mathrm{Id})\otimes \mathrm{Id})(V_A \otimes V_B)\psi \bigr)  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon }.  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:b1-approx">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">17</span>
+    <span class="theorem_thmtitle">Approximate extracted action of \(B_1\)</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0004.html#thm:b1-approx">#</a>
+    
+    <a class="icon proof" href="sect0004.html#a0000000030"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
     
     
@@ -169,7 +306,9 @@
         
         <ul class="uses">
           
-          <li><a href="sect0004.html#def:postselected">Definition 9</a></li>
+          <li><a href="sect0004.html#thm:approx-anticomm">Theorem 15</a></li>
+          
+          <li><a href="sect0003.html#thm:va-vb-isometries">Theorem 10</a></li>
           
         </ul>
     
@@ -189,7 +328,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.postselect_factor" class="lean_decl">RigidityToPguess.postselect_factor</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.eq220_B1_approx" class="lean_decl">Approximate_Rigidity.eq220_B1_approx</a></li>
           
         </ul>
     
@@ -199,19 +338,15 @@
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    With the notation of Definition&#160;<a href="sect0004.html#def:postselected">9</a>, there exists a state \(\tau _E\) on \(E\) such that </p>
-<div class="displaymath" id="a0000000027">
-  \[  \widetilde\rho _{ABE} = \Phi \otimes \tau _E.  \]
-</div>
-<p> Moreover, one can take </p>
-<div class="displaymath" id="a0000000028">
-  \[  \tau _E = \frac{1}{p}\, (\langle \Phi ^+|_{AB}\otimes I_E)\rho _{ABE}(|\Phi ^+\rangle _{AB}\otimes I_E).  \]
+  <div class="theorem_thmcontent">
+  <p>    Under the same bias assumption, </p>
+<div class="displaymath" id="a0000000031">
+  \[  \left\lVert  ((V_A \otimes V_B)(\mathrm{Id}\otimes B_1)\psi ) - \bigl((\mathrm{Id}\otimes (ZHZ \otimes \mathrm{Id}))(V_A \otimes V_B)\psi \bigr)  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon }.  \]
 </div>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000026">
+<div class="proof_wrapper" id="a0000000030">
   <div class="proof_heading">
     <span class="proof_caption">
     Proof
@@ -219,7 +354,7 @@
     <span class="expand-proof">▼</span>
   </div>
   <div class="proof_content">
-  <p>Since \(\Phi \) is a rank-one projector, the operator \(\Pi \rho _{ABE}\Pi \) has support contained in the one-dimensional subspace \(\mathrm{span}\{ |\Phi ^+\rangle \} \) on \(AB\). Hence there is a positive semidefinite operator \(\tau '_E\) on \(E\) such that \( \Pi \rho _{ABE}\Pi =\Phi \otimes \tau '_E \). Taking the partial matrix element of \(\rho _{ABE}\) in the vector \(|\Phi ^+\rangle \) yields the explicit formula for \(\tau '_E\) and gives \(\operatorname {Tr}(\tau '_E)=p\). Normalising \(\tau _E:=\tau '_E/p\) gives the claim. </p>
+  <p>The Lean file ‘IsometriesApprox.lean‘ first derives quantitative anti-commutation from Theorem&#160;<a href="sect0004.html#thm:chsh-square">14</a>, then transports those bounds through the isometries to obtain the vector-action estimates for \(A_1\) and \(B_1\). </p>
 
   </div>
 </div>
@@ -230,11 +365,11 @@
 </div> <!-- wrapper -->
 
 <nav class="prev_up_next">
-  <a href="sect0003.html" title="From CHSH expectation to Bell overlap"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0003.html" title="Local Isometries and Exact Extracted Relations"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
-  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+  <a href="ch-robust-chsh.html" title="Robust Rigidity of CHSH"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0005.html" title="A gentle-measurement bound for Bell postselection"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0005.html" title="From Physical CHSH to the Ideal Bell Operator"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 

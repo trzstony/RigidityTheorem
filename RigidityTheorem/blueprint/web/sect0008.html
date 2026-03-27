@@ -12,9 +12,9 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Main theorem: CHSH forces \(p_{\mathrm{guess}}\) close to \(\tfrac 12\)</title>
-<link rel="prev" href="sect0007.html" title="Continuity of guessing probability" />
-<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<title>Formalization Map</title>
+<link rel="prev" href="sect0007.html" title="Operator Extraction" />
+<link rel="up" href="ch-robust-chsh.html" title="Robust Rigidity of CHSH" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
@@ -31,32 +31,32 @@
 <nav class="toc">
 <ul class="sub-toc-0">
 <li class=" active">
-  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <a href="ch-robust-chsh.html"><span class="toc_ref">1</span> <span class="toc_entry">Robust Rigidity of CHSH</span></a>
   <span class="expand-toc">▼</span>
   <ul class="sub-toc-1 active">
      <li class="">
-  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">CHSH Setup</span></a>
  </li>
 <li class="">
-  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Bell-Basis Spectral Input</span></a>
  </li>
 <li class="">
-  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">Local Isometries and Exact Extracted Relations</span></a>
  </li>
 <li class="">
-  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Approximate Anti-Commutation and Extracted Operators</span></a>
  </li>
 <li class="">
-  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">From Physical CHSH to the Ideal Bell Operator</span></a>
  </li>
 <li class="">
-  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">State Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Operator Extraction</span></a>
  </li>
 <li class=" active current">
-  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Formalization Map</span></a>
  </li>
 
   </ul>
@@ -70,122 +70,25 @@
 
 
 <div class="main-text">
-<h1 id="a0000000009">1.8 Main theorem: CHSH forces \(p_{\mathrm{guess}}\) close to \(\tfrac 12\)</h1>
-<div class="theorem_thmwrapper theorem-style-plain" id="thm:chsh-to-pguess">
-  <div class="theorem_thmheading">
-    <span class="theorem_thmcaption">
-    Theorem
-    </span>
-    <span class="theorem_thmlabel">19</span>
-    <span class="theorem_thmtitle">CHSH bound implies guessing bound (no purification)</span>
-    <div class="thm_header_extras">
-
-        </div>
-    <div class="thm_header_hidden_extras">
-
-    <a class="icon proof" href="sect0008.html#thm:chsh-to-pguess">#</a>
-    
-    <a class="icon proof" href="sect0008.html#a0000000069"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
-    
-    
-    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
-</button>
-        <div class="modal-container">
-      <div class="modal-content">
-        <header>
-          <h1>Uses</h1>
-          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        </header>
-        
-        <ul class="uses">
-          
-          <li><a href="sect0003.html#lem:bell-overlap">Lemma 8</a></li>
-          
-          <li><a href="sect0004.html#def:postselected">Definition 9</a></li>
-          
-          <li><a href="sect0004.html#lem:postselect-factor">Lemma 10</a></li>
-          
-          <li><a href="sect0005.html#lem:gentle-postselect">Lemma 11</a></li>
-          
-          <li><a href="sect0006.html#lem:measure-contract">Lemma 15</a></li>
-          
-          <li><a href="sect0007.html#lem:pguess-continuity">Lemma 17</a></li>
-          
-          <li><a href="sect0007.html#lem:pguess-uniform">Lemma 18</a></li>
-          
-        </ul>
-    
-      </div>
-    </div>
-
-    
-    
-    <button class="modal lean">L∃∀N</button>
-        <div class="modal-container">
-      <div class="modal-content">
-        <header>
-          <h1>Lean declarations</h1>
-          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        </header>
-        
-        <ul class="uses">
-          
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_to_pguess" class="lean_decl">RigidityToPguess.chsh_to_pguess</a></li>
-          
-        </ul>
-    
-      </div>
-    </div>
-
-    
-        </div>
-  </div>
-  <div class="theorem_thmcontent">
-  <p>    Let \(\rho _{ABE}\) be a tripartite state with qubit registers \(A,B\) and arbitrary \(E\), and let \(\rho _{AB}=\operatorname {Tr}_E(\rho _{ABE})\). Assume </p>
-<div class="displaymath" id="a0000000070">
-  \[  \varepsilon \le 2\sqrt2-2, \qquad \operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH})\ge 2\sqrt2-\varepsilon ,  \]
-</div>
-<p> where \(\mathrm{CHSH}\) is the canonical two-qubit operator from Definition&#160;<a href="sect0001.html#def:chsh-operator">3</a>. Let \(X\) be the computational-basis measurement outcome on \(A\) as in Definition&#160;<a href="sect0001.html#def:rho-xe">4</a>. Then </p>
-<div class="displaymath" id="a0000000071">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \sqrt{\frac{\varepsilon }{2\sqrt2}} + \frac{\varepsilon }{2\sqrt2}.  \]
-</div>
-<p> In particular, \(p_{\mathrm{guess}}(X\mid E)_\rho \le \tfrac 12 + O(\sqrt\varepsilon )\). </p>
-
-  </div>
-</div>
-<div class="proof_wrapper" id="a0000000069">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
-    </span>
-    <span class="expand-proof">▼</span>
-  </div>
-  <div class="proof_content">
-  <p>Set \(\Phi =|\Phi ^+\rangle \! \langle \Phi ^+|\) and define \(p:=\langle \Phi ^+|\rho _{AB}|\Phi ^+\rangle \) and \(\delta :=1-p\). By Lemma&#160;<a href="sect0003.html#lem:bell-overlap">8</a>, \(\delta \le \varepsilon /(2\sqrt2)\). Since \(\varepsilon \le 2\sqrt2-2\), we have </p>
-<div class="displaymath" id="a0000000072">
-  \[  \delta \le \frac{\varepsilon }{2\sqrt2} \le 1-\frac{1}{\sqrt2}{\lt}1,  \]
-</div>
-<p> so \(p=1-\delta {\gt}0\). </p>
-<p>Consider the projector \(\Pi :=\Phi \otimes I_E\) and define the postselected state \(\widetilde\rho _{ABE}=\Pi \rho _{ABE}\Pi /p\) as in Definition&#160;<a href="sect0004.html#def:postselected">9</a>. Since \(\operatorname {Tr}(\Pi \rho _{ABE})=\operatorname {Tr}(\Phi \rho _{AB})=p\), Lemma&#160;<a href="sect0004.html#lem:postselect-factor">10</a> gives a state \(\tau _E\) such that \(\widetilde\rho _{ABE}=\Phi \otimes \tau _E\). </p>
-<p>Let \(\rho _{XE}\) be induced from \(\rho _{ABE}\) and let \(\sigma _{XE}\) be induced from \(\widetilde\rho _{ABE}\) by measuring \(A\) in the computational basis and discarding \(B\). From \(\widetilde\rho _{ABE}=\Phi \otimes \tau _E\), measuring \(A\) yields a uniform bit independent of \(E\), hence \(\sigma _{XE}=\tfrac {I_X}{2}\otimes \tau _E\) and \(p_{\mathrm{guess}}(X\mid E)_\sigma =\tfrac 12\) by Lemma&#160;<a href="sect0007.html#lem:pguess-uniform">18</a>. </p>
-<p>By Lemma&#160;<a href="sect0007.html#lem:pguess-continuity">17</a>, </p>
-<div class="displaymath" id="a0000000073">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \frac12\| \rho _{XE}-\sigma _{XE}\| _1.  \]
-</div>
-<p> By Lemma&#160;<a href="sect0006.html#lem:measure-contract">15</a> and Lemma&#160;<a href="sect0005.html#lem:gentle-postselect">11</a>, </p>
-<div class="displaymath" id="a0000000074">
-  \[  \| \rho _{XE}-\sigma _{XE}\| _1 \le \| \rho _{ABE}-\widetilde\rho _{ABE}\| _1 \le 2\sqrt{1-p}+2(1-p)=2\sqrt\delta +2\delta .  \]
-</div>
-<p> Combining gives </p>
-<div class="displaymath" id="a0000000075">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \sqrt\delta +\delta \le \frac12 + \sqrt{\frac{\varepsilon }{2\sqrt2}} + \frac{\varepsilon }{2\sqrt2}.  \]
-</div>
-
-  </div>
-</div>
+<h1 id="a0000000009">1.8 Formalization Map</h1>
+<p>The current file-to-blueprint correspondence is: </p>
+<ul class="itemize">
+  <li><p>‘Quantum/Bell.lean‘: Bell basis, Bell state, and the spectrum of the canonical operator \(K\); </p>
+</li>
+  <li><p>‘Approximate_Rigidity/BasicDefs.lean‘: CHSH strategies, observables, tensor-isometry utilities, and the operator \(\mathrm{CHSH}\); </p>
+</li>
+  <li><p>‘Approximate_Rigidity/Isometries.lean‘: the constructions of \(V_A\) and \(V_B\) plus the exact \(A_0\) and \(B_0\) intertwining relations; </p>
+</li>
+  <li><p>‘Approximate_Rigidity/IsometriesApprox.lean‘: approximate anti-commutation and the approximate \(A_1\) and \(B_1\) extraction bounds; </p>
+</li>
+  <li><p>‘Approximate_Rigidity/chsh_link.lean‘: the comparison between the physical CHSH bias and the ideal Bell-space operator \(K\); </p>
+</li>
+  <li><p>‘Approximate_Rigidity/Junk.lean‘: the Bell-decomposition estimate and the abstract spectral state-extraction theorem; </p>
+</li>
+  <li><p>‘Approximate_Rigidity/RigidityTheorem.lean‘: the final state and operator extraction theorems. </p>
+</li>
+</ul>
+<p>This blueprint is deliberately aligned with the current Lean implementation rather than a larger paper draft. That keeps the dependency graph short and makes it easier to update as the formalization evolves.    </p>
 
 </div> <!--main-text -->
 </div> <!-- content-wrapper -->
@@ -193,9 +96,9 @@
 </div> <!-- wrapper -->
 
 <nav class="prev_up_next">
-  <a href="sect0007.html" title="Continuity of guessing probability"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0007.html" title="Operator Extraction"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
-  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+  <a href="ch-robust-chsh.html" title="Robust Rigidity of CHSH"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
 </nav>
 

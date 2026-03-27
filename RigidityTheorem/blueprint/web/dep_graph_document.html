@@ -63,65 +63,147 @@
 <div id="statements">
 
     
-    <div class="dep-modal-container" id="def:bell-phi-plus_modal">
+    <div class="dep-modal-container" id="def:binary-observable_modal">
       <div class="dep-modal-content">
           <button class="dep-closebtn">
 <svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
 </button>
         
-  <div class="thm" id="def:bell-phi-plus" style="display: none">
+  <div class="thm" id="def:binary-observable" style="display: none">
     <div class="thm_thmheading">
       <span class="definition_thmcaption">
       Definition
       </span>
-      <span class="definition_thmlabel">2</span><span class="definition_thmtitle">Bell state</span></div>
-    <div class="thm_thmcontent"><p>   The Bell state \(|\Phi ^+\rangle \in A\otimes B\) is </p>
+      <span class="definition_thmlabel">1</span><span class="definition_thmtitle">Binary observable</span></div>
+    <div class="thm_thmcontent"><p>   A binary observable on a complex Hilbert space \(H\) is a linear map \(A : H \to H\) that is self-adjoint and satisfies \(A^2 = \mathrm{Id}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:binary-observable">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.IsBinaryObservable">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:chsh-bias_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:chsh-bias" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">3</span><span class="definition_thmtitle">CHSH operator and bias</span></div>
+    <div class="thm_thmcontent"><p>    Given a strategy \(S\), the associated CHSH operator is </p>
 <div class="displaymath" id="a0000000011">
-  \[  |\Phi ^+\rangle := \frac{|00\rangle + |11\rangle }{\sqrt{2}},\qquad \Phi := |\Phi ^+\rangle \! \langle \Phi ^+|.  \]
+  \[  \mathrm{CHSH}(A_0,A_1,B_0,B_1) = A_0 \otimes B_0 + A_0 \otimes B_1 + A_1 \otimes B_0 - A_1 \otimes B_1.  \]
 </div>
-</div>
-
-    <a class="latex_link" href="sect0001.html#def:bell-phi-plus">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.PhiPlus">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="def:chsh-operator_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="def:chsh-operator" style="display: none">
-    <div class="thm_thmheading">
-      <span class="definition_thmcaption">
-      Definition
-      </span>
-      <span class="definition_thmlabel">3</span><span class="definition_thmtitle">Canonical CHSH operator on two qubits</span></div>
-    <div class="thm_thmcontent"><p>    Let \(X,Z\) denote Pauli operators on a qubit. Define observables </p>
+<p> Its bias on the state \(\psi \) is </p>
 <div class="displaymath" id="a0000000012">
-  \[  A_0:=Z,\quad A_1:=X,\quad B_0:=\frac{Z+X}{\sqrt2},\quad B_1:=\frac{Z-X}{\sqrt2}.  \]
+  \[  \operatorname {Bias}(S) = \Re \langle \psi , \mathrm{CHSH}(A_0,A_1,B_0,B_1)\psi  \rangle .  \]
 </div>
-<p> The associated CHSH operator on \(A\otimes B\) is </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:chsh-bias">LaTeX</a>
+    
+    
+  <div class="tooltip">
+      <span class="lean_link">Lean</span>
+      <ul class="tooltip_list">
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.CHSH_op" class="lean_decl">Approximate_Rigidity.CHSH_op</a></li>
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.chshBias" class="lean_decl">Approximate_Rigidity.chshBias</a></li>
+        
+      </ul>
+  </div>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:chsh-strategy_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:chsh-strategy" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">2</span><span class="definition_thmtitle">CHSH strategy</span></div>
+    <div class="thm_thmcontent"><p>   A CHSH strategy consists of: </p>
+<div class="displaymath" id="a0000000010">
+  \[  S = (\psi , A_0, A_1, B_0, B_1),  \]
+</div>
+<p> where \(\psi \in H_A \otimes H_B\) is a unit vector and each \(A_i\), \(B_j\) is a binary observable on the corresponding local space. </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:chsh-strategy">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.CHSHStrategy">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:delta_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:delta" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">4</span><span class="definition_thmtitle">Error function</span></div>
+    <div class="thm_thmcontent"><p>   The main spectral bookkeeping uses </p>
 <div class="displaymath" id="a0000000013">
-  \[  \mathrm{CHSH} := A_0\otimes B_0 + A_0\otimes B_1 + A_1\otimes B_0 - A_1\otimes B_1.  \]
+  \[  \delta (\varepsilon ) := \varepsilon + 4\sqrt{c_{\mathrm{CHSH}}\varepsilon }, \qquad c_{\mathrm{CHSH}}= 128 \sqrt{2}.  \]
 </div>
 </div>
 
-    <a class="latex_link" href="sect0001.html#def:chsh-operator">LaTeX</a>
+    <a class="latex_link" href="sect0001.html#def:delta">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.CHSH">Lean</a>
+  <div class="tooltip">
+      <span class="lean_link">Lean</span>
+      <ul class="tooltip_list">
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.delta" class="lean_decl">Approximate_Rigidity.delta</a></li>
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.cConst" class="lean_decl">Approximate_Rigidity.cConst</a></li>
+        
+      </ul>
+  </div>
     
     
   
@@ -133,162 +215,38 @@
 
 
     
-    <div class="dep-modal-container" id="def:pguess_modal">
+    <div class="dep-modal-container" id="def:local-isometries_modal">
       <div class="dep-modal-content">
           <button class="dep-closebtn">
 <svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
 </button>
         
-  <div class="thm" id="def:pguess" style="display: none">
+  <div class="thm" id="def:local-isometries" style="display: none">
     <div class="thm_thmheading">
       <span class="definition_thmcaption">
       Definition
       </span>
-      <span class="definition_thmlabel">5</span><span class="definition_thmtitle">Guessing probability</span></div>
-    <div class="thm_thmcontent"><p>    For the classical–quantum state \(\rho _{XE}\), the guessing probability is </p>
-<div class="displaymath" id="a0000000016">
-  \[  p_{\mathrm{guess}}(X\mid E)_{\rho } :=\sup _{\{ M_0,M_1\} } \sum _{x\in \{ 0,1\} } \operatorname {Tr}(M_x\, \rho _E^x),  \]
-</div>
-<p> where the supremum ranges over POVMs on \(E\), i.e. \(M_x\succeq 0\) and \(M_0+M_1=I_E\). </p>
-</div>
-
-    <a class="latex_link" href="sect0001.html#def:pguess">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pGuess">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="def:postselected_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="def:postselected" style="display: none">
-    <div class="thm_thmheading">
-      <span class="definition_thmcaption">
-      Definition
-      </span>
-      <span class="definition_thmlabel">9</span><span class="definition_thmtitle">Postselected state</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\Pi :=\Phi \otimes I_E\) where \(\Phi =|\Phi ^+\rangle \! \langle \Phi ^+|\). Assume \(p:=\operatorname {Tr}(\Pi \rho _{ABE}){\gt}0\). Define the normalised postselected state </p>
-<div class="displaymath" id="a0000000025">
-  \[  \widetilde\rho _{ABE} := \frac{\Pi \rho _{ABE}\Pi }{p}.  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0004.html#def:postselected">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.postselected">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="def:rho-xe_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="def:rho-xe" style="display: none">
-    <div class="thm_thmheading">
-      <span class="definition_thmcaption">
-      Definition
-      </span>
-      <span class="definition_thmlabel">4</span><span class="definition_thmtitle">Classical–quantum state after Alice’s key measurement</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\{ |0\rangle ,|1\rangle \} \) be the computational basis of \(A\), and set \(P_x:=|x\rangle \! \langle x|_A\). From \(\rho _{ABE}\) define subnormalised conditional states </p>
-<div class="displaymath" id="a0000000014">
-  \[  \rho _E^x := \operatorname {Tr}_{AB}\big((P_x\otimes I_{BE})\, \rho _{ABE}\, (P_x\otimes I_{BE})\big),\qquad x\in \{ 0,1\} .  \]
-</div>
-<p> The induced classical–quantum state is </p>
-<div class="displaymath" id="a0000000015">
-  \[  \rho _{XE} := \sum _{x\in \{ 0,1\} } |x\rangle \! \langle x|_X\otimes \rho _E^x.  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0001.html#def:rho-xe">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.rhoXE">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="def:systems_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="def:systems" style="display: none">
-    <div class="thm_thmheading">
-      <span class="definition_thmcaption">
-      Definition
-      </span>
-      <span class="definition_thmlabel">1</span><span class="definition_thmtitle">Systems and reduced states</span></div>
-    <div class="thm_thmcontent"><p>   Let \(A\) and \(B\) be qubit systems and let \(E\) be an arbitrary quantum system. A tripartite state is a density operator \(\rho _{ABE}\) on \(A\otimes B\otimes E\). We write \(\rho _{AB}:=\operatorname {Tr}_E(\rho _{ABE})\) for the reduced state on \(AB\). </p>
-</div>
-
-    <a class="latex_link" href="sect0001.html#def:systems">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.Systems">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:bell-overlap_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:bell-overlap" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">8</span><span class="lemma_thmtitle">CHSH expectation upper bounds Bell infidelity</span></div>
-    <div class="thm_thmcontent"><p>    Assume \(\operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH})\ge 2\sqrt2-\varepsilon \). Let \(p:=\langle \Phi ^+|\rho _{AB}|\Phi ^+\rangle \) and define \(\delta :=1-p\). Then </p>
+      <span class="definition_thmlabel">9</span><span class="definition_thmtitle">Local extraction isometries</span></div>
+    <div class="thm_thmcontent"><p>   From a CHSH strategy \(S\), the Lean development constructs local maps </p>
 <div class="displaymath" id="a0000000023">
-  \[  \delta \le \frac{\varepsilon }{2\sqrt2}.  \]
+  \[  V_A : H_A \to Qubit \otimes H_A, \qquad V_B : H_B \to Qubit \otimes H_B,  \]
 </div>
+<p> using controlled versions of the observables together with a Hadamard rotation on Alice’s side and a \(\pi /8\)-rotation normalization on Bob’s side. </p>
 </div>
 
-    <a class="latex_link" href="sect0003.html#lem:bell-overlap">LaTeX</a>
+    <a class="latex_link" href="sect0003.html#def:local-isometries">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.bell_overlap">Lean</a>
+  <div class="tooltip">
+      <span class="lean_link">Lean</span>
+      <ul class="tooltip_list">
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.VA" class="lean_decl">Approximate_Rigidity.VA</a></li>
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.VB" class="lean_decl">Approximate_Rigidity.VB</a></li>
+        
+      </ul>
+  </div>
     
     
   
@@ -300,29 +258,29 @@
 
 
     
-    <div class="dep-modal-container" id="lem:chsh-eigenvalues_modal">
+    <div class="dep-modal-container" id="lem:chsh-bias-regswap_modal">
       <div class="dep-modal-content">
           <button class="dep-closebtn">
 <svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
 </button>
         
-  <div class="thm" id="lem:chsh-eigenvalues" style="display: none">
+  <div class="thm" id="lem:chsh-bias-regswap" style="display: none">
     <div class="thm_thmheading">
       <span class="lemma_thmcaption">
       Lemma
       </span>
-      <span class="lemma_thmlabel">7</span><span class="lemma_thmtitle">Bell basis eigenvalues</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\Phi :=|\Phi ^+\rangle \! \langle \Phi ^+|\). Then \(|\Phi ^+\rangle \) is an eigenvector of \(\mathrm{CHSH}\) with eigenvalue \(2\sqrt2\). Moreover, the spectrum of \(\mathrm{CHSH}\) is </p>
-<div class="displaymath" id="a0000000021">
-  \[  \{ 2\sqrt2,\  0,\  0,\  -2\sqrt2\} ,  \]
+      <span class="lemma_thmlabel">18</span><span class="lemma_thmtitle">Bias after extraction</span></div>
+    <div class="thm_thmcontent"><p>    Let </p>
+<div class="displaymath" id="a0000000032">
+  \[  \Psi = \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi \bigr).  \]
 </div>
-<p> and the top eigenvalue \(2\sqrt2\) is non-degenerate. </p>
+<p> Then the physical CHSH bias of the strategy is the real part of an inner product between \(\Psi \) and the extracted physical CHSH action. </p>
 </div>
 
-    <a class="latex_link" href="sect0002.html#lem:chsh-eigenvalues">LaTeX</a>
+    <a class="latex_link" href="sect0005.html#lem:chsh-bias-regswap">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_eigenvalues">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.chshBias_eq_re_inner_regSwap_isometryV">Lean</a>
     
     
   
@@ -334,28 +292,82 @@
 
 
     
-    <div class="dep-modal-container" id="lem:chsh-simplify_modal">
+    <div class="dep-modal-container" id="prop:bell-spectrum_modal">
       <div class="dep-modal-content">
           <button class="dep-closebtn">
 <svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
 </button>
         
-  <div class="thm" id="lem:chsh-simplify" style="display: none">
+  <div class="thm" id="prop:bell-spectrum" style="display: none">
     <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
+      <span class="proposition_thmcaption">
+      Proposition
       </span>
-      <span class="lemma_thmlabel">6</span><span class="lemma_thmtitle">Simplified form of CHSH</span></div>
-    <div class="thm_thmcontent"><p>    With the canonical choice of observables in Definition&#160;<a href="sect0001.html#def:chsh-operator">3</a>, </p>
+      <span class="proposition_thmlabel">6</span><span class="proposition_thmtitle">Bell spectrum of the ideal CHSH operator</span></div>
+    <div class="thm_thmcontent"><p>   Let \(K\) be the canonical two-qubit CHSH operator on \(Qubit \otimes Qubit\). In the Bell basis \((\Phi ^+, \Phi ^-, \Psi ^+, \Psi ^-)\), the operator \(K\) is diagonal with eigenvalues </p>
+<div class="displaymath" id="a0000000016">
+  \[  2\sqrt{2}, \quad 0, \quad 0, \quad -2\sqrt{2}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0002.html#prop:bell-spectrum">LaTeX</a>
+    
+    
+  <div class="tooltip">
+      <span class="lean_link">Lean</span>
+      <ul class="tooltip_list">
+        
+           <li><a href="/find/#doc/Quantum.K_Φ_plus" class="lean_decl">Quantum.K_Φ_plus</a></li>
+        
+           <li><a href="/find/#doc/Quantum.K_Φ_minus" class="lean_decl">Quantum.K_Φ_minus</a></li>
+        
+           <li><a href="/find/#doc/Quantum.K_Ψ_plus" class="lean_decl">Quantum.K_Ψ_plus</a></li>
+        
+           <li><a href="/find/#doc/Quantum.K_Ψ_minus" class="lean_decl">Quantum.K_Ψ_minus</a></li>
+        
+      </ul>
+  </div>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:k-bell-decomposition_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:k-bell-decomposition" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">7</span><span class="proposition_thmtitle">Expectation of \(K \otimes I\) in Bell coordinates</span></div>
+    <div class="thm_thmcontent"><p>    If </p>
+<div class="displaymath" id="a0000000017">
+  \[  \Psi \in (Qubit \otimes Qubit) \otimes J  \]
+</div>
+<p> is decomposed in the Bell basis as </p>
 <div class="displaymath" id="a0000000018">
-  \[  \mathrm{CHSH} = \sqrt2\, (Z\otimes Z + X\otimes X).  \]
+  \[  \Psi = \sum _{i=0}^3 \beta _i \otimes \eta _i,  \]
+</div>
+<p> then </p>
+<div class="displaymath" id="a0000000019">
+  \[  \Re \langle \Psi , (K \otimes \mathrm{Id})\Psi  \rangle  = 2\sqrt{2}\bigl(\left\lVert \eta _0 \right\rVert ^2 - \left\lVert \eta _3 \right\rVert ^2\bigr).  \]
 </div>
 </div>
 
-    <a class="latex_link" href="sect0002.html#lem:chsh-simplify">LaTeX</a>
+    <a class="latex_link" href="sect0002.html#prop:k-bell-decomposition">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_simplify">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.inner_K_tensor_id_eq_bellDecomposition">Lean</a>
     
     
   
@@ -367,333 +379,429 @@
 
 
     
-    <div class="dep-modal-container" id="lem:gentle-postselect_modal">
+    <div class="dep-modal-container" id="thm:a0-exact_modal">
       <div class="dep-modal-content">
           <button class="dep-closebtn">
 <svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
 </button>
         
-  <div class="thm" id="lem:gentle-postselect" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">11</span><span class="lemma_thmtitle">Gentle postselection bound</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\Pi \) and \(p=\operatorname {Tr}(\Pi \rho _{ABE})\) be as in Definition&#160;<a href="sect0004.html#def:postselected">9</a>, and set \(\widetilde\rho _{ABE}=\Pi \rho _{ABE}\Pi /p\). Then </p>
-<div class="displaymath" id="a0000000030">
-  \[  \| \rho _{ABE}-\widetilde\rho _{ABE}\| _1 \le 2\sqrt{1-p}+2(1-p).  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0005.html#lem:gentle-postselect">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.gentle_postselect">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:isometry-norm_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:isometry-norm" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">14</span><span class="lemma_thmtitle">Isometries preserve the trace norm</span></div>
-    <div class="thm_thmcontent"><p>   Let \(W\) be an isometry (\(W^\dagger W = I\)). Then \(\| WHW^\dagger \| _1=\| H\| _1\) for all operators \(H\). </p>
-</div>
-
-    <a class="latex_link" href="sect0006.html#lem:isometry-norm">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.isometry_trace_norm">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:measure-contract_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:measure-contract" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">15</span><span class="lemma_thmtitle">Measurement and discarding systems does not increase trace norm</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\rho _{ABE}\) and \(\sigma _{ABE}\) be two states. Let \(\rho _{XE}\) and \(\sigma _{XE}\) be the associated classical–quantum states obtained by measuring \(A\) in the computational basis and discarding \(B\) as in Definition&#160;<a href="sect0001.html#def:rho-xe">4</a>. Then </p>
-<div class="displaymath" id="a0000000054">
-  \[  \| \rho _{XE}-\sigma _{XE}\| _1 \le \| \rho _{ABE}-\sigma _{ABE}\| _1.  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0006.html#lem:measure-contract">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.measure_contract">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:partial-trace-contractive_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:partial-trace-contractive" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">13</span><span class="lemma_thmtitle">Partial trace is contractive for the trace norm</span></div>
-    <div class="thm_thmcontent"><p>    For any operator \(H\) on \(R\otimes S\), </p>
-<div class="displaymath" id="a0000000049">
-  \[  \| \operatorname {Tr}_S(H)\| _1 \le \| H\| _1.  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0006.html#lem:partial-trace-contractive">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.partial_trace_contractive">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:pguess-continuity_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:pguess-continuity" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">17</span><span class="lemma_thmtitle">Continuity of \(p_{\mathrm{guess}}\)</span></div>
-    <div class="thm_thmcontent"><p>    For any two classical–quantum states \(\rho _{XE}\) and \(\sigma _{XE}\), </p>
-<div class="displaymath" id="a0000000061">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le p_{\mathrm{guess}}(X\mid E)_\sigma + \frac12\| \rho _{XE}-\sigma _{XE}\| _1.  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0007.html#lem:pguess-continuity">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_continuity">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:pguess-decision_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:pguess-decision" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">16</span><span class="lemma_thmtitle">Decision-operator form of \(p_{\mathrm{guess}}\)</span></div>
-    <div class="thm_thmcontent"><p>    For a classical–quantum state \(\rho _{XE}\) with \(X\in \{ 0,1\} \), </p>
-<div class="displaymath" id="a0000000059">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho = \sup _{0\preceq \Pi \preceq I_{XE}} \operatorname {Tr}(\Pi \rho _{XE}),  \]
-</div>
-<p> where the supremum is over operators of the form \(\Pi =|0\rangle \! \langle 0|\otimes M_0 + |1\rangle \! \langle 1|\otimes M_1\) with \(\{ M_0,M_1\} \) a POVM on \(E\). </p>
-</div>
-
-    <a class="latex_link" href="sect0007.html#lem:pguess-decision">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_decision">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:pguess-uniform_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:pguess-uniform" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">18</span><span class="lemma_thmtitle">Guessing probability for a uniform and independent bit</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\tau _E\) be any state. If </p>
-<div class="displaymath" id="a0000000067">
-  \[  \sigma _{XE}=\frac{I_X}{2}\otimes \tau _E,  \]
-</div>
-<p> then \(p_{\mathrm{guess}}(X\mid E)_\sigma =\tfrac 12\). </p>
-</div>
-
-    <a class="latex_link" href="sect0007.html#lem:pguess-uniform">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.pguess_uniform">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:postselect-factor_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:postselect-factor" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">10</span><span class="lemma_thmtitle">Rank-one postselection gives exact factorisation</span></div>
-    <div class="thm_thmcontent"><p>    With the notation of Definition&#160;<a href="sect0004.html#def:postselected">9</a>, there exists a state \(\tau _E\) on \(E\) such that </p>
-<div class="displaymath" id="a0000000027">
-  \[  \widetilde\rho _{ABE} = \Phi \otimes \tau _E.  \]
-</div>
-<p> Moreover, one can take </p>
-<div class="displaymath" id="a0000000028">
-  \[  \tau _E = \frac{1}{p}\, (\langle \Phi ^+|_{AB}\otimes I_E)\rho _{ABE}(|\Phi ^+\rangle _{AB}\otimes I_E).  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0004.html#lem:postselect-factor">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.postselect_factor">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="lem:trace-variational_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="lem:trace-variational" style="display: none">
-    <div class="thm_thmheading">
-      <span class="lemma_thmcaption">
-      Lemma
-      </span>
-      <span class="lemma_thmlabel">12</span><span class="lemma_thmtitle">Variational form of trace norm (unitary maximum)</span></div>
-    <div class="thm_thmcontent"><p>   For any operator \(A\) on a finite-dimensional Hilbert space, one has </p>
-<div class="displaymath" id="a0000000034">
-  \[  \| A\| _1 = \sup _{U\  \mathrm{unitary}} \left|\operatorname {Tr}(UA)\right|.  \]
-</div>
-</div>
-
-    <a class="latex_link" href="sect0006.html#lem:trace-variational">LaTeX</a>
-    
-    
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.trace_variational">Lean</a>
-    
-    
-  
-    
-  </div>
-    
-      </div>
-    </div>
-
-
-    
-    <div class="dep-modal-container" id="thm:chsh-to-pguess_modal">
-      <div class="dep-modal-content">
-          <button class="dep-closebtn">
-<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
-</button>
-        
-  <div class="thm" id="thm:chsh-to-pguess" style="display: none">
+  <div class="thm" id="thm:a0-exact" style="display: none">
     <div class="thm_thmheading">
       <span class="theorem_thmcaption">
       Theorem
       </span>
-      <span class="theorem_thmlabel">19</span><span class="theorem_thmtitle">CHSH bound implies guessing bound (no purification)</span></div>
-    <div class="thm_thmcontent"><p>    Let \(\rho _{ABE}\) be a tripartite state with qubit registers \(A,B\) and arbitrary \(E\), and let \(\rho _{AB}=\operatorname {Tr}_E(\rho _{ABE})\). Assume </p>
-<div class="displaymath" id="a0000000070">
-  \[  \varepsilon \le 2\sqrt2-2, \qquad \operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH})\ge 2\sqrt2-\varepsilon ,  \]
+      <span class="theorem_thmlabel">11</span><span class="theorem_thmtitle">Exact extracted action of \(A_0\)</span></div>
+    <div class="thm_thmcontent"><p>    For every \(\phi \in H_A \otimes H_B\), </p>
+<div class="displaymath" id="a0000000024">
+  \[  (V_A \otimes V_B)(A_0 \otimes \mathrm{Id})\phi = \bigl((Z \otimes \mathrm{Id})\otimes \mathrm{Id}\bigr)(V_A \otimes V_B)\phi .  \]
 </div>
-<p> where \(\mathrm{CHSH}\) is the canonical two-qubit operator from Definition&#160;<a href="sect0001.html#def:chsh-operator">3</a>. Let \(X\) be the computational-basis measurement outcome on \(A\) as in Definition&#160;<a href="sect0001.html#def:rho-xe">4</a>. Then </p>
-<div class="displaymath" id="a0000000071">
-  \[  p_{\mathrm{guess}}(X\mid E)_\rho \le \frac12 + \sqrt{\frac{\varepsilon }{2\sqrt2}} + \frac{\varepsilon }{2\sqrt2}.  \]
-</div>
-<p> In particular, \(p_{\mathrm{guess}}(X\mid E)_\rho \le \tfrac 12 + O(\sqrt\varepsilon )\). </p>
+<p> Equivalently, the norm of the difference is exactly zero. </p>
 </div>
 
-    <a class="latex_link" href="sect0008.html#thm:chsh-to-pguess">LaTeX</a>
+    <a class="latex_link" href="sect0003.html#thm:a0-exact">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_to_pguess">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq217_A0_exact">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:a1-approx_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:a1-approx" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">16</span><span class="theorem_thmtitle">Approximate extracted action of \(A_1\)</span></div>
+    <div class="thm_thmcontent"><p>    Under the same bias assumption, </p>
+<div class="displaymath" id="a0000000029">
+  \[  \left\lVert  ((V_A \otimes V_B)(A_1 \otimes \mathrm{Id})\psi ) - \bigl(((X \otimes \mathrm{Id})\otimes \mathrm{Id})(V_A \otimes V_B)\psi \bigr)  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon }.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0004.html#thm:a1-approx">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq218_A1_approx">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:alice-operator-extraction_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:alice-operator-extraction" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">21</span><span class="theorem_thmtitle">Alice operator extraction</span></div>
+    <div class="thm_thmcontent"><p>    Assume \(\varepsilon \ge 0\) and \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \). Then there exist isometries \(V_A\), \(V_B\) and a junk state \(\Phi _{\mathrm{junk}}\) such that </p>
+<div class="displaymath" id="a0000000039">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(A_0 \otimes \mathrm{Id})\psi \bigr) - (Z \otimes \mathrm{Id})\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{2\sqrt{2}\, \delta (\varepsilon )},  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000040">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(A_1 \otimes \mathrm{Id})\psi \bigr) - (X \otimes \mathrm{Id})\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon } + \sqrt{2\sqrt{2}\, \delta (\varepsilon )}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0007.html#thm:alice-operator-extraction">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.Alice_operator_extraction">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:approx-anticomm_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:approx-anticomm" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">15</span><span class="theorem_thmtitle">Approximate anti-commutation</span></div>
+    <div class="thm_thmcontent"><p>    If \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \), then both local anti-commutators are small on the strategy state. More precisely, the Lean development proves </p>
+<div class="displaymath" id="a0000000028">
+  \[  \Re \langle \psi , ((A_1A_0 + A_0A_1)^2 \otimes \mathrm{Id})\psi  \rangle  \le c_{\mathrm{CHSH}}\varepsilon ,  \]
+</div>
+<p> and the analogous bound with Alice and Bob swapped. </p>
+</div>
+
+    <a class="latex_link" href="sect0004.html#thm:approx-anticomm">LaTeX</a>
+    
+    
+  <div class="tooltip">
+      <span class="lean_link">Lean</span>
+      <ul class="tooltip_list">
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.approx_anticomm_A" class="lean_decl">Approximate_Rigidity.approx_anticomm_A</a></li>
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.approx_anticomm_B" class="lean_decl">Approximate_Rigidity.approx_anticomm_B</a></li>
+        
+      </ul>
+  </div>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:b0-exact_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:b0-exact" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">12</span><span class="theorem_thmtitle">Exact extracted action of \(B_0\) on the strategy state</span></div>
+    <div class="thm_thmcontent"><p>    On the distinguished strategy state \(\psi \), </p>
+<div class="displaymath" id="a0000000025">
+  \[  (V_A \otimes V_B)(\mathrm{Id}\otimes B_0)\psi = \bigl(\mathrm{Id}\otimes (H \otimes \mathrm{Id})\bigr)(V_A \otimes V_B)\psi .  \]
+</div>
+<p> The Lean theorem is stated as vanishing norm of the difference on \(\psi \). </p>
+</div>
+
+    <a class="latex_link" href="sect0003.html#thm:b0-exact">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq219_B0_exact">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:b1-approx_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:b1-approx" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">17</span><span class="theorem_thmtitle">Approximate extracted action of \(B_1\)</span></div>
+    <div class="thm_thmcontent"><p>    Under the same bias assumption, </p>
+<div class="displaymath" id="a0000000031">
+  \[  \left\lVert  ((V_A \otimes V_B)(\mathrm{Id}\otimes B_1)\psi ) - \bigl((\mathrm{Id}\otimes (ZHZ \otimes \mathrm{Id}))(V_A \otimes V_B)\psi \bigr)  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon }.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0004.html#thm:b1-approx">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq220_B1_approx">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:bob-operator-extraction_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:bob-operator-extraction" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">22</span><span class="theorem_thmtitle">Bob operator extraction</span></div>
+    <div class="thm_thmcontent"><p>    Assume \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \). Then there exist isometries \(V_A\), \(V_B\) and a junk state \(\Phi _{\mathrm{junk}}\) such that </p>
+<div class="displaymath" id="a0000000041">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(\mathrm{Id}\otimes B_0)\psi \bigr) - (\mathrm{Id}\otimes H)\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{2\sqrt{2}\, \delta (\varepsilon )},  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000042">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)(\mathrm{Id}\otimes B_1)\psi \bigr) - (\mathrm{Id}\otimes ZHZ)\Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{c_{\mathrm{CHSH}}\varepsilon } + \sqrt{2\sqrt{2}\, \delta (\varepsilon )}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0007.html#thm:bob-operator-extraction">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.Bob_operator_extraction">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:chsh-square_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:chsh-square" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">14</span><span class="theorem_thmtitle">Square of the CHSH operator</span></div>
+    <div class="thm_thmcontent"><p>    If \(A_0,A_1,B_0,B_1\) are binary observables, then </p>
+<div class="displaymath" id="a0000000027">
+  \[  \mathrm{CHSH}(A_0,A_1,B_0,B_1)^2 = 4 \mathrm{Id}- [A_0,A_1] \otimes [B_0,B_1].  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0004.html#thm:chsh-square">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.CHSH_op_sq">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:chsh-to-k_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:chsh-to-k" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">19</span><span class="theorem_thmtitle">CHSH bias gives a lower bound on the \(K\)-expectation</span></div>
+    <div class="thm_thmcontent"><p>    If \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \) and </p>
+<div class="displaymath" id="a0000000034">
+  \[  \Psi = \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi \bigr),  \]
+</div>
+<p> then </p>
+<div class="displaymath" id="a0000000035">
+  \[  \Re \langle \Psi , (K \otimes \mathrm{Id})\Psi  \rangle  \ge 2\sqrt{2} - \delta (\varepsilon ).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0005.html#thm:chsh-to-k">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.chsh_to_K_expectation">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:spectral-state-extraction_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:spectral-state-extraction" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">8</span><span class="theorem_thmtitle">Spectral state extraction bound</span></div>
+    <div class="thm_thmcontent"><p>    Suppose \(\Psi \) has unit norm and satisfies </p>
+<div class="displaymath" id="a0000000021">
+  \[  \Re \langle \Psi , (K \otimes \mathrm{Id})\Psi  \rangle  \ge 2\sqrt{2} - \delta .  \]
+</div>
+<p> Then there exists a normalized “junk” vector extracted from the \(\Phi ^+\) Bell component such that </p>
+<div class="displaymath" id="a0000000022">
+  \[  \left\lVert \Psi - \Phi ^+ \otimes \Phi _{\mathrm{junk}} \right\rVert  \le \sqrt{2\sqrt{2}\, \delta }.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0002.html#thm:spectral-state-extraction">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.state_extraction_bound">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:state-extraction_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:state-extraction" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">20</span><span class="theorem_thmtitle">Robust state extraction</span></div>
+    <div class="thm_thmcontent"><p>    Assume \(\operatorname {Bias}(S) \ge 2\sqrt{2} - \varepsilon \) with \(\varepsilon \ge 0\). Then there exist local isometries </p>
+<div class="displaymath" id="a0000000037">
+  \[  V_A : H_A \to Qubit \otimes H_A, \qquad V_B : H_B \to Qubit \otimes H_B,  \]
+</div>
+<p> and a junk state \(\Phi _{\mathrm{junk}} \in H_A \otimes H_B\) such that </p>
+<div class="displaymath" id="a0000000038">
+  \[  \left\lVert  \mathrm{regSwap}\bigl((V_A \otimes V_B)\psi \bigr) - \Phi ^+ \otimes \Phi _{\mathrm{junk}}  \right\rVert  \le \sqrt{2\sqrt{2}\, \delta (\varepsilon )}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0006.html#thm:state-extraction">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.state_extraction">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:va-vb-isometries_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:va-vb-isometries" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">10</span><span class="theorem_thmtitle">The extraction maps are isometries</span></div>
+    <div class="thm_thmcontent"><p>    The maps \(V_A\) and \(V_B\) preserve norms. </p>
+</div>
+
+    <a class="latex_link" href="sect0003.html#thm:va-vb-isometries">LaTeX</a>
+    
+    
+  <div class="tooltip">
+      <span class="lean_link">Lean</span>
+      <ul class="tooltip_list">
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.VA_is_isometry" class="lean_decl">Approximate_Rigidity.VA_is_isometry</a></li>
+        
+           <li><a href="/find/#doc/Approximate_Rigidity.VB_is_isometry" class="lean_decl">Approximate_Rigidity.VB_is_isometry</a></li>
+        
+      </ul>
+  </div>
     
     
   
@@ -721,7 +829,7 @@ graphContainer.graphviz({useWorker: true})
     .width(width)
     .height(height)
     .fit(true)
-    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"lem:postselect-factor"	[color="#FFAA33",		label="postselect-factor",		shape=ellipse];	"thm:chsh-to-pguess"	[color="#FFAA33",		label="chsh-to-pguess",		shape=ellipse];	"lem:postselect-factor" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:partial-trace-contractive"	[color=green,		fillcolor="#A3D6FF",		label="partial-trace-contractive",		shape=ellipse,		style=filled];	"lem:measure-contract"	[color=green,		label="measure-contract",		shape=ellipse];	"lem:partial-trace-contractive" -> "lem:measure-contract"	[style=dashed];	"lem:measure-contract" -> "thm:chsh-to-pguess"	[style=dashed];	"def:systems"	[color="#FFAA33",		label=systems,		shape=box];	"def:chsh-operator"	[color="#FFAA33",		label="chsh-operator",		shape=box];	"def:systems" -> "def:chsh-operator"	[style=dashed];	"def:postselected"	[color="#FFAA33",		label=postselected,		shape=box];	"def:systems" -> "def:postselected"	[style=dashed];	"def:rho-xe"	[color="#FFAA33",		label="rho-xe",		shape=box];	"def:systems" -> "def:rho-xe"	[style=dashed];	"lem:chsh-simplify"	[color="#FFAA33",		label="chsh-simplify",		shape=ellipse];	"def:chsh-operator" -> "lem:chsh-simplify"	[style=dashed];	"def:postselected" -> "lem:postselect-factor"	[style=dashed];	"lem:gentle-postselect"	[color="#FFAA33",		label="gentle-postselect",		shape=ellipse];	"def:postselected" -> "lem:gentle-postselect"	[style=dashed];	"def:rho-xe" -> "lem:measure-contract"	[style=dashed];	"def:pguess"	[color="#FFAA33",		label=pguess,		shape=box];	"def:rho-xe" -> "def:pguess"	[style=dashed];	"lem:chsh-eigenvalues"	[color="#FFAA33",		label="chsh-eigenvalues",		shape=ellipse];	"lem:chsh-simplify" -> "lem:chsh-eigenvalues"	[style=dashed];	"lem:gentle-postselect" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:bell-overlap"	[color="#FFAA33",		label="bell-overlap",		shape=ellipse];	"lem:bell-overlap" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:pguess-uniform"	[color="#FFAA33",		label="pguess-uniform",		shape=ellipse];	"def:pguess" -> "lem:pguess-uniform"	[style=dashed];	"lem:pguess-decision"	[color="#FFAA33",		label="pguess-decision",		shape=ellipse];	"def:pguess" -> "lem:pguess-decision"	[style=dashed];	"lem:chsh-eigenvalues" -> "lem:bell-overlap"	[style=dashed];	"lem:pguess-uniform" -> "thm:chsh-to-pguess"	[style=dashed];	"lem:trace-variational"	[color=green,		fillcolor="#A3D6FF",		label="trace-variational",		shape=ellipse,		style=filled];	"lem:trace-variational" -> "lem:partial-trace-contractive"	[style=dashed];	"lem:isometry-norm"	[color=green,		fillcolor="#A3D6FF",		label="isometry-norm",		shape=ellipse,		style=filled];	"lem:isometry-norm" -> "lem:measure-contract"	[style=dashed];	"lem:pguess-continuity"	[color="#FFAA33",		label="pguess-continuity",		shape=ellipse];	"lem:pguess-decision" -> "lem:pguess-continuity"	[style=dashed];	"lem:pguess-continuity" -> "thm:chsh-to-pguess"	[style=dashed];	"def:bell-phi-plus"	[color="#FFAA33",		label="bell-phi-plus",		shape=box];	"def:bell-phi-plus" -> "def:postselected"	[style=dashed];	"def:bell-phi-plus" -> "lem:chsh-eigenvalues"	[style=dashed];}`)
+    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"def:local-isometries"	[color=blue,		fillcolor="#A3D6FF",		label="local-isometries",		shape=box,		style=filled];	"thm:va-vb-isometries"	[label="va-vb-isometries",		shape=ellipse];	"def:local-isometries" -> "thm:va-vb-isometries"	[style=dashed];	"thm:a0-exact"	[label="a0-exact",		shape=ellipse];	"def:local-isometries" -> "thm:a0-exact"	[style=dashed];	"thm:b0-exact"	[label="b0-exact",		shape=ellipse];	"def:local-isometries" -> "thm:b0-exact"	[style=dashed];	"lem:chsh-bias-regswap"	[label="chsh-bias-regswap",		shape=ellipse];	"thm:va-vb-isometries" -> "lem:chsh-bias-regswap"	[style=dashed];	"thm:b1-approx"	[label="b1-approx",		shape=ellipse];	"thm:va-vb-isometries" -> "thm:b1-approx"	[style=dashed];	"thm:a1-approx"	[label="a1-approx",		shape=ellipse];	"thm:va-vb-isometries" -> "thm:a1-approx"	[style=dashed];	"thm:chsh-to-k"	[label="chsh-to-k",		shape=ellipse];	"thm:a0-exact" -> "thm:chsh-to-k"	[style=dashed];	"thm:b0-exact" -> "thm:chsh-to-k"	[style=dashed];	"lem:chsh-bias-regswap" -> "thm:chsh-to-k"	[style=dashed];	"thm:b1-approx" -> "thm:chsh-to-k"	[style=dashed];	"thm:a1-approx" -> "thm:chsh-to-k"	[style=dashed];	"thm:state-extraction"	[label="state-extraction",		shape=ellipse];	"thm:chsh-to-k" -> "thm:state-extraction"	[style=dashed];	"thm:chsh-square"	[label="chsh-square",		shape=ellipse];	"thm:approx-anticomm"	[label="approx-anticomm",		shape=ellipse];	"thm:chsh-square" -> "thm:approx-anticomm"	[style=dashed];	"thm:approx-anticomm" -> "thm:b1-approx"	[style=dashed];	"thm:approx-anticomm" -> "thm:a1-approx"	[style=dashed];	"def:chsh-bias"	[label="chsh-bias",		shape=box];	"def:chsh-bias" -> "lem:chsh-bias-regswap"	[style=dashed];	"def:chsh-bias" -> "thm:chsh-square"	[style=dashed];	"thm:bob-operator-extraction"	[label="bob-operator-extraction",		shape=ellipse];	"thm:state-extraction" -> "thm:bob-operator-extraction"	[style=dashed];	"thm:alice-operator-extraction"	[label="alice-operator-extraction",		shape=ellipse];	"thm:state-extraction" -> "thm:alice-operator-extraction"	[style=dashed];	"prop:bell-spectrum"	[color=blue,		label="bell-spectrum",		shape=ellipse];	"prop:k-bell-decomposition"	[label="k-bell-decomposition",		shape=ellipse];	"prop:bell-spectrum" -> "prop:k-bell-decomposition"	[style=dashed];	"thm:spectral-state-extraction"	[label="spectral-state-extraction",		shape=ellipse];	"prop:k-bell-decomposition" -> "thm:spectral-state-extraction"	[style=dashed];	"thm:spectral-state-extraction" -> "thm:state-extraction"	[style=dashed];	"def:binary-observable"	[color=blue,		fillcolor="#A3D6FF",		label="binary-observable",		shape=box,		style=filled];	"def:binary-observable" -> "thm:chsh-square"	[style=dashed];	"def:delta"	[color=blue,		fillcolor="#A3D6FF",		label=delta,		shape=box,		style=filled];	"def:delta" -> "thm:chsh-to-k"	[style=dashed];	"def:chsh-strategy"	[color=blue,		fillcolor="#A3D6FF",		label="chsh-strategy",		shape=box,		style=filled];	"def:chsh-strategy" -> "def:chsh-bias"	[style=dashed];}`)
     .on("end", interactive);
 
 latexLabelEscaper = function(label) {

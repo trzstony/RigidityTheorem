@@ -12,10 +12,10 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>From CHSH expectation to Bell overlap</title>
-<link rel="next" href="sect0004.html" title="Postselection on the Bell projector" />
-<link rel="prev" href="sect0002.html" title="Spectrum of the canonical CHSH operator" />
-<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<title>Local Isometries and Exact Extracted Relations</title>
+<link rel="next" href="sect0004.html" title="Approximate Anti-Commutation and Extracted Operators" />
+<link rel="prev" href="sect0002.html" title="Bell-Basis Spectral Input" />
+<link rel="up" href="ch-robust-chsh.html" title="Robust Rigidity of CHSH" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
@@ -32,32 +32,32 @@
 <nav class="toc">
 <ul class="sub-toc-0">
 <li class=" active">
-  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <a href="ch-robust-chsh.html"><span class="toc_ref">1</span> <span class="toc_entry">Robust Rigidity of CHSH</span></a>
   <span class="expand-toc">▼</span>
   <ul class="sub-toc-1 active">
      <li class="">
-  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">CHSH Setup</span></a>
  </li>
 <li class="">
-  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Bell-Basis Spectral Input</span></a>
  </li>
 <li class=" active current">
-  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">Local Isometries and Exact Extracted Relations</span></a>
  </li>
 <li class="">
-  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Approximate Anti-Commutation and Extracted Operators</span></a>
  </li>
 <li class="">
-  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">From Physical CHSH to the Ideal Bell Operator</span></a>
  </li>
 <li class="">
-  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">State Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Operator Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Formalization Map</span></a>
  </li>
 
   </ul>
@@ -71,23 +71,68 @@
 
 
 <div class="main-text">
-<h1 id="a0000000004">1.3 From CHSH expectation to Bell overlap</h1>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:bell-overlap">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
+<h1 id="a0000000004">1.3 Local Isometries and Exact Extracted Relations</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:local-isometries">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
     </span>
-    <span class="lemma_thmlabel">8</span>
-    <span class="lemma_thmtitle">CHSH expectation upper bounds Bell infidelity</span>
+    <span class="definition_thmlabel">9</span>
+    <span class="definition_thmtitle">Local extraction isometries</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0003.html#lem:bell-overlap">#</a>
+    <a class="icon proof" href="sect0003.html#def:local-isometries">#</a>
     
-    <a class="icon proof" href="sect0003.html#a0000000022"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.VA" class="lean_decl">Approximate_Rigidity.VA</a></li>
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.VB" class="lean_decl">Approximate_Rigidity.VB</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>   From a CHSH strategy \(S\), the Lean development constructs local maps </p>
+<div class="displaymath" id="a0000000023">
+  \[  V_A : H_A \to Qubit \otimes H_A, \qquad V_B : H_B \to Qubit \otimes H_B,  \]
+</div>
+<p> using controlled versions of the observables together with a Hadamard rotation on Alice’s side and a \(\pi /8\)-rotation normalization on Bob’s side. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:va-vb-isometries">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">10</span>
+    <span class="theorem_thmtitle">The extraction maps are isometries</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0003.html#thm:va-vb-isometries">#</a>
     
     
     <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
@@ -102,13 +147,7 @@
         
         <ul class="uses">
           
-          <li><a href="sect0001.html#def:systems">Definition 1</a></li>
-          
-          <li><a href="sect0001.html#def:bell-phi-plus">Definition 2</a></li>
-          
-          <li><a href="sect0001.html#def:chsh-operator">Definition 3</a></li>
-          
-          <li><a href="sect0002.html#lem:chsh-eigenvalues">Lemma 7</a></li>
+          <li><a href="sect0003.html#def:local-isometries">Definition 9</a></li>
           
         </ul>
     
@@ -128,7 +167,9 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.bell_overlap" class="lean_decl">RigidityToPguess.bell_overlap</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.VA_is_isometry" class="lean_decl">Approximate_Rigidity.VA_is_isometry</a></li>
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.VB_is_isometry" class="lean_decl">Approximate_Rigidity.VB_is_isometry</a></li>
           
         </ul>
     
@@ -138,27 +179,162 @@
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    Assume \(\operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH})\ge 2\sqrt2-\varepsilon \). Let \(p:=\langle \Phi ^+|\rho _{AB}|\Phi ^+\rangle \) and define \(\delta :=1-p\). Then </p>
-<div class="displaymath" id="a0000000023">
-  \[  \delta \le \frac{\varepsilon }{2\sqrt2}.  \]
-</div>
+  <div class="theorem_thmcontent">
+  <p>    The maps \(V_A\) and \(V_B\) preserve norms. </p>
 
   </div>
 </div>
-<div class="proof_wrapper" id="a0000000022">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:a0-exact">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
     </span>
-    <span class="expand-proof">▼</span>
+    <span class="theorem_thmlabel">11</span>
+    <span class="theorem_thmtitle">Exact extracted action of \(A_0\)</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0003.html#thm:a0-exact">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:local-isometries">Definition 9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.eq217_A0_exact" class="lean_decl">Approximate_Rigidity.eq217_A0_exact</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
   </div>
-  <div class="proof_content">
-  <p>Let \(\mathrm{CHSH}\) have spectral decomposition \( \mathrm{CHSH}=2\sqrt2\, |\Phi ^+\rangle \langle \Phi ^+| -2\sqrt2\, |\Psi ^-\rangle \langle \Psi ^-|. \) (This uses Lemma&#160;<a href="sect0002.html#lem:chsh-eigenvalues">7</a>; the two remaining Bell states have eigenvalue \(0\).) Then </p>
+  <div class="theorem_thmcontent">
+  <p>    For every \(\phi \in H_A \otimes H_B\), </p>
 <div class="displaymath" id="a0000000024">
-  \[  \operatorname {Tr}(\rho _{AB}\, \mathrm{CHSH}) = 2\sqrt2\, (p-q)\le 2\sqrt2\, p,  \]
+  \[  (V_A \otimes V_B)(A_0 \otimes \mathrm{Id})\phi = \bigl((Z \otimes \mathrm{Id})\otimes \mathrm{Id}\bigr)(V_A \otimes V_B)\phi .  \]
 </div>
-<p> where \(q:=\langle \Psi ^-|\rho _{AB}|\Psi ^-\rangle \ge 0\). Rearranging gives \(p\ge 1-\varepsilon /(2\sqrt2)\), i.e. \(\delta \le \varepsilon /(2\sqrt2)\). </p>
+<p> Equivalently, the norm of the difference is exactly zero. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:b0-exact">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">12</span>
+    <span class="theorem_thmtitle">Exact extracted action of \(B_0\) on the strategy state</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0003.html#thm:b0-exact">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:local-isometries">Definition 9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Approximate_Rigidity.eq219_B0_exact" class="lean_decl">Approximate_Rigidity.eq219_B0_exact</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    On the distinguished strategy state \(\psi \), </p>
+<div class="displaymath" id="a0000000025">
+  \[  (V_A \otimes V_B)(\mathrm{Id}\otimes B_0)\psi = \bigl(\mathrm{Id}\otimes (H \otimes \mathrm{Id})\bigr)(V_A \otimes V_B)\psi .  \]
+</div>
+<p> The Lean theorem is stated as vanishing norm of the difference on \(\psi \). </p>
+
+  </div>
+</div>
+<div class="remark_thmwrapper theorem-style-definition" id="a0000000026">
+  <div class="remark_thmheading">
+    <span class="remark_thmcaption">
+    Remark
+    </span>
+    <span class="remark_thmlabel">13</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0003.html#a0000000026">#</a>
+    
+    
+    
+        </div>
+  </div>
+  <div class="remark_thmcontent">
+  <p>The exact \(A_0\) and \(B_0\) relations are the robust counterparts of Eqs. (217) and (219) in the notes. They isolate the clean part of the canonical form before the approximate \(A_1\) and \(B_1\) analysis begins. </p>
 
   </div>
 </div>
@@ -169,11 +345,11 @@
 </div> <!-- wrapper -->
 
 <nav class="prev_up_next">
-  <a href="sect0002.html" title="Spectrum of the canonical CHSH operator"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0002.html" title="Bell-Basis Spectral Input"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
-  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+  <a href="ch-robust-chsh.html" title="Robust Rigidity of CHSH"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0004.html" title="Postselection on the Bell projector"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0004.html" title="Approximate Anti-Commutation and Extracted Operators"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 

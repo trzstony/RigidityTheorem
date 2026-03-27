@@ -12,10 +12,10 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Spectrum of the canonical CHSH operator</title>
-<link rel="next" href="sect0003.html" title="From CHSH expectation to Bell overlap" />
-<link rel="prev" href="sect0001.html" title="Setup and basic definitions" />
-<link rel="up" href="ch-chsh-pguess.html" title="From CHSH to guessing probability" />
+<title>Bell-Basis Spectral Input</title>
+<link rel="next" href="sect0003.html" title="Local Isometries and Exact Extracted Relations" />
+<link rel="prev" href="sect0001.html" title="CHSH Setup" />
+<link rel="up" href="ch-robust-chsh.html" title="Robust Rigidity of CHSH" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
@@ -32,32 +32,32 @@
 <nav class="toc">
 <ul class="sub-toc-0">
 <li class=" active">
-  <a href="ch-chsh-pguess.html"><span class="toc_ref">1</span> <span class="toc_entry">From CHSH to guessing probability</span></a>
+  <a href="ch-robust-chsh.html"><span class="toc_ref">1</span> <span class="toc_entry">Robust Rigidity of CHSH</span></a>
   <span class="expand-toc">▼</span>
   <ul class="sub-toc-1 active">
      <li class="">
-  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">Setup and basic definitions</span></a>
+  <a href="sect0001.html"><span class="toc_ref">1.1</span> <span class="toc_entry">CHSH Setup</span></a>
  </li>
 <li class=" active current">
-  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Spectrum of the canonical CHSH operator</span></a>
+  <a href="sect0002.html"><span class="toc_ref">1.2</span> <span class="toc_entry">Bell-Basis Spectral Input</span></a>
  </li>
 <li class="">
-  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">From CHSH expectation to Bell overlap</span></a>
+  <a href="sect0003.html"><span class="toc_ref">1.3</span> <span class="toc_entry">Local Isometries and Exact Extracted Relations</span></a>
  </li>
 <li class="">
-  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Postselection on the Bell projector</span></a>
+  <a href="sect0004.html"><span class="toc_ref">1.4</span> <span class="toc_entry">Approximate Anti-Commutation and Extracted Operators</span></a>
  </li>
 <li class="">
-  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">A gentle-measurement bound for Bell postselection</span></a>
+  <a href="sect0005.html"><span class="toc_ref">1.5</span> <span class="toc_entry">From Physical CHSH to the Ideal Bell Operator</span></a>
  </li>
 <li class="">
-  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">Bounding trace-norm distance after Alice’s measurement</span></a>
+  <a href="sect0006.html"><span class="toc_ref">1.6</span> <span class="toc_entry">State Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Continuity of guessing probability</span></a>
+  <a href="sect0007.html"><span class="toc_ref">1.7</span> <span class="toc_entry">Operator Extraction</span></a>
  </li>
 <li class="">
-  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Main theorem: CHSH forces pguess close to 1/2</span></a>
+  <a href="sect0008.html"><span class="toc_ref">1.8</span> <span class="toc_entry">Formalization Map</span></a>
  </li>
 
   </ul>
@@ -71,23 +71,71 @@
 
 
 <div class="main-text">
-<h1 id="a0000000003">1.2 Spectrum of the canonical CHSH operator</h1>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:chsh-simplify">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
+<h1 id="a0000000003">1.2 Bell-Basis Spectral Input</h1>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:bell-spectrum">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
     </span>
-    <span class="lemma_thmlabel">6</span>
-    <span class="lemma_thmtitle">Simplified form of CHSH</span>
+    <span class="proposition_thmlabel">6</span>
+    <span class="proposition_thmtitle">Bell spectrum of the ideal CHSH operator</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0002.html#lem:chsh-simplify">#</a>
+    <a class="icon proof" href="sect0002.html#prop:bell-spectrum">#</a>
     
-    <a class="icon proof" href="sect0002.html#a0000000017"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="/find/#doc/Quantum.K_Φ_plus" class="lean_decl">Quantum.K_Φ_plus</a></li>
+          
+          <li><a href="/find/#doc/Quantum.K_Φ_minus" class="lean_decl">Quantum.K_Φ_minus</a></li>
+          
+          <li><a href="/find/#doc/Quantum.K_Ψ_plus" class="lean_decl">Quantum.K_Ψ_plus</a></li>
+          
+          <li><a href="/find/#doc/Quantum.K_Ψ_minus" class="lean_decl">Quantum.K_Ψ_minus</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>   Let \(K\) be the canonical two-qubit CHSH operator on \(Qubit \otimes Qubit\). In the Bell basis \((\Phi ^+, \Phi ^-, \Psi ^+, \Psi ^-)\), the operator \(K\) is diagonal with eigenvalues </p>
+<div class="displaymath" id="a0000000016">
+  \[  2\sqrt{2}, \quad 0, \quad 0, \quad -2\sqrt{2}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:k-bell-decomposition">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">7</span>
+    <span class="proposition_thmtitle">Expectation of \(K \otimes I\) in Bell coordinates</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#prop:k-bell-decomposition">#</a>
     
     
     <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
@@ -102,7 +150,7 @@
         
         <ul class="uses">
           
-          <li><a href="sect0001.html#def:chsh-operator">Definition 3</a></li>
+          <li><a href="sect0002.html#prop:bell-spectrum">Proposition 6</a></li>
           
         </ul>
     
@@ -122,7 +170,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_simplify" class="lean_decl">RigidityToPguess.chsh_simplify</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.inner_K_tensor_id_eq_bellDecomposition" class="lean_decl">Approximate_Rigidity.inner_K_tensor_id_eq_bellDecomposition</a></li>
           
         </ul>
     
@@ -132,42 +180,35 @@
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    With the canonical choice of observables in Definition&#160;<a href="sect0001.html#def:chsh-operator">3</a>, </p>
+  <div class="proposition_thmcontent">
+  <p>    If </p>
+<div class="displaymath" id="a0000000017">
+  \[  \Psi \in (Qubit \otimes Qubit) \otimes J  \]
+</div>
+<p> is decomposed in the Bell basis as </p>
 <div class="displaymath" id="a0000000018">
-  \[  \mathrm{CHSH} = \sqrt2\, (Z\otimes Z + X\otimes X).  \]
+  \[  \Psi = \sum _{i=0}^3 \beta _i \otimes \eta _i,  \]
 </div>
-
-  </div>
-</div>
-<div class="proof_wrapper" id="a0000000017">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
-    </span>
-    <span class="expand-proof">▼</span>
-  </div>
-  <div class="proof_content">
-  <p>Using \(B_0+B_1=\tfrac {2Z}{\sqrt2}\) and \(B_0-B_1=\tfrac {2X}{\sqrt2}\), </p>
+<p> then </p>
 <div class="displaymath" id="a0000000019">
-  \[  \mathrm{CHSH}=Z\otimes (B_0+B_1)+X\otimes (B_0-B_1)=\sqrt2\, (Z\otimes Z + X\otimes X).  \]
+  \[  \Re \langle \Psi , (K \otimes \mathrm{Id})\Psi  \rangle  = 2\sqrt{2}\bigl(\left\lVert \eta _0 \right\rVert ^2 - \left\lVert \eta _3 \right\rVert ^2\bigr).  \]
 </div>
 
   </div>
 </div>
-<div class="lemma_thmwrapper theorem-style-plain" id="lem:chsh-eigenvalues">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:spectral-state-extraction">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
     </span>
-    <span class="lemma_thmlabel">7</span>
-    <span class="lemma_thmtitle">Bell basis eigenvalues</span>
+    <span class="theorem_thmlabel">8</span>
+    <span class="theorem_thmtitle">Spectral state extraction bound</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0002.html#lem:chsh-eigenvalues">#</a>
+    <a class="icon proof" href="sect0002.html#thm:spectral-state-extraction">#</a>
     
     <a class="icon proof" href="sect0002.html#a0000000020"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
 </a>
@@ -185,9 +226,7 @@
         
         <ul class="uses">
           
-          <li><a href="sect0001.html#def:bell-phi-plus">Definition 2</a></li>
-          
-          <li><a href="sect0002.html#lem:chsh-simplify">Lemma 6</a></li>
+          <li><a href="sect0002.html#prop:k-bell-decomposition">Proposition 7</a></li>
           
         </ul>
     
@@ -207,7 +246,7 @@
         
         <ul class="uses">
           
-          <li><a href="https://trzstony.github.io/Rigidity_Theorem/docs/find/#doc/RigidityToPguess.chsh_eigenvalues" class="lean_decl">RigidityToPguess.chsh_eigenvalues</a></li>
+          <li><a href="/find/#doc/Approximate_Rigidity.state_extraction_bound" class="lean_decl">Approximate_Rigidity.state_extraction_bound</a></li>
           
         </ul>
     
@@ -217,12 +256,15 @@
     
         </div>
   </div>
-  <div class="lemma_thmcontent">
-  <p>    Let \(\Phi :=|\Phi ^+\rangle \! \langle \Phi ^+|\). Then \(|\Phi ^+\rangle \) is an eigenvector of \(\mathrm{CHSH}\) with eigenvalue \(2\sqrt2\). Moreover, the spectrum of \(\mathrm{CHSH}\) is </p>
+  <div class="theorem_thmcontent">
+  <p>    Suppose \(\Psi \) has unit norm and satisfies </p>
 <div class="displaymath" id="a0000000021">
-  \[  \{ 2\sqrt2,\  0,\  0,\  -2\sqrt2\} ,  \]
+  \[  \Re \langle \Psi , (K \otimes \mathrm{Id})\Psi  \rangle  \ge 2\sqrt{2} - \delta .  \]
 </div>
-<p> and the top eigenvalue \(2\sqrt2\) is non-degenerate. </p>
+<p> Then there exists a normalized “junk” vector extracted from the \(\Phi ^+\) Bell component such that </p>
+<div class="displaymath" id="a0000000022">
+  \[  \left\lVert \Psi - \Phi ^+ \otimes \Phi _{\mathrm{junk}} \right\rVert  \le \sqrt{2\sqrt{2}\, \delta }.  \]
+</div>
 
   </div>
 </div>
@@ -234,7 +276,7 @@
     <span class="expand-proof">▼</span>
   </div>
   <div class="proof_content">
-  <p>In the Bell basis \(\{ |\Phi ^\pm \rangle ,|\Psi ^\pm \rangle \} \), one checks that \(Z\otimes Z\) has eigenvalue \(+1\) on \(|\Phi ^\pm \rangle \) and \(-1\) on \(|\Psi ^\pm \rangle \), while \(X\otimes X\) has eigenvalue \(+1\) on \(|\Phi ^+\rangle ,|\Psi ^+\rangle \) and \(-1\) on \(|\Phi ^-\rangle ,|\Psi ^-\rangle \). Using Lemma&#160;<a href="sect0002.html#lem:chsh-simplify">6</a> gives the stated spectrum. </p>
+  <p>The Lean proof expands \(\Psi \) in the Bell basis, uses Proposition&#160;<a href="sect0002.html#prop:k-bell-decomposition">7</a> to control the weight outside the \(\Phi ^+\) eigenspace, and then normalizes the leading Bell component to define the junk register. This is implemented in ‘Junk.lean‘. </p>
 
   </div>
 </div>
@@ -245,11 +287,11 @@
 </div> <!-- wrapper -->
 
 <nav class="prev_up_next">
-  <a href="sect0001.html" title="Setup and basic definitions"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0001.html" title="CHSH Setup"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
-  <a href="ch-chsh-pguess.html" title="From CHSH to guessing probability"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+  <a href="ch-robust-chsh.html" title="Robust Rigidity of CHSH"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0003.html" title="From CHSH expectation to Bell overlap"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0003.html" title="Local Isometries and Exact Extracted Relations"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 

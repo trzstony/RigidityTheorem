@@ -1,4 +1,4 @@
 # Configure latexmk for blueprint PDF builds.
 $pdf_mode = 1;
-$pdflatex = 'xelatex -synctex=1';
+$pdflatex = 'pdflatex -interaction=nonstopmode -file-line-error %O %S';
 @default_files = ('print.tex');

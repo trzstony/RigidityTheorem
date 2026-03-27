@@ -1,0 +1,51 @@
+\section{Local Isometries and Exact Extracted Relations}
+
+\begin{definition}[Local extraction isometries]
+\label{def:local-isometries}
+\lean{Approximate_Rigidity.VA, Approximate_Rigidity.VB}
+From a CHSH strategy $S$, the Lean development constructs local maps
+\[
+V_A : H_A \to Qubit \otimes H_A,
+\qquad
+V_B : H_B \to Qubit \otimes H_B,
+\]
+using controlled versions of the observables together with a Hadamard rotation on Alice's side and a $\pi/8$-rotation normalization on Bob's side.
+\end{definition}
+
+\begin{theorem}[The extraction maps are isometries]
+\label{thm:va-vb-isometries}
+\uses{def:local-isometries}
+\lean{Approximate_Rigidity.VA_is_isometry, Approximate_Rigidity.VB_is_isometry}
+The maps $V_A$ and $V_B$ preserve norms.
+\end{theorem}
+
+\begin{theorem}[Exact extracted action of $A_0$]
+\label{thm:a0-exact}
+\uses{def:local-isometries}
+\lean{Approximate_Rigidity.eq217_A0_exact}
+For every $\phi \in H_A \otimes H_B$,
+\[
+(V_A \otimes V_B)(A_0 \otimes \id)\phi
+=
+\bigl((Z \otimes \id)\otimes \id \bigr)(V_A \otimes V_B)\phi.
+\]
+Equivalently, the norm of the difference is exactly zero.
+\end{theorem}
+
+\begin{theorem}[Exact extracted action of $B_0$ on the strategy state]
+\label{thm:b0-exact}
+\uses{def:local-isometries}
+\lean{Approximate_Rigidity.eq219_B0_exact}
+On the distinguished strategy state $\psi$,
+\[
+(V_A \otimes V_B)(\id \otimes B_0)\psi
+=
+\bigl(\id \otimes (H \otimes \id)\bigr)(V_A \otimes V_B)\psi.
+\]
+The Lean theorem is stated as vanishing norm of the difference on $\psi$.
+\end{theorem}
+
+\begin{remark}
+The exact $A_0$ and $B_0$ relations are the robust counterparts of Eqs. (217) and (219) in the notes.
+They isolate the clean part of the canonical form before the approximate $A_1$ and $B_1$ analysis begins.
+\end{remark}

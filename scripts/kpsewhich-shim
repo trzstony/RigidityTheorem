@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Lightweight kpsewhich replacement for environments without a full TeX install.
+# If a real kpsewhich exists and can resolve the target, delegate to it.
+if command -v kpsewhich >/dev/null 2>&1; then
+  if kpsewhich "${1:-}" >/dev/null 2>&1; then
+    kpsewhich "${1:-}"
+    exit 0
+  fi
+fi
+
+name="${1:-}"
+if [[ -z "$name" ]]; then
+  exit 1
+fi
+
+if [[ -f "$name" ]]; then
+  realpath "$name"
+  exit 0
+fi
+
+texinputs="${TEXINPUTS:-.}"
+IFS=':' read -r -a paths <<< "$texinputs"
+
+for raw in "${paths[@]}"; do
+  [[ -z "$raw" ]] && continue
+
+  recursive=0
+  base="$raw"
+  if [[ "$base" == *"//" ]]; then
+    recursive=1
+    base="${base%//}"
+  fi
+  [[ -z "$base" ]] && base="."
+
+  direct="$base/$name"
+  if [[ -f "$direct" ]]; then
+    realpath "$direct"
+    exit 0
+  fi
+
+  if [[ "$recursive" -eq 1 ]]; then
+    if [[ "$name" == */* ]]; then
+      found="$(find "$base" -type f -path "*/$name" -print -quit 2>/dev/null || true)"
+    else
+      found="$(find "$base" -type f -name "$name" -print -quit 2>/dev/null || true)"
+    fi
+    if [[ -n "$found" ]]; then
+      realpath "$found"
+      exit 0
+    fi
+  fi
+done
+
+exit 1

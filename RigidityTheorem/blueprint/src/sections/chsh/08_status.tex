@@ -1,0 +1,16 @@
+\section{Formalization Map}
+
+The current file-to-blueprint correspondence is:
+
+\begin{itemize}
+\item `Quantum/Bell.lean`: Bell basis, Bell state, and the spectrum of the canonical operator $K$;
+\item `Approximate_Rigidity/BasicDefs.lean`: CHSH strategies, observables, tensor-isometry utilities, and the operator $\CHSH$;
+\item `Approximate_Rigidity/Isometries.lean`: the constructions of $V_A$ and $V_B$ plus the exact $A_0$ and $B_0$ intertwining relations;
+\item `Approximate_Rigidity/IsometriesApprox.lean`: approximate anti-commutation and the approximate $A_1$ and $B_1$ extraction bounds;
+\item `Approximate_Rigidity/chsh_link.lean`: the comparison between the physical CHSH bias and the ideal Bell-space operator $K$;
+\item `Approximate_Rigidity/Junk.lean`: the Bell-decomposition estimate and the abstract spectral state-extraction theorem;
+\item `Approximate_Rigidity/RigidityTheorem.lean`: the final state and operator extraction theorems.
+\end{itemize}
+
+This blueprint is deliberately aligned with the current Lean implementation rather than a larger paper draft.
+That keeps the dependency graph short and makes it easier to update as the formalization evolves.

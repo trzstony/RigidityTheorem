@@ -1,0 +1,28 @@
+\section{State Extraction}
+
+\begin{theorem}[Robust state extraction]
+\label{thm:state-extraction}
+\uses{thm:va-vb-isometries,thm:chsh-to-k,thm:spectral-state-extraction,def:delta}
+\lean{Approximate_Rigidity.state_extraction}
+Assume $\Bias(S) \ge 2\sqrt{2} - \eps$ with $\eps \ge 0$.
+Then there exist local isometries
+\[
+V_A : H_A \to Qubit \otimes H_A,
+\qquad
+V_B : H_B \to Qubit \otimes H_B,
+\]
+and a junk state $\Phi_{\mathrm{junk}} \in H_A \otimes H_B$ such that
+\[
+\norm{
+\mathrm{regSwap}\bigl((V_A \otimes V_B)\psi\bigr)
+-
+\Phi^+ \otimes \Phi_{\mathrm{junk}}
+}
+\le \sqrt{2\sqrt{2}\,\delta(\eps)}.
+\]
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:chsh-to-k} converts the physical CHSH hypothesis into an almost-maximal expectation for $K \otimes \id$ on the extracted state.
+Theorem~\ref{thm:spectral-state-extraction} then identifies a Bell pair in the first two qubit registers, with the residual factor recorded as the junk state.
+\end{proof}

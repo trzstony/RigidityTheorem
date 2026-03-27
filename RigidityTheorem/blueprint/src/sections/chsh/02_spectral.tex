@@ -1,0 +1,50 @@
+\section{Bell-Basis Spectral Input}
+
+\begin{proposition}[Bell spectrum of the ideal CHSH operator]
+\label{prop:bell-spectrum}
+\lean{Quantum.K_Φ_plus, Quantum.K_Φ_minus, Quantum.K_Ψ_plus, Quantum.K_Ψ_minus}
+Let $K$ be the canonical two-qubit CHSH operator on $Qubit \otimes Qubit$.
+In the Bell basis $(\Phi^+, \Phi^-, \Psi^+, \Psi^-)$, the operator $K$ is diagonal with eigenvalues
+\[
+2\sqrt{2}, \quad 0, \quad 0, \quad -2\sqrt{2}.
+\]
+\end{proposition}
+
+\begin{proposition}[Expectation of $K \otimes I$ in Bell coordinates]
+\label{prop:k-bell-decomposition}
+\uses{prop:bell-spectrum}
+\lean{Approximate_Rigidity.inner_K_tensor_id_eq_bellDecomposition}
+If
+\[
+\Psi \in (Qubit \otimes Qubit) \otimes J
+\]
+is decomposed in the Bell basis as
+\[
+\Psi = \sum_{i=0}^3 \beta_i \otimes \eta_i,
+\]
+then
+\[
+\Re \ip{\Psi}{(K \otimes \id)\Psi}
+= 2\sqrt{2}\bigl(\norm{\eta_0}^2 - \norm{\eta_3}^2\bigr).
+\]
+\end{proposition}
+
+\begin{theorem}[Spectral state extraction bound]
+\label{thm:spectral-state-extraction}
+\uses{prop:k-bell-decomposition}
+\lean{Approximate_Rigidity.state_extraction_bound}
+Suppose $\Psi$ has unit norm and satisfies
+\[
+\Re \ip{\Psi}{(K \otimes \id)\Psi} \ge 2\sqrt{2} - \delta.
+\]
+Then there exists a normalized ``junk'' vector extracted from the $\Phi^+$ Bell component such that
+\[
+\norm{\Psi - \Phi^+ \otimes \Phi_{\mathrm{junk}}}
+\le \sqrt{2\sqrt{2}\,\delta}.
+\]
+\end{theorem}
+
+\begin{proof}
+The Lean proof expands $\Psi$ in the Bell basis, uses Proposition~\ref{prop:k-bell-decomposition} to control the weight outside the $\Phi^+$ eigenspace, and then normalizes the leading Bell component to define the junk register.
+This is implemented in `Junk.lean`.
+\end{proof}

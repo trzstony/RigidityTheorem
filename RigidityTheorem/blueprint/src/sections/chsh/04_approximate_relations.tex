@@ -1,0 +1,59 @@
+\section{Approximate Anti-Commutation and Extracted Operators}
+
+\begin{theorem}[Square of the CHSH operator]
+\label{thm:chsh-square}
+\uses{def:binary-observable,def:chsh-bias}
+\lean{Approximate_Rigidity.CHSH_op_sq}
+If $A_0,A_1,B_0,B_1$ are binary observables, then
+\[
+\CHSH(A_0,A_1,B_0,B_1)^2
+= 4 \id - [A_0,A_1] \otimes [B_0,B_1].
+\]
+\end{theorem}
+
+\begin{theorem}[Approximate anti-commutation]
+\label{thm:approx-anticomm}
+\uses{thm:chsh-square,def:chsh-bias}
+\lean{Approximate_Rigidity.approx_anticomm_A, Approximate_Rigidity.approx_anticomm_B}
+If $\Bias(S) \ge 2\sqrt{2} - \eps$, then both local anti-commutators are small on the strategy state.
+More precisely, the Lean development proves
+\[
+\Re \ip{\psi}{((A_1A_0 + A_0A_1)^2 \otimes \id)\psi} \le \cconst \eps,
+\]
+and the analogous bound with Alice and Bob swapped.
+\end{theorem}
+
+\begin{theorem}[Approximate extracted action of $A_1$]
+\label{thm:a1-approx}
+\uses{thm:approx-anticomm,thm:va-vb-isometries}
+\lean{Approximate_Rigidity.eq218_A1_approx}
+Under the same bias assumption,
+\[
+\norm{
+((V_A \otimes V_B)(A_1 \otimes \id)\psi)
+-
+\bigl(((X \otimes \id)\otimes \id)(V_A \otimes V_B)\psi\bigr)
+}
+\le \sqrt{\cconst \eps}.
+\]
+\end{theorem}
+
+\begin{theorem}[Approximate extracted action of $B_1$]
+\label{thm:b1-approx}
+\uses{thm:approx-anticomm,thm:va-vb-isometries}
+\lean{Approximate_Rigidity.eq220_B1_approx}
+Under the same bias assumption,
+\[
+\norm{
+((V_A \otimes V_B)(\id \otimes B_1)\psi)
+-
+\bigl((\id \otimes (ZHZ \otimes \id))(V_A \otimes V_B)\psi\bigr)
+}
+\le \sqrt{\cconst \eps}.
+\]
+\end{theorem}
+
+\begin{proof}
+The Lean file `IsometriesApprox.lean` first derives quantitative anti-commutation from
+Theorem~\ref{thm:chsh-square}, then transports those bounds through the isometries to obtain the vector-action estimates for $A_1$ and $B_1$.
+\end{proof}

@@ -1,66 +1,51 @@
-\section{Setup and basic definitions}
+\section{CHSH Setup}
 
-\begin{definition}[Systems and reduced states]
-\label{def:systems}
-\lean{RigidityToPguess.Systems}
-\notready
-Let $A$ and $B$ be qubit systems and let $E$ be an arbitrary quantum system.
-A tripartite state is a density operator $\rho_{ABE}$ on $A\otimes B\otimes E$.
-We write $\rho_{AB}:=\Tr_E(\rho_{ABE})$ for the reduced state on $AB$.
+\begin{definition}[Binary observable]
+\label{def:binary-observable}
+\lean{Approximate_Rigidity.IsBinaryObservable}
+A binary observable on a complex Hilbert space $H$ is a linear map $A : H \to H$ that is self-adjoint and satisfies $A^2 = \id$.
 \end{definition}
 
-\begin{definition}[Bell state]
-\label{def:bell-phi-plus}
-\lean{RigidityToPguess.PhiPlus}
-\notready
-The Bell state $|\Phi^+\rangle\in A\otimes B$ is
+\begin{definition}[CHSH strategy]
+\label{def:chsh-strategy}
+\lean{Approximate_Rigidity.CHSHStrategy}
+A CHSH strategy consists of:
 \[
-|\Phi^+\rangle := \frac{|00\rangle + |11\rangle}{\sqrt{2}},\qquad
-\Phi := |\Phi^+\rangle\!\langle\Phi^+|.
+S = (\psi, A_0, A_1, B_0, B_1),
 \]
+where $\psi \in H_A \otimes H_B$ is a unit vector and each $A_i$, $B_j$ is a binary observable on the corresponding local space.
 \end{definition}
 
-\begin{definition}[Canonical CHSH operator on two qubits]
-\label{def:chsh-operator}
-\uses{def:systems}
-\lean{RigidityToPguess.CHSH}
-\notready
-Let $X,Z$ denote Pauli operators on a qubit.  Define observables
+\begin{definition}[CHSH operator and bias]
+\label{def:chsh-bias}
+\uses{def:chsh-strategy}
+\lean{Approximate_Rigidity.CHSH_op, Approximate_Rigidity.chshBias}
+Given a strategy $S$, the associated CHSH operator is
 \[
-A_0:=Z,\quad A_1:=X,\quad
-B_0:=\frac{Z+X}{\sqrt 2},\quad B_1:=\frac{Z-X}{\sqrt 2}.
+\CHSH(A_0,A_1,B_0,B_1)
+= A_0 \otimes B_0 + A_0 \otimes B_1 + A_1 \otimes B_0 - A_1 \otimes B_1.
 \]
-The associated CHSH operator on $A\otimes B$ is
+Its bias on the state $\psi$ is
 \[
-\mathrm{CHSH} := A_0\otimes B_0 + A_0\otimes B_1 + A_1\otimes B_0 - A_1\otimes B_1.
+\Bias(S) = \Re \ip{\psi}{\CHSH(A_0,A_1,B_0,B_1)\psi}.
 \]
 \end{definition}
 
-\begin{definition}[Classical--quantum state after Alice's key measurement]
-\label{def:rho-xe}
-\uses{def:systems}
-\lean{RigidityToPguess.rhoXE}
-\notready
-Let $\{|0\rangle,|1\rangle\}$ be the computational basis of $A$, and set $P_x:=|x\rangle\!\langle x|_A$.
-From $\rho_{ABE}$ define subnormalised conditional states
+\begin{definition}[Error function]
+\label{def:delta}
+\lean{Approximate_Rigidity.delta, Approximate_Rigidity.cConst}
+The main spectral bookkeeping uses
 \[
-\rho_E^x := \Tr_{AB}\big((P_x\otimes I_{BE})\,\rho_{ABE}\,(P_x\otimes I_{BE})\big),\qquad x\in\{0,1\}.
-\]
-The induced classical--quantum state is
-\[
-\rho_{XE} := \sum_{x\in\{0,1\}} |x\rangle\!\langle x|_X\otimes \rho_E^x.
+\delta(\eps) := \eps + 4\sqrt{\cconst \eps},
+\qquad
+\cconst = 128 \sqrt{2}.
 \]
 \end{definition}
 
-\begin{definition}[Guessing probability]
-\label{def:pguess}
-\uses{def:rho-xe}
-\lean{RigidityToPguess.pGuess}
-\notready
-For the classical--quantum state $\rho_{XE}$, the guessing probability is
+\begin{remark}
+The final theorems in the Lean development are phrased in terms of the bias lower bound
 \[
-p_{\mathrm{guess}}(X\mid E)_{\rho}
-:=\sup_{\{M_0,M_1\}} \sum_{x\in\{0,1\}} \Tr(M_x\,\rho_E^x),
+\Bias(S) \ge 2\sqrt{2} - \eps.
 \]
-where the supremum ranges over POVMs on $E$, i.e. $M_x\succeq 0$ and $M_0+M_1=I_E$.
-\end{definition}
+This is the normalization that interacts directly with the Bell-space operator $K$ in the later sections.
+\end{remark}

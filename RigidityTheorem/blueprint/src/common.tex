@@ -5,13 +5,16 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
 
-% Basic math macros
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\id}{\mathrm{Id}}
-
-% Dirac notation (lightweight)
+\newcommand{\CHSH}{\mathrm{CHSH}}
+\newcommand{\Bias}{\operatorname{Bias}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\ket}[1]{\lvert #1\rangle}
 \newcommand{\bra}[1]{\langle #1\rvert}
-\newcommand{\proj}[1]{\ket{#1}\!\bra{#1}}
+\newcommand{\ip}[2]{\langle #1, #2 \rangle}
+\newcommand{\cconst}{c_{\mathrm{CHSH}}}

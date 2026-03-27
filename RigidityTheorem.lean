@@ -1,1 +1,0 @@
-import RigidityTheorem.Basic
