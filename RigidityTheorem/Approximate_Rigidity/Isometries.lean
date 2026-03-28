@@ -403,7 +403,7 @@ private lemma VB_intertwine_B0 :
             rw [hVB]
 
 
-lemma eq217_A0 :
+lemma a0_extraction_intertwining :
     ((V_A ⊗ₗ V_B) ∘ₗ (S.A0 ⊗ₗ LinearMap.id)) =
       (((pauliZ ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
             (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ (V_A ⊗ₗ V_B)) := by
@@ -416,15 +416,15 @@ lemma eq217_A0 :
     simpa [LinearMap.comp_apply] using congrArg (fun f => f x) (VA_intertwine_A0 (S := S))
   simp [LinearMap.comp_apply, TensorProduct.map_tmul, LinearMap.id_apply, hVAx]
 
-theorem eq217_A0_exact (φ : H_A ⊗[ℂ] H_B) :
+theorem a0_extraction_exact (φ : H_A ⊗[ℂ] H_B) :
     ‖(((V_A ⊗ₗ V_B) ∘ₗ (S.A0 ⊗ₗ LinearMap.id)) φ)
         - ((((pauliZ ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
               (LinearMap.id)) ∘ₗ (V_A ⊗ₗ V_B)) φ)‖ = 0 := by
-  simp [eq217_A0 (S := S)]
+  simp [a0_extraction_intertwining (S := S)]
 
--- `eq218_A1_approx` moved to `Approximate_Rigidity/IsometriesApprox.lean`.
+-- `a1_extraction_approx` moved to `Approximate_Rigidity/IsometriesApprox.lean`.
 
-lemma eq219_B0 :
+lemma b0_extraction_intertwining :
     ((V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B0)) =
       (((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
             (Hadamard ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ (V_A ⊗ₗ V_B)) := by
@@ -440,18 +440,18 @@ lemma eq219_B0 :
 
 
 /-!
-`eq219_B0` is a (state-dependent) extracted-operator identity from the notes.
+`b0_extraction_intertwining` is a (state-dependent) extracted-operator identity from the notes.
 
 Quantifying this as an exact equality for *all* `φ` is generally too strong: in the robustness proof
 we only need it on the distinguished strategy state `S.psi`.
 -/
-theorem eq219_B0_exact :
+theorem b0_extraction_exact_on_strategy_state :
     ‖(((V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B0)) S.psi)
         - ((((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
               (Hadamard ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ (V_A ⊗ₗ V_B)) S.psi)‖ = 0 := by
-  simp [eq219_B0 (S := S)]
+  simp [b0_extraction_intertwining (S := S)]
 
--- `eq220_B1_approx` moved to `Approximate_Rigidity/IsometriesApprox.lean`.
+-- `b1_extraction_approx` moved to `Approximate_Rigidity/IsometriesApprox.lean`.
 end PauliRelations
 
 end Approximate_Rigidity

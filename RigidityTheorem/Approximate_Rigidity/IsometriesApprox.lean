@@ -176,7 +176,7 @@ end CHSHSquare
 
 noncomputable def cConst : Real := 128 * Real.sqrt 2
 
-section
+
 
 section ApproximateAnticomm
 variable {H_A H_B : Type*}
@@ -200,10 +200,7 @@ private lemma inner_comm_eq
     (x y : H_A ⊗[ℂ] H_B) :
     ⟪(TensorProduct.comm ℂ H_A H_B) x, (TensorProduct.comm ℂ H_A H_B) y⟫_ℂ
       = ⟪x, y⟫_ℂ := by
-  let commLI : (H_A ⊗[ℂ] H_B) →ₗᵢ[ℂ] (H_B ⊗[ℂ] H_A) :=
-    { toLinearMap := (TensorProduct.comm ℂ H_A H_B).toLinearMap
-      norm_map' := TensorProduct.norm_comm }
-  simpa [commLI] using (LinearIsometry.inner_map_map commLI x y)
+    simp only [TensorProduct.inner_comm_comm]
 
 private lemma term_swap
     (S : CHSHStrategy H_A H_B)
@@ -212,17 +209,10 @@ private lemma term_swap
         (B ⊗ₗ A) ((TensorProduct.comm ℂ H_A H_B) S.psi)⟫_ℂ
       =
     ⟪S.psi, (A ⊗ₗ B) S.psi⟫_ℂ := by
-  have hmap := congrArg (fun F => F S.psi) (comm_map_map (A := A) (B := B))
-  calc
-    ⟪(TensorProduct.comm ℂ H_A H_B) S.psi,
-        (B ⊗ₗ A) ((TensorProduct.comm ℂ H_A H_B) S.psi)⟫_ℂ
-        =
-      ⟪(TensorProduct.comm ℂ H_A H_B) S.psi,
-          (TensorProduct.comm ℂ H_A H_B) ((A ⊗ₗ B) S.psi)⟫_ℂ := by
-            simpa [LinearMap.comp_apply] using
-              congrArg (fun z => ⟪(TensorProduct.comm ℂ H_A H_B) S.psi, z⟫_ℂ) hmap
-    _ = ⟪S.psi, (A ⊗ₗ B) S.psi⟫_ℂ := by
-          simpa using inner_comm_eq (x := S.psi) (y := ((A ⊗ₗ B) S.psi))
+  have key : (B ⊗ₗ A) ((TensorProduct.comm ℂ H_A H_B) S.psi) =
+             (TensorProduct.comm ℂ H_A H_B) ((A ⊗ₗ B) S.psi) := by
+    simpa [LinearMap.comp_apply] using congrArg (· S.psi) (comm_map_map (A := A) (B := B))
+  rw [key, inner_comm_eq]
 
 private noncomputable def swapStrategy (S : CHSHStrategy H_A H_B) : CHSHStrategy H_B H_A where
   psi := (TensorProduct.comm ℂ H_A H_B) S.psi
@@ -248,25 +238,12 @@ private lemma chsh_commute_map (S : CHSHStrategy H_A H_B) :
 
 private lemma chshBias_swap (S : CHSHStrategy H_A H_B) :
     chshBias (swapStrategy (H_A := H_A) (H_B := H_B) S) = chshBias S := by
-  let c : (H_A ⊗[ℂ] H_B) →ₗ[ℂ] (H_B ⊗[ℂ] H_A) := (TensorProduct.comm ℂ H_A H_B).toLinearMap
-  have hmap := congrArg (fun F => F S.psi) (chsh_commute_map (S := S))
-  calc
-    chshBias (swapStrategy (H_A := H_A) (H_B := H_B) S)
-        =
-      (⟪c S.psi,
-          (CHSH_op (H_A := H_B) (H_B := H_A) S.B0 S.B1 S.A0 S.A1) (c S.psi)⟫_ℂ).re := by
-          simp [chshBias, swapStrategy, c]
-    _ =
-      (⟪c S.psi, c ((CHSH_op (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1) S.psi)⟫_ℂ).re := by
-          simpa [c, LinearMap.comp_apply] using
-            congrArg (fun z => (⟪c S.psi, z⟫_ℂ).re) hmap
-    _ =
-      (⟪S.psi, (CHSH_op (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1) S.psi⟫_ℂ).re := by
-          exact congrArg Complex.re
-            (inner_comm_eq (x := S.psi)
-              (y := ((CHSH_op (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1) S.psi)))
-    _ = chshBias S := by
-          simp [chshBias]
+  have key : (CHSH_op (H_A := H_B) (H_B := H_A) S.B0 S.B1 S.A0 S.A1)
+               ((TensorProduct.comm ℂ H_A H_B) S.psi) =
+             (TensorProduct.comm ℂ H_A H_B)
+               ((CHSH_op (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1) S.psi) := by
+    simpa [LinearMap.comp_apply] using congrArg (· S.psi) (chsh_commute_map (S := S))
+  simp only [chshBias, swapStrategy, key, inner_comm_eq]
 
 private lemma adjoint_mul_tensor_id_eq_sq
     (C : H_A →ₗ[ℂ] H_A) (hC_adj : C.adjoint = C) :
@@ -274,31 +251,16 @@ private lemma adjoint_mul_tensor_id_eq_sq
       (C ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)))
       =
     (C ^ 2) ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B) := by
-  let idB : H_B →ₗ[ℂ] H_B := LinearMap.id
-  calc
-    ((C ⊗ₗ idB).adjoint ∘ₗ (C ⊗ₗ idB))
-        = ((C.adjoint ⊗ₗ idB.adjoint) ∘ₗ (C ⊗ₗ idB)) := by simp
-    _ = ((C.adjoint ∘ₗ C) ⊗ₗ (idB.adjoint ∘ₗ idB)) := by
-          simpa using (TensorProduct.map_comp (C.adjoint) idB.adjoint C idB).symm
-    _ = ((C ∘ₗ C) ⊗ₗ idB) := by simp [hC_adj, idB]
-    _ = ((C * C) ⊗ₗ idB) := rfl
-    _ = (C ^ 2) ⊗ₗ idB := by simp [pow_two]
+  simp [← TensorProduct.map_comp, hC_adj, sq]
+  rfl
 
 private lemma inner_sq_tensor_id_eq_norm_sq
     (C : H_A →ₗ[ℂ] H_A) (ψ : H_A ⊗[ℂ] H_B) (hC_adj : C.adjoint = C) :
     (⟪ψ, (((C ^ 2) ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) ψ)⟫_ℂ).re
       =
     ‖((C ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) ψ)‖ ^ 2 := by
-  let idB : H_B →ₗ[ℂ] H_B := LinearMap.id
-  calc
-    (⟪ψ, (((C ^ 2) ⊗ₗ idB) ψ)⟫_ℂ).re
-        = (⟪ψ, (((C ⊗ₗ idB).adjoint ∘ₗ (C ⊗ₗ idB)) ψ)⟫_ℂ).re := by
-            rw [← adjoint_mul_tensor_id_eq_sq (H_A := H_A) (H_B := H_B) (C := C) hC_adj]
-    _ = semi_norm_sq (H := H_A ⊗[ℂ] H_B) (C ⊗ₗ idB) ψ := by
-          simp [semi_norm_sq]
-    _ = ‖((C ⊗ₗ idB) ψ)‖ ^ 2 := by
-          simpa using
-            (semi_norm_sq_eq_norm_sq (H := H_A ⊗[ℂ] H_B) (M := C ⊗ₗ idB) (ψ := ψ))
+  rw [← adjoint_mul_tensor_id_eq_sq (H_A := H_A) (H_B := H_B) (C := C) hC_adj]
+  simpa [semi_norm_sq] using semi_norm_sq_eq_norm_sq (C ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) ψ
 
 private lemma adjoint_eq_of_symm
     (A : H_A →ₗ[ℂ] H_A) (hA_symm : A.IsSymmetric) :
@@ -510,60 +472,29 @@ private lemma approx_anticomm_A_m_sq_expansions
   let K_B : H_B →ₗ[ℂ] H_B := (S.B0 ∘ₗ S.B1) - (S.B1 ∘ₗ S.B0)
   let M : (H_A ⊗[ℂ] H_B) →ₗ[ℂ] (H_A ⊗[ℂ] H_B) :=
     CHSH_op (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1
-  have hA0_adj : S.A0.adjoint = S.A0 := by
-    exact adjoint_eq_of_symm (A := S.A0) (IsBinaryObservable.symm (A := S.A0))
-  have hA1_adj : S.A1.adjoint = S.A1 := by
-    exact adjoint_eq_of_symm (A := S.A1) (IsBinaryObservable.symm (A := S.A1))
-  have hB0_adj : S.B0.adjoint = S.B0 := by
-    exact adjoint_eq_of_symm (A := S.B0) (IsBinaryObservable.symm (A := S.B0))
-  have hB1_adj : S.B1.adjoint = S.B1 := by
-    exact adjoint_eq_of_symm (A := S.B1) (IsBinaryObservable.symm (A := S.B1))
+  have hA0_adj : S.A0.adjoint = S.A0 := adjoint_eq_of_symm (A := S.A0) (IsBinaryObservable.symm (A := S.A0))
+  have hA1_adj : S.A1.adjoint = S.A1 := adjoint_eq_of_symm (A := S.A1) (IsBinaryObservable.symm (A := S.A1))
+  have hB0_adj : S.B0.adjoint = S.B0 := adjoint_eq_of_symm (A := S.B0) (IsBinaryObservable.symm (A := S.B0))
+  have hB1_adj : S.B1.adjoint = S.B1 := adjoint_eq_of_symm (A := S.B1) (IsBinaryObservable.symm (A := S.B1))
   have hM_adj : M.adjoint = M := by
     simp [M, CHSH_op, hA0_adj, hA1_adj, hB0_adj, hB1_adj, sub_eq_add_neg]
   have hM_sq :
       M ^ 2 = (4 : (H_A ⊗[ℂ] H_B →ₗ[ℂ] H_A ⊗[ℂ] H_B)) + (K_A ⊗ₗ K_B) := by
     have hCommA : ⟦S.A0, S.A1⟧ = -K_A := by
-      ext x
-      simp [K_A, U, V, sub_eq_add_neg, Module.End.mul_eq_comp]
+      ext x; simp [K_A, U, V, sub_eq_add_neg, Module.End.mul_eq_comp]
     have hCommB : ⟦S.B0, S.B1⟧ = K_B := by
-      ext x
-      simp [K_B, sub_eq_add_neg, Module.End.mul_eq_comp]
-    calc
-      M ^ 2
-          = (4 : (H_A ⊗[ℂ] H_B →ₗ[ℂ] H_A ⊗[ℂ] H_B))
-              - (⟦S.A0, S.A1⟧ ⊗ₗ ⟦S.B0, S.B1⟧) := by
-                simpa [M] using
-                  (CHSH_op_sq (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1)
-      _ = (4 : (H_A ⊗[ℂ] H_B →ₗ[ℂ] H_A ⊗[ℂ] H_B))
-            + (K_A ⊗ₗ K_B) := by
-              rw [hCommA, hCommB]
-              simp [sub_eq_add_neg, map_neg_left]
+      ext x; simp [K_B, sub_eq_add_neg, Module.End.mul_eq_comp]
+    simpa [M, hCommA, hCommB, sub_eq_add_neg, map_neg_left, neg_neg] using
+      CHSH_op_sq (H_A := H_A) (H_B := H_B) S.A0 S.A1 S.B0 S.B1
   have hMnorm_sq :
       ‖M S.psi‖ ^ 2 = (⟪S.psi, (M ^ 2) S.psi⟫_ℂ).re := by
-    calc
-      ‖M S.psi‖ ^ 2
-          = semi_norm_sq (H := H_A ⊗[ℂ] H_B) M S.psi := by
-              symm
-              simpa using
-                (semi_norm_sq_eq_norm_sq (H := H_A ⊗[ℂ] H_B) (M := M) (ψ := S.psi))
-      _ = (⟪S.psi, ((M.adjoint ∘ₗ M) S.psi)⟫_ℂ).re := by
-              simp [semi_norm_sq]
-      _ = (⟪S.psi, (M ^ 2) S.psi⟫_ℂ).re := by
-              simp [hM_adj, pow_two]
+    rw [← semi_norm_sq_eq_norm_sq]
+    simp [semi_norm_sq, hM_adj, sq, Module.End.mul_eq_comp]
   have hM2_expand :
       (⟪S.psi, (M ^ 2) S.psi⟫_ℂ).re
         = 4 + (⟪S.psi, ((K_A ⊗ₗ K_B) S.psi)⟫_ℂ).re := by
-    rw [hM_sq]
-    calc
-      (⟪S.psi, (((4 : (H_A ⊗[ℂ] H_B →ₗ[ℂ] H_A ⊗[ℂ] H_B)) + (K_A ⊗ₗ K_B)) S.psi)⟫_ℂ).re
-          = (⟪S.psi, ((4 : (H_A ⊗[ℂ] H_B →ₗ[ℂ] H_A ⊗[ℂ] H_B)) S.psi)⟫_ℂ).re
-              + (⟪S.psi, ((K_A ⊗ₗ K_B) S.psi)⟫_ℂ).re := by
-                simp [LinearMap.add_apply, inner_add_right, add_left_comm, add_assoc]
-      _ = 4 + (⟪S.psi, ((K_A ⊗ₗ K_B) S.psi)⟫_ℂ).re := by
-            have h4 :
-                (⟪S.psi, ((4 : (H_A ⊗[ℂ] H_B →ₗ[ℂ] H_A ⊗[ℂ] H_B)) S.psi)⟫_ℂ).re = 4 := by
-              exact inner_four_apply_re (H_A := H_A) (H_B := H_B) (ψ := S.psi) S.psi_norm
-            simpa [h4]
+    rw [hM_sq, LinearMap.add_apply, inner_add_right, Complex.add_re]
+    linarith [inner_four_apply_re (ψ := S.psi) S.psi_norm]
   exact ⟨hMnorm_sq, hM2_expand⟩
 
 private lemma approx_anticomm_A_tensor_estimates
@@ -779,13 +710,7 @@ theorem approx_anticomm_B
       ≤ (cConst) * epsilon := by
   let T : CHSHStrategy H_B H_A := swapStrategy (H_A := H_A) (H_B := H_B) S
   have hBiasT : chshBias T ≥ (2 * Real.sqrt 2) - epsilon := by
-    simpa [T] using (show chshBias (swapStrategy (H_A := H_A) (H_B := H_B) S)
-      ≥ (2 * Real.sqrt 2) - epsilon by
-        simpa [chshBias_swap (H_A := H_A) (H_B := H_B) (S := S)] using hBias)
-  have hA :
-      (⟪T.psi, (((T.A1 ∘ₗ T.A0 + T.A0 ∘ₗ T.A1) ^ 2) ⊗ₗ (LinearMap.id)) T.psi⟫_ℂ).re
-        ≤ cConst * epsilon := by
-    exact approx_anticomm_A (S := T) (epsilon := epsilon) hBiasT
+    simpa [T, chshBias_swap] using hBias
   have hswap :
       (⟪(TensorProduct.comm ℂ H_A H_B) S.psi,
           (((S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2) ⊗ₗ
@@ -793,26 +718,24 @@ theorem approx_anticomm_B
         =
       (⟪S.psi,
           ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ
-            ((S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2)) S.psi⟫_ℂ).re := by
-    exact congrArg Complex.re
-      (term_swap (S := S)
-        (A := (LinearMap.id : H_A →ₗ[ℂ] H_A))
-        (B := ((S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2)))
+            ((S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2)) S.psi⟫_ℂ).re :=
+    congrArg Complex.re (term_swap (S := S) (A := LinearMap.id)
+      (B := (S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2))
   calc
     (⟪S.psi, ((LinearMap.id) ⊗ₗ ((S.B0 ∘ₗ S.B1 + S.B1 ∘ₗ S.B0) ^ 2)) (S.psi)⟫_ℂ).re
-        =
-      (⟪(TensorProduct.comm ℂ H_A H_B) S.psi,
-          (((S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2) ⊗ₗ
-            (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi)⟫_ℂ).re := by
-          simpa [add_comm] using hswap.symm
-    _ = (⟪T.psi, (((T.A1 ∘ₗ T.A0 + T.A0 ∘ₗ T.A1) ^ 2) ⊗ₗ (LinearMap.id)) T.psi⟫_ℂ).re := by
-          simpa [T, swapStrategy, add_comm]
-    _ ≤ cConst * epsilon := hA
+        = (⟪(TensorProduct.comm ℂ H_A H_B) S.psi,
+              (((S.B1 ∘ₗ S.B0 + S.B0 ∘ₗ S.B1) ^ 2) ⊗ₗ
+                (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi)⟫_ℂ).re := by
+            simpa [add_comm] using hswap.symm
+    _ = (⟪T.psi, (((T.A1 ∘ₗ T.A0 + T.A0 ∘ₗ T.A1) ^ 2) ⊗ₗ
+              (LinearMap.id : H_A →ₗ[ℂ] H_A)) T.psi⟫_ℂ).re := by
+            simp [T, swapStrategy, add_comm]
+    _ ≤ cConst * epsilon := approx_anticomm_A (S := T) (epsilon := epsilon) hBiasT
 
 
 
 set_option maxHeartbeats 1200000 in
-lemma eq216
+lemma a1_extraction_error_sq_bound
     (hBias : chshBias S ≥ (2 * Real.sqrt 2) - epsilon) :
     ‖(((((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ∘ₗ
             (VA (H := H_A) S.A0 S.A1)) -
@@ -1091,12 +1014,11 @@ private lemma norm_le_sqrt_of_sq_le
     ‖x‖ ≤ Real.sqrt r := by
   have hr : 0 ≤ r := le_trans (sq_nonneg ‖x‖) h
   have hsqrt : Real.sqrt (‖x‖ ^ 2) ≤ Real.sqrt r := Real.sqrt_le_sqrt h
-  have hx : Real.sqrt (‖x‖ ^ 2) = ‖x‖ := by
-    simpa using (Real.sqrt_sq_eq_abs ‖x‖)
+  have hx : Real.sqrt (‖x‖ ^ 2) = ‖x‖ := by simp only [norm_nonneg, Real.sqrt_sq]
   simpa [hx] using hsqrt
 
 set_option maxHeartbeats 800000 in
-theorem eq218_A1_approx
+theorem a1_extraction_approx
     (hBias : chshBias S ≥ (2 * Real.sqrt 2) - epsilon) :
     ‖(((V_A ⊗ₗ V_B) ∘ₗ (S.A1 ⊗ₗ LinearMap.id)) S.psi)
         - ((((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
@@ -1105,7 +1027,7 @@ theorem eq218_A1_approx
   let Δ : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) :=
     ((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ∘ₗ V_A) - (V_A ∘ₗ S.A1)
   have hΔsq : ‖((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ ^ 2 ≤ cConst * epsilon := by
-    simpa [Δ] using (eq216 (S := S) (epsilon := epsilon) hBias)
+    simpa [Δ] using (a1_extraction_error_sq_bound (S := S) (epsilon := epsilon) hBias)
   have hΔnorm : ‖((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ ≤ Real.sqrt (cConst * epsilon) :=
     norm_le_sqrt_of_sq_le hΔsq
 
@@ -1201,7 +1123,7 @@ theorem eq218_A1_approx
 
 set_option maxHeartbeats 1200000 in
 -- Tensor normalization and map-composition rewrites for Bob's rotated extractor are heartbeat-heavy.
-theorem eq220_B1_approx
+theorem b1_extraction_approx
     (hBias : chshBias S ≥ (2 * Real.sqrt 2) - epsilon)
     :
     ‖(((V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B1)) S.psi)
@@ -1227,7 +1149,7 @@ theorem eq220_B1_approx
       ‖((Δ0 ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi))‖ ^ 2
         ≤ cConst * epsilon := by
     simpa [T, swapStrategy, Δ0, V0] using
-      (eq216 (S := T) (epsilon := epsilon) hBiasT)
+      (a1_extraction_error_sq_bound (S := T) (epsilon := epsilon) hBiasT)
 
   have hSwapMap :
       ((Δ0 ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ∘ₗ
@@ -1466,7 +1388,5 @@ theorem eq220_B1_approx
     _ ≤ Real.sqrt (cConst * epsilon) := hΔBnorm
 
 end PauliRelations
-
-end
 
 end Approximate_Rigidity

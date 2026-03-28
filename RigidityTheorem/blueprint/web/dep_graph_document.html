@@ -401,7 +401,7 @@
     <a class="latex_link" href="sect0003.html#thm:a0-exact">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq217_A0_exact">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.a0_extraction_exact">Lean</a>
     
     
   
@@ -434,7 +434,7 @@
     <a class="latex_link" href="sect0004.html#thm:a1-approx">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq218_A1_approx">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.a1_extraction_approx">Lean</a>
     
     
   
@@ -548,7 +548,7 @@
     <a class="latex_link" href="sect0003.html#thm:b0-exact">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq219_B0_exact">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.b0_extraction_exact_on_strategy_state">Lean</a>
     
     
   
@@ -581,7 +581,7 @@
     <a class="latex_link" href="sect0004.html#thm:b1-approx">LaTeX</a>
     
     
-  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.eq220_B1_approx">Lean</a>
+  <a class="lean_link lean_decl" href="/find/#doc/Approximate_Rigidity.b1_extraction_approx">Lean</a>
     
     
   
@@ -829,7 +829,7 @@ graphContainer.graphviz({useWorker: true})
     .width(width)
     .height(height)
     .fit(true)
-    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"def:local-isometries"	[color=blue,		fillcolor="#A3D6FF",		label="local-isometries",		shape=box,		style=filled];	"thm:va-vb-isometries"	[label="va-vb-isometries",		shape=ellipse];	"def:local-isometries" -> "thm:va-vb-isometries"	[style=dashed];	"thm:a0-exact"	[label="a0-exact",		shape=ellipse];	"def:local-isometries" -> "thm:a0-exact"	[style=dashed];	"thm:b0-exact"	[label="b0-exact",		shape=ellipse];	"def:local-isometries" -> "thm:b0-exact"	[style=dashed];	"lem:chsh-bias-regswap"	[label="chsh-bias-regswap",		shape=ellipse];	"thm:va-vb-isometries" -> "lem:chsh-bias-regswap"	[style=dashed];	"thm:b1-approx"	[label="b1-approx",		shape=ellipse];	"thm:va-vb-isometries" -> "thm:b1-approx"	[style=dashed];	"thm:a1-approx"	[label="a1-approx",		shape=ellipse];	"thm:va-vb-isometries" -> "thm:a1-approx"	[style=dashed];	"thm:chsh-to-k"	[label="chsh-to-k",		shape=ellipse];	"thm:a0-exact" -> "thm:chsh-to-k"	[style=dashed];	"thm:b0-exact" -> "thm:chsh-to-k"	[style=dashed];	"lem:chsh-bias-regswap" -> "thm:chsh-to-k"	[style=dashed];	"thm:b1-approx" -> "thm:chsh-to-k"	[style=dashed];	"thm:a1-approx" -> "thm:chsh-to-k"	[style=dashed];	"thm:state-extraction"	[label="state-extraction",		shape=ellipse];	"thm:chsh-to-k" -> "thm:state-extraction"	[style=dashed];	"thm:chsh-square"	[label="chsh-square",		shape=ellipse];	"thm:approx-anticomm"	[label="approx-anticomm",		shape=ellipse];	"thm:chsh-square" -> "thm:approx-anticomm"	[style=dashed];	"thm:approx-anticomm" -> "thm:b1-approx"	[style=dashed];	"thm:approx-anticomm" -> "thm:a1-approx"	[style=dashed];	"def:chsh-bias"	[label="chsh-bias",		shape=box];	"def:chsh-bias" -> "lem:chsh-bias-regswap"	[style=dashed];	"def:chsh-bias" -> "thm:chsh-square"	[style=dashed];	"thm:bob-operator-extraction"	[label="bob-operator-extraction",		shape=ellipse];	"thm:state-extraction" -> "thm:bob-operator-extraction"	[style=dashed];	"thm:alice-operator-extraction"	[label="alice-operator-extraction",		shape=ellipse];	"thm:state-extraction" -> "thm:alice-operator-extraction"	[style=dashed];	"prop:bell-spectrum"	[color=blue,		label="bell-spectrum",		shape=ellipse];	"prop:k-bell-decomposition"	[label="k-bell-decomposition",		shape=ellipse];	"prop:bell-spectrum" -> "prop:k-bell-decomposition"	[style=dashed];	"thm:spectral-state-extraction"	[label="spectral-state-extraction",		shape=ellipse];	"prop:k-bell-decomposition" -> "thm:spectral-state-extraction"	[style=dashed];	"thm:spectral-state-extraction" -> "thm:state-extraction"	[style=dashed];	"def:binary-observable"	[color=blue,		fillcolor="#A3D6FF",		label="binary-observable",		shape=box,		style=filled];	"def:binary-observable" -> "thm:chsh-square"	[style=dashed];	"def:delta"	[color=blue,		fillcolor="#A3D6FF",		label=delta,		shape=box,		style=filled];	"def:delta" -> "thm:chsh-to-k"	[style=dashed];	"def:chsh-strategy"	[color=blue,		fillcolor="#A3D6FF",		label="chsh-strategy",		shape=box,		style=filled];	"def:chsh-strategy" -> "def:chsh-bias"	[style=dashed];}`)
+    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"def:binary-observable"	[color=blue,		fillcolor="#A3D6FF",		label="binary-observable",		shape=box,		style=filled];	"thm:chsh-square"	[label="chsh-square",		shape=ellipse];	"def:binary-observable" -> "thm:chsh-square"	[style=dashed];	"thm:approx-anticomm"	[label="approx-anticomm",		shape=ellipse];	"thm:chsh-square" -> "thm:approx-anticomm"	[style=dashed];	"thm:a1-approx"	[label="a1-approx",		shape=ellipse];	"thm:approx-anticomm" -> "thm:a1-approx"	[style=dashed];	"thm:b1-approx"	[label="b1-approx",		shape=ellipse];	"thm:approx-anticomm" -> "thm:b1-approx"	[style=dashed];	"thm:b0-exact"	[label="b0-exact",		shape=ellipse];	"thm:chsh-to-k"	[label="chsh-to-k",		shape=ellipse];	"thm:b0-exact" -> "thm:chsh-to-k"	[style=dashed];	"thm:state-extraction"	[label="state-extraction",		shape=ellipse];	"thm:chsh-to-k" -> "thm:state-extraction"	[style=dashed];	"thm:bob-operator-extraction"	[label="bob-operator-extraction",		shape=ellipse];	"thm:state-extraction" -> "thm:bob-operator-extraction"	[style=dashed];	"thm:alice-operator-extraction"	[label="alice-operator-extraction",		shape=ellipse];	"thm:state-extraction" -> "thm:alice-operator-extraction"	[style=dashed];	"thm:a1-approx" -> "thm:chsh-to-k"	[style=dashed];	"thm:b1-approx" -> "thm:chsh-to-k"	[style=dashed];	"thm:a0-exact"	[label="a0-exact",		shape=ellipse];	"thm:a0-exact" -> "thm:chsh-to-k"	[style=dashed];	"def:chsh-strategy"	[color=blue,		fillcolor="#A3D6FF",		label="chsh-strategy",		shape=box,		style=filled];	"def:chsh-bias"	[label="chsh-bias",		shape=box];	"def:chsh-strategy" -> "def:chsh-bias"	[style=dashed];	"def:chsh-bias" -> "thm:chsh-square"	[style=dashed];	"lem:chsh-bias-regswap"	[label="chsh-bias-regswap",		shape=ellipse];	"def:chsh-bias" -> "lem:chsh-bias-regswap"	[style=dashed];	"lem:chsh-bias-regswap" -> "thm:chsh-to-k"	[style=dashed];	"thm:va-vb-isometries"	[label="va-vb-isometries",		shape=ellipse];	"thm:va-vb-isometries" -> "thm:a1-approx"	[style=dashed];	"thm:va-vb-isometries" -> "thm:b1-approx"	[style=dashed];	"thm:va-vb-isometries" -> "lem:chsh-bias-regswap"	[style=dashed];	"prop:bell-spectrum"	[color=blue,		label="bell-spectrum",		shape=ellipse];	"prop:k-bell-decomposition"	[label="k-bell-decomposition",		shape=ellipse];	"prop:bell-spectrum" -> "prop:k-bell-decomposition"	[style=dashed];	"thm:spectral-state-extraction"	[label="spectral-state-extraction",		shape=ellipse];	"prop:k-bell-decomposition" -> "thm:spectral-state-extraction"	[style=dashed];	"thm:spectral-state-extraction" -> "thm:state-extraction"	[style=dashed];	"def:delta"	[color=blue,		fillcolor="#A3D6FF",		label=delta,		shape=box,		style=filled];	"def:delta" -> "thm:chsh-to-k"	[style=dashed];	"def:local-isometries"	[color=blue,		fillcolor="#A3D6FF",		label="local-isometries",		shape=box,		style=filled];	"def:local-isometries" -> "thm:b0-exact"	[style=dashed];	"def:local-isometries" -> "thm:a0-exact"	[style=dashed];	"def:local-isometries" -> "thm:va-vb-isometries"	[style=dashed];}`)
     .on("end", interactive);
 
 latexLabelEscaper = function(label) {

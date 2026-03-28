@@ -1,7 +1,7 @@
 import Approximate_Rigidity.SpectralArgument
 import Approximate_Rigidity.Isometries
 import Approximate_Rigidity.chsh_link
-import Approximate_Rigidity.Junk
+import Approximate_Rigidity.StateExtraction
 
 open scoped TensorProduct InnerProductSpace
 open Quantum
@@ -191,7 +191,7 @@ theorem Alice_operator_extraction
           (V_A ⊗ₗ V_B) ((applyAlice S.A0) S.psi) =
             (((pauliZ ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
                   (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ((V_A ⊗ₗ V_B) S.psi)) := by
-        simpa [V_A, V_B, applyAlice, LinearMap.comp_apply] using congrArg (fun f => f S.psi) (eq217_A0 (S := S))
+        simpa [V_A, V_B, applyAlice, LinearMap.comp_apply] using congrArg (fun f => f S.psi) (a0_extraction_intertwining (S := S))
       have hnat :=
         congrArg (fun f => f ((V_A ⊗ₗ V_B) S.psi))
           (regSwap_qubit_naturality (H_A := H_A) (H_B := H_B)
@@ -217,7 +217,7 @@ theorem Alice_operator_extraction
         simpa [LinearMap.map_sub] using h0
       simpa [hA0_vec, junk, PZ, TensorProduct.map_tmul, LinearMap.id_apply] using h1
 
-    have hA1_pre := (eq218_A1_approx (S := S) (epsilon := ε) hBias)
+    have hA1_pre := (a1_extraction_approx (S := S) (epsilon := ε) hBias)
     have hA1_post : ‖regSwap ((V_A ⊗ₗ V_B) ((applyAlice S.A1) S.psi)) - PX Ψ‖ ≤ Real.sqrt (cConst * ε) := by
       let u := (((V_A ⊗ₗ V_B) ∘ₗ (S.A1 ⊗ₗ LinearMap.id)) S.psi)
       let v := ((((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
@@ -400,7 +400,7 @@ theorem Bob_operator_extraction
                 (Hadamard ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ
               (V_A ⊗ₗ V_B)) S.psi) := by
       simpa [V_A, V_B, applyBob, LinearMap.comp_apply] using
-        congrArg (fun f => f S.psi) (eq219_B0 (S := S))
+        congrArg (fun f => f S.psi) (b0_extraction_intertwining (S := S))
     have hnat :=
       congrArg (fun f => f ((V_A ⊗ₗ V_B) S.psi))
         (regSwap_qubit_naturality (H_A := H_A) (H_B := H_B)
@@ -428,7 +428,7 @@ theorem Bob_operator_extraction
       simpa [LinearMap.map_sub] using h0
     simpa [hB0_vec, junk, PH, TensorProduct.map_tmul, LinearMap.id_apply] using h1
 
-  have hB1_pre := (eq220_B1_approx (S := S) (epsilon := ε) hBias)
+  have hB1_pre := (b1_extraction_approx (S := S) (epsilon := ε) hBias)
   have hB1_post :
       ‖regSwap ((V_A ⊗ₗ V_B) ((applyBob S.B1) S.psi)) - PZHZ Ψ‖
         ≤ Real.sqrt (cConst * ε) := by

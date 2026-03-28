@@ -24,7 +24,7 @@ The repository currently has three main components:
   [IsometriesApprox.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/IsometriesApprox.lean),
   [SpectralArgument.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/SpectralArgument.lean),
   [chsh_link.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/chsh_link.lean),
-  [Junk.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/Junk.lean),
+  [StateExtraction.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/StateExtraction.lean),
   and [RigidityTheorem.lean](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/Approximate_Rigidity/RigidityTheorem.lean).
 - [RigidityTheorem/blueprint](/Volumes/Files/Research_New_chapter/RigidityTheorem/RigidityTheorem/blueprint) contains a Lean-style blueprint for the current robust CHSH rigidity development, organized around the dependency flow in `Approximate_Rigidity`.
 

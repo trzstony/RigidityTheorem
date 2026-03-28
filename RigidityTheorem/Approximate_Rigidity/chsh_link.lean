@@ -95,7 +95,8 @@ variable [FiniteDimensional ℂ H_A] [FiniteDimensional ℂ H_B]
 variable (S : CHSHStrategy H_A H_B)
 variable (ε : Real)
 
-lemma chshBias_eq_re_inner_regSwap_isometryV
+omit [FiniteDimensional ℂ H_A] [FiniteDimensional ℂ H_B] in
+theorem chshBias_eq_re_inner_regSwap_isometryV
     (S : CHSHStrategy H_A H_B) :
     let V_A : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) := VA (H := H_A) S.A0 S.A1
     let V_B : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) := VB (H := H_B) S.B0 S.B1
@@ -503,13 +504,13 @@ theorem chsh_to_K_expectation
       (V ∘ₗ (S.A0 ⊗ₗ LinearMap.id)) =
         ((((pauliZ ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
               (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ V)) := by
-    simpa [V, hV_A, hV_B, VA] using (eq217_A0 (S := S))
+    simpa [V, hV_A, hV_B, VA] using (a0_extraction_intertwining (S := S))
 
   have hB0_map :
       (V ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B0)) =
         ((((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
               (Hadamard ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ V)) := by
-    simpa [V, hV_A, hV_B, VB] using (eq219_B0 (S := S))
+    simpa [V, hV_A, hV_B, VB] using (b0_extraction_intertwining (S := S))
 
   have hA1_approx :
       ‖(((V ∘ₗ (S.A1 ⊗ₗ LinearMap.id)) S.psi)
@@ -517,7 +518,7 @@ theorem chsh_to_K_expectation
                   (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ V) S.psi))‖
         ≤ err0 := by
     simpa [V, hV_A, hV_B, VA, VB, err0] using
-      (eq218_A1_approx (S := S) (epsilon := ε) hBias)
+      (a1_extraction_approx (S := S) (epsilon := ε) hBias)
 
   have hB1_approx :
       ‖(((V ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B1)) S.psi)
@@ -525,7 +526,7 @@ theorem chsh_to_K_expectation
                   (pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ V) S.psi))‖
         ≤ err0 := by
     simpa [V, hV_A, hV_B, VA, VB, err0] using
-      (eq220_B1_approx (S := S) (epsilon := ε) hBias)
+      (b1_extraction_approx (S := S) (epsilon := ε) hBias)
 
   -- Step 4: triangle inequality to bound the full CHSH-vector difference.
   have hdiff : ‖CHSHideal - CHSHphys‖ ≤ err := by
@@ -754,7 +755,7 @@ theorem chsh_to_K_expectation
           simpa [hV_B] using (VB_is_isometry (H := H_B) S.B0 S.B1)
         have hΔsq :
             ‖((ΔA1 ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ ^ 2 ≤ cConst * ε := by
-          simpa [ΔA1, hV_A] using (eq216 (S := S) (epsilon := ε) hBias)
+          simpa [ΔA1, hV_A] using (a1_extraction_error_sq_bound (S := S) (epsilon := ε) hBias)
         have hΔnorm :
             ‖((ΔA1 ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ ≤ err0 := by
           simpa [err0] using
