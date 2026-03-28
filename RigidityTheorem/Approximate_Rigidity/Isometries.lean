@@ -280,15 +280,10 @@ private lemma isometryVA_intertwine_A0 (A0 A1 : H_A →ₗ[ℂ] H_A)
               simp [embed, hadT_ket0, LinearMap.map_add, control,
                 TensorProduct.map_tmul, LinearMap.id_apply, proj0_ket0, proj1_ket0,
                 proj0_ket1, proj1_ket1]
-        _ = s • hadT (ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] (A0 y)) := by simp
-        _ = s • (hadT (ket0 ⊗ₜ[ℂ] y) + hadT (ket1 ⊗ₜ[ℂ] (A0 y))) := by
-              simp [LinearMap.map_add]
-        _ = s • (s • (ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] y) +
-              s • (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A0 y))) := by
-                simp [hadT_ket0, hadT_ket1]
         _ = (s * s) • ((ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] y) +
               (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A0 y))) := by
-                simp [smul_add, smul_sub, smul_smul, add_assoc]
+              simp [LinearMap.map_add, hadT_ket0, hadT_ket1,
+                smul_add, smul_sub, smul_smul, add_assoc]
     have hCtrl1 :
         control (H := H_A) A1 (hadT (control (H := H_A) A0 (hadT ((embed (H := H_A) ket0) y))))
           =
@@ -296,37 +291,20 @@ private lemma isometryVA_intertwine_A0 (A0 A1 : H_A →ₗ[ℂ] H_A)
             (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A1 (A0 y)))) := by
       calc
         control (H := H_A) A1 (hadT (control (H := H_A) A0 (hadT ((embed (H := H_A) ket0) y))))
-            =
-            control (H := H_A) A1
-              ((s * s) • ((ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] y) +
-                (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A0 y)))) := by
-                simp [hPre]
-        _ =
-            (s * s) •
-              control (H := H_A) A1
+            = (s * s) • control (H := H_A) A1
                 ((ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] y) +
-                  (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A0 y))) := by
-                simp
-        _ =
-            (s * s) • ((ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] (A1 y)) +
+                  (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A0 y))) := by simp [hPre]
+        _ = (s * s) • ((ket0 ⊗ₜ[ℂ] y + ket1 ⊗ₜ[ℂ] (A1 y)) +
               (ket0 ⊗ₜ[ℂ] (A0 y) - ket1 ⊗ₜ[ℂ] (A1 (A0 y)))) := by
                 simp [LinearMap.map_add, control, TensorProduct.map_tmul,
                   LinearMap.id_apply, proj0_ket0, proj1_ket0, proj0_ket1,
                   proj1_ket1, sub_eq_add_neg, add_assoc, add_left_comm]
     simpa [V, VA, unitaryUA, hadT, idA, LinearMap.comp_apply] using hCtrl1
-
   calc
     V (A0 x)
         = (s * s) • ((ket0 ⊗ₜ[ℂ] (A0 x) + ket1 ⊗ₜ[ℂ] (A1 (A0 x))) +
             (ket0 ⊗ₜ[ℂ] x - ket1 ⊗ₜ[ℂ] (A1 x))) := by
           simp [hV, hsq]
-    _ = (s * s) • ((ket0 ⊗ₜ[ℂ] x - ket1 ⊗ₜ[ℂ] (A1 x)) +
-          (ket0 ⊗ₜ[ℂ] (A0 x) + ket1 ⊗ₜ[ℂ] (A1 (A0 x)))) := by
-          refine congrArg (fun t => (s * s) • t) ?_
-          simpa using
-            (add_comm
-              (ket0 ⊗ₜ[ℂ] (A0 x) + ket1 ⊗ₜ[ℂ] (A1 (A0 x)))
-              (ket0 ⊗ₜ[ℂ] x - ket1 ⊗ₜ[ℂ] (A1 x)))
     _ = (pauliZ ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) (V x) := by
           have hmap :
               (pauliZ ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) (V x) =
@@ -335,7 +313,9 @@ private lemma isometryVA_intertwine_A0 (A0 A1 : H_A →ₗ[ℂ] H_A)
             rw [hV]
             simp [LinearMap.map_add, TensorProduct.map_tmul, TensorProduct.neg_tmul,
               LinearMap.id_apply, pauliZ_ket0, pauliZ_ket1, sub_eq_add_neg]
-          simpa using hmap.symm
+          rw [hmap]
+          congr 1
+          abel
 
 
 private lemma VA_intertwine_A0 :
@@ -351,56 +331,24 @@ private lemma VB_intertwine_B0 :
   let idB : H_B →ₗ[ℂ] H_B := LinearMap.id
   let V0 : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) := VA (H := H_B) S.B0 S.B1
   have hV0 : V0 ∘ₗ S.B0 = (pauliZ ⊗ₗ idB) ∘ₗ V0 := by
-    simpa [V0, idB] using
-      (isometryVA_intertwine_A0 (H_A := H_B) (A0 := S.B0) (A1 := S.B1))
+    simpa [V0, idB] using isometryVA_intertwine_A0 (H_A := H_B) (A0 := S.B0) (A1 := S.B1)
   have hRotAux : (Rotation.adjoint : Qubit →ₗ[ℂ] Qubit) auxState = ket0 := by
     dsimp [auxState]
-    rw [(Rotation_adjoint : Rotation = Rotation.adjoint).symm]
-    have h :=
-      congrArg (fun f : Qubit →ₗ[ℂ] Qubit => f ket0)
-        (Rotation_sq : Rotation ∘ₗ Rotation = LinearMap.id)
-    dsimp at h
-    exact h
-  have hVB :
-      V_B = (Rotation ⊗ₗ idB) ∘ₗ V0 := by
+    rw [← Rotation_adjoint, ← LinearMap.comp_apply, Rotation_sq, LinearMap.id_apply]
+  have hVB : V_B = (Rotation ⊗ₗ idB) ∘ₗ V0 := by
     ext y
     simp only [VB, unitaryUB, V0, VA, LinearMap.comp_apply, embed,
       TensorProduct.mk_apply, TensorProduct.map_tmul, LinearMap.id_apply, idB, hRotAux]
-  have hid : idB ∘ₗ idB = idB := by
-    ext z
-    simp [idB]
-  have hmapR :
-      (Rotation ⊗ₗ idB) ∘ₗ (pauliZ ⊗ₗ idB) =
-        ((Rotation ∘ₗ pauliZ) ⊗ₗ idB) := by
-    have hmap :
-        (Rotation ⊗ₗ idB) ∘ₗ (pauliZ ⊗ₗ idB) =
-          ((Rotation ∘ₗ pauliZ) ⊗ₗ (idB ∘ₗ idB)) := by
-      exact
-        (TensorProduct.map_comp (Rotation : Qubit →ₗ[ℂ] Qubit) idB pauliZ idB).symm
-    rw [hmap, hid]
-  have hmapH :
-      (Hadamard ⊗ₗ idB) ∘ₗ (Rotation ⊗ₗ idB) =
-        ((Hadamard ∘ₗ Rotation) ⊗ₗ idB) := by
-    have hmap :
-        (Hadamard ⊗ₗ idB) ∘ₗ (Rotation ⊗ₗ idB) =
-          ((Hadamard ∘ₗ Rotation) ⊗ₗ (idB ∘ₗ idB)) := by
-      exact
-        (TensorProduct.map_comp (Hadamard : Qubit →ₗ[ℂ] Qubit) idB Rotation idB).symm
-    rw [hmap, hid]
+  have hmapTensor : (Rotation ⊗ₗ idB) ∘ₗ (pauliZ ⊗ₗ idB) =
+      (Hadamard ⊗ₗ idB) ∘ₗ (Rotation ⊗ₗ idB) := by
+    rw [← TensorProduct.map_comp, Rotation_pauliZ, TensorProduct.map_comp]
   calc
     V_B ∘ₗ S.B0
         = (Rotation ⊗ₗ idB) ∘ₗ ((pauliZ ⊗ₗ idB) ∘ₗ V0) := by
             rw [hVB, LinearMap.comp_assoc, hV0]
-    _ = (((Rotation ∘ₗ pauliZ) ⊗ₗ idB) ∘ₗ V0) := by
-            rw [← LinearMap.comp_assoc, hmapR]
-    _ = (((Hadamard ∘ₗ Rotation) ⊗ₗ idB) ∘ₗ V0) := by
-            rw [Rotation_pauliZ]
-    _ = (((Hadamard ⊗ₗ idB) ∘ₗ (Rotation ⊗ₗ idB)) ∘ₗ V0) := by
-            rw [hmapH]
-    _ = (Hadamard ⊗ₗ idB) ∘ₗ ((Rotation ⊗ₗ idB) ∘ₗ V0) := by
-            rw [LinearMap.comp_assoc]
-    _ = (Hadamard ⊗ₗ idB) ∘ₗ V_B := by
-            rw [hVB]
+        _ = (Hadamard ⊗ₗ idB) ∘ₗ ((Rotation ⊗ₗ idB) ∘ₗ V0) := by
+            rw [← LinearMap.comp_assoc, hmapTensor, LinearMap.comp_assoc]
+        _ = (Hadamard ⊗ₗ idB) ∘ₗ V_B := by rw [hVB]
 
 
 lemma a0_extraction_intertwining :

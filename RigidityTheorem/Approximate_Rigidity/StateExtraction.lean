@@ -232,12 +232,11 @@ private lemma proj_estimate (hΨ : ‖Ψ‖ = 1) :
   simpa [η] using hproj
 
 private lemma spectral_sqrt_bound
-    (hδ : 0 ≤ delta)
     (hExp :
       (⟪Ψ, ((K ⊗ₗ (LinearMap.id)) Ψ)⟫_ℂ).re
         ≥ 2 * Real.sqrt 2 - delta) :
     Real.sqrt (2 * (1 - ‖bellDecomposition (J := (H_A ⊗[ℂ] H_B)) Ψ 0‖ ^ 2))
-      ≤ Real.sqrt (2 * Real.sqrt 2 * delta) := by
+      ≤ Real.sqrt (delta / Real.sqrt 2) := by
   classical
   set η : Fin 4 → (H_A ⊗[ℂ] H_B) := bellDecomposition (J := (H_A ⊗[ℂ] H_B)) Ψ
   have hre :
@@ -267,40 +266,30 @@ private lemma spectral_sqrt_bound
       rw [hc] at h
       simpa using h
     simpa [Complex.mul_re, Complex.sub_re, hpow] using hEq''
-  have hp : (1 - ‖η 0‖ ^ 2) ≤ Real.sqrt 2 * delta := by
-    have hExp' :
-        2 * Real.sqrt 2 * (‖η 0‖ ^ 2 - ‖η 3‖ ^ 2) ≥ 2 * Real.sqrt 2 - delta := by
-      simpa [hre] using hExp
-    have hpos : 0 < (2 * Real.sqrt 2) := by
-      nlinarith [Real.sqrt_pos.2 (by norm_num : (0 : ℝ) < (2 : ℝ))]
-    have hn3 : 0 ≤ ‖η 3‖ ^ 2 := by nlinarith
-    have hp0 : (1 - ‖η 0‖ ^ 2) ≤ delta / (2 * Real.sqrt 2) := by
-      have : (1 - ‖η 0‖ ^ 2) * (2 * Real.sqrt 2) ≤ delta := by
-        nlinarith [hExp', hn3]
-      exact (le_div_iff₀ hpos).2 this
-    have hs : (1 : ℝ) ≤ Real.sqrt 2 := (Real.one_le_sqrt).2 (by norm_num)
-    have hden : (1 : ℝ) ≤ 2 * Real.sqrt 2 := by nlinarith [hs]
-    have : delta / (2 * Real.sqrt 2) ≤ Real.sqrt 2 * delta :=
-      le_trans (div_le_self hδ hden) (by
-        simpa [one_mul] using (mul_le_mul_of_nonneg_right hs hδ))
-    exact le_trans hp0 this
+  have hpos : 0 < (2 * Real.sqrt 2) :=
+    by nlinarith [Real.sqrt_pos.2 (by norm_num : (0 : ℝ) < (2 : ℝ))]
+  have hn3 : 0 ≤ ‖η 3‖ ^ 2 := by nlinarith
+  have hp0 : (1 - ‖η 0‖ ^ 2) ≤ delta / (2 * Real.sqrt 2) := by
+    have : (1 - ‖η 0‖ ^ 2) * (2 * Real.sqrt 2) ≤ delta := by
+      nlinarith [hre, hExp]
+    exact (le_div_iff₀ hpos).2 this
   have hsqrt :
-      Real.sqrt (2 * (1 - ‖η 0‖ ^ 2)) ≤ Real.sqrt (2 * Real.sqrt 2 * delta) := by
-    have : 2 * (1 - ‖η 0‖ ^ 2) ≤ 2 * (Real.sqrt 2 * delta) := by
-      nlinarith [hp]
-    simpa [mul_assoc, mul_left_comm, mul_comm] using (Real.sqrt_le_sqrt this)
+      Real.sqrt (2 * (1 - ‖η 0‖ ^ 2)) ≤ Real.sqrt (delta / Real.sqrt 2) := by
+    apply Real.sqrt_le_sqrt
+    have hsqrt2_pos : 0 < Real.sqrt 2 := Real.sqrt_pos.2 (by norm_num)
+    rw [le_div_iff₀ hsqrt2_pos]
+    nlinarith [(le_div_iff₀ hpos).mp hp0]
   simpa [η] using hsqrt
 
 theorem state_extraction_bound
     (hΨ : ‖Ψ‖ = 1)
-    (hδ : 0 ≤ delta)
     (hExp :
       (⟪Ψ, ((K ⊗ₗ (LinearMap.id)) Ψ)⟫_ℂ).re
         ≥ 2 * Real.sqrt 2 - delta) :
       ‖Ψ - bellState ⊗ₜ[ℂ] junkState (Ψ := Ψ)‖
-        ≤ Real.sqrt (2 * Real.sqrt 2 * delta) := by
+        ≤ Real.sqrt (delta / Real.sqrt 2) := by
   simpa using le_trans (proj_estimate (H_A := H_A) (H_B := H_B) (Ψ := Ψ) hΨ)
-    (spectral_sqrt_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta) hδ hExp)
+    (spectral_sqrt_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta) hExp)
 
 
 end JunkState

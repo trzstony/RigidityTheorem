@@ -106,7 +106,7 @@ theorem state_extraction
         Isometry V_A ∧
           Isometry V_B ∧
             ‖(regSwap ((V_A ⊗ₗ V_B) S.psi) - bellState ⊗ₜ[ℂ] junk)‖
-              ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+              ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
   let V_A : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) := VA (H := H_A) S.A0 S.A1
   let V_B : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) := VB (H := H_B) S.B0 S.B1
   let Ψ : (Qubit ⊗[ℂ] Qubit) ⊗[ℂ] (H_A ⊗[ℂ] H_B) := regSwap ((V_A ⊗ₗ V_B) S.psi)
@@ -130,8 +130,8 @@ theorem state_extraction
     exact delta_nonneg (epsilon := ε) hε
   have hjunk :
       ‖Ψ - bellState ⊗ₜ[ℂ] junkState (H_A := H_A) (H_B := H_B) (Ψ := Ψ)‖
-        ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) :=
-    state_extraction_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta ε) hΨ hδ hExp
+        ≤ Real.sqrt (delta ε / Real.sqrt 2) :=
+    state_extraction_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta ε) hΨ hExp
   exact ⟨V_A, V_B, junkState (H_A := H_A) (H_B := H_B) (Ψ := Ψ),
           hVA,
           hVB,
@@ -141,7 +141,7 @@ theorem state_extraction
 
 set_option maxHeartbeats 1200000 in
 theorem Alice_operator_extraction
-    (hε : 0 ≤ ε) (hBias : chshBias S ≥ 2 * Real.sqrt 2 - ε) :
+    (hBias : chshBias S ≥ 2 * Real.sqrt 2 - ε) :
     ∃ V_A : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A),
       ∃ V_B : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B),
       ∃ junk : H_A ⊗[ℂ] H_B,
@@ -149,10 +149,10 @@ theorem Alice_operator_extraction
           Isometry V_B ∧
             ‖(regSwap ((V_A ⊗ₗ V_B) ((applyAlice S.A0) S.psi))
               - ((pauliZ ⊗ₗ LinearMap.id) bellState) ⊗ₜ[ℂ] junk)‖
-              ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) ∧
+              ≤ Real.sqrt (delta ε / Real.sqrt 2) ∧
             ‖(regSwap ((V_A ⊗ₗ V_B) ((applyAlice S.A1) S.psi))
               - ((pauliX ⊗ₗ LinearMap.id) bellState) ⊗ₜ[ℂ] junk)‖
-              ≤ Real.sqrt (cConst * ε) + Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+              ≤ Real.sqrt (cConst * ε) + Real.sqrt (delta ε / Real.sqrt 2) := by
     classical
     let V_A : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) := VA (H := H_A) S.A0 S.A1
     let V_B : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) := VB (H := H_B) S.B0 S.B1
@@ -169,7 +169,7 @@ theorem Alice_operator_extraction
       simpa [KJ, idJ] using
         (K_expectation_upper_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) hΨ)
     have hδ : 0 ≤ delta ε := by linarith [hExp, hExp_le]
-    have hjunk := state_extraction_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta ε) hΨ hδ hExp
+    have hjunk := state_extraction_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta ε) hΨ hExp
     let junk : H_A ⊗[ℂ] H_B := junkState (H_A := H_A) (H_B := H_B) (Ψ := Ψ)
 
     let Zᵢ : Qubit →ₗᵢ[ℂ] Qubit :=
@@ -204,16 +204,16 @@ theorem Alice_operator_extraction
         simpa [PZ, Ψ, LinearMap.comp_apply] using hnat.symm
       simpa [hpre] using hnat'
     have hA0_bound : ‖regSwap ((V_A ⊗ₗ V_B) ((applyAlice S.A0) S.psi)) - ((pauliZ ⊗ₗ LinearMap.id) bellState) ⊗ₜ[ℂ] junk‖ ≤
-        Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+        Real.sqrt (delta ε / Real.sqrt 2) := by
       have hEq : ‖PZ (Ψ - bellState ⊗ₜ[ℂ] junk)‖ = ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ := by
         simpa [PZ] using (PZᵢ.norm_map (Ψ - bellState ⊗ₜ[ℂ] junk))
-      have h0 : ‖PZ (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+      have h0 : ‖PZ (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
         have hbase :
-            ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+            ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
           simpa [junk] using hjunk
         simpa only [hEq] using hbase
       have h1 :
-          ‖PZ Ψ - PZ (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+          ‖PZ Ψ - PZ (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
         simpa [LinearMap.map_sub] using h0
       simpa [hA0_vec, junk, PZ, TensorProduct.map_tmul, LinearMap.id_apply] using h1
 
@@ -237,23 +237,23 @@ theorem Alice_operator_extraction
 
     have hPX_bound :
         ‖(PX Ψ - ((pauliX ⊗ₗ LinearMap.id) bellState) ⊗ₜ[ℂ] junk)‖
-          ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+          ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
       have hEq : ‖PX (Ψ - bellState ⊗ₜ[ℂ] junk)‖ = ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ := by
         simpa [PX] using (PXᵢ.norm_map (Ψ - bellState ⊗ₜ[ℂ] junk))
-      have h0 : ‖PX (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+      have h0 : ‖PX (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
         have hbase :
-            ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+            ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
           simpa [junk] using hjunk
         simpa only [hEq] using hbase
       have h1 :
-          ‖PX Ψ - PX (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+          ‖PX Ψ - PX (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
         simpa [LinearMap.map_sub] using h0
       simpa [PX, junk, TensorProduct.map_tmul, LinearMap.id_apply] using h1
 
     have hA1_bound :
         ‖(regSwap ((V_A ⊗ₗ V_B) ((applyAlice S.A1) S.psi))
             - ((pauliX ⊗ₗ LinearMap.id) bellState) ⊗ₜ[ℂ] junk)‖
-          ≤ Real.sqrt (cConst * ε) + Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+          ≤ Real.sqrt (cConst * ε) + Real.sqrt (delta ε / Real.sqrt 2) := by
       set a :=
         regSwap ((V_A ⊗ₗ V_B) ((applyAlice S.A1) S.psi)) with ha
       set b := PX Ψ with hb
@@ -265,7 +265,7 @@ theorem Alice_operator_extraction
         simpa [hnorm] using (norm_add_le (a - b) (b - c))
       have hsum :
           ‖a - b‖ + ‖b - c‖ ≤
-            Real.sqrt (cConst * ε) + Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+            Real.sqrt (cConst * ε) + Real.sqrt (delta ε / Real.sqrt 2) := by
         have := add_le_add hA1_post hPX_bound
         simpa [ha, hb, hc] using this
       exact le_trans (by simpa [ha, hb, hc] using htri) hsum
@@ -282,10 +282,10 @@ theorem Bob_operator_extraction
           Isometry V_B ∧
             ‖(regSwap ((V_A ⊗ₗ V_B) ((applyBob S.B0) S.psi))
               - ((LinearMap.id ⊗ₗ Hadamard) bellState) ⊗ₜ[ℂ] junk)‖
-              ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) ∧
+              ≤ Real.sqrt (delta ε / Real.sqrt 2) ∧
             ‖(regSwap ((V_A ⊗ₗ V_B) ((applyBob S.B1) S.psi))
               - ((LinearMap.id ⊗ₗ pauliZHZ) bellState) ⊗ₜ[ℂ] junk)‖
-              ≤ Real.sqrt (cConst * ε) + Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+              ≤ Real.sqrt (cConst * ε) + Real.sqrt (delta ε / Real.sqrt 2) := by
   classical
   let V_A : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) := VA (H := H_A) S.A0 S.A1
   let V_B : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) := VB (H := H_B) S.B0 S.B1
@@ -304,7 +304,7 @@ theorem Bob_operator_extraction
     simpa [KJ, idJ] using
       (K_expectation_upper_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) hΨ)
   have hδ : 0 ≤ delta ε := by linarith [hExp, hExp_le]
-  have hjunk := state_extraction_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta ε) hΨ hδ hExp
+  have hjunk := state_extraction_bound (H_A := H_A) (H_B := H_B) (Ψ := Ψ) (delta := delta ε) hΨ hExp
   let junk : H_A ⊗[ℂ] H_B := junkState (H_A := H_A) (H_B := H_B) (Ψ := Ψ)
 
   have hRotIso : Isometry (Rotation : Qubit →ₗ[ℂ] Qubit) := by
@@ -416,15 +416,15 @@ theorem Bob_operator_extraction
   have hB0_bound :
       ‖regSwap ((V_A ⊗ₗ V_B) ((applyBob S.B0) S.psi))
           - ((LinearMap.id ⊗ₗ Hadamard) bellState) ⊗ₜ[ℂ] junk‖
-        ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+        ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
     have hEq : ‖PH (Ψ - bellState ⊗ₜ[ℂ] junk)‖ = ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ := by
       exact (AddMonoidHomClass.isometry_iff_norm PH).1 hPHIso (Ψ - bellState ⊗ₜ[ℂ] junk)
-    have h0 : ‖PH (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
-      have hbase : ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+    have h0 : ‖PH (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
+      have hbase : ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
         simpa [junk] using hjunk
       simpa only [hEq] using hbase
     have h1 :
-        ‖PH Ψ - PH (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+        ‖PH Ψ - PH (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
       simpa [LinearMap.map_sub] using h0
     simpa [hB0_vec, junk, PH, TensorProduct.map_tmul, LinearMap.id_apply] using h1
 
@@ -452,22 +452,22 @@ theorem Bob_operator_extraction
 
   have hPZHZ_bound :
       ‖(PZHZ Ψ - ((LinearMap.id ⊗ₗ pauliZHZ) bellState) ⊗ₜ[ℂ] junk)‖
-        ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+        ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
     have hEq : ‖PZHZ (Ψ - bellState ⊗ₜ[ℂ] junk)‖ = ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ := by
       exact (AddMonoidHomClass.isometry_iff_norm PZHZ).1 hPZHZIso (Ψ - bellState ⊗ₜ[ℂ] junk)
-    have h0 : ‖PZHZ (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
-      have hbase : ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+    have h0 : ‖PZHZ (Ψ - bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
+      have hbase : ‖Ψ - bellState ⊗ₜ[ℂ] junk‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
         simpa [junk] using hjunk
       simpa only [hEq] using hbase
     have h1 :
-        ‖PZHZ Ψ - PZHZ (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+        ‖PZHZ Ψ - PZHZ (bellState ⊗ₜ[ℂ] junk)‖ ≤ Real.sqrt (delta ε / Real.sqrt 2) := by
       simpa [LinearMap.map_sub] using h0
     simpa [PZHZ, junk, TensorProduct.map_tmul, LinearMap.id_apply] using h1
 
   have hB1_bound :
       ‖(regSwap ((V_A ⊗ₗ V_B) ((applyBob S.B1) S.psi))
           - ((LinearMap.id ⊗ₗ pauliZHZ) bellState) ⊗ₜ[ℂ] junk)‖
-        ≤ Real.sqrt (cConst * ε) + Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+        ≤ Real.sqrt (cConst * ε) + Real.sqrt (delta ε / Real.sqrt 2) := by
     set a :=
       regSwap ((V_A ⊗ₗ V_B) ((applyBob S.B1) S.psi)) with ha
     set b := PZHZ Ψ with hb
@@ -479,7 +479,7 @@ theorem Bob_operator_extraction
       simpa [hnorm] using (norm_add_le (a - b) (b - c))
     have hsum :
         ‖a - b‖ + ‖b - c‖ ≤
-          Real.sqrt (cConst * ε) + Real.sqrt (2 * Real.sqrt 2 * delta ε) := by
+          Real.sqrt (cConst * ε) + Real.sqrt (delta ε / Real.sqrt 2) := by
       have := add_le_add hB1_post hPZHZ_bound
       simpa [ha, hb, hc] using this
     exact le_trans (by simpa [ha, hb, hc] using htri) hsum
