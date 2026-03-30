@@ -754,21 +754,16 @@ lemma a1_extraction_error_sq_bound
     simpa [C, idB, pow_two, add_comm, add_left_comm, add_assoc] using
       (approx_anticomm_A (S := S) (epsilon := epsilon) hBias)
 
-  have hA0_adj : S.A0.adjoint = S.A0 := by
-    exact adjoint_eq_of_symm (A := S.A0) (IsBinaryObservable.symm (A := S.A0))
-  have hA1_adj : S.A1.adjoint = S.A1 := by
-    exact adjoint_eq_of_symm (A := S.A1) (IsBinaryObservable.symm (A := S.A1))
   have hC_eq_norm :
       ‖((C ⊗ₗ idB) S.psi)‖ ^ 2
         = (⟪S.psi, (((C ^ 2) ⊗ₗ idB) S.psi)⟫_ℂ).re := by
     simpa [C, idB] using
-      (anticommutator_inner_sq_eq_norm_sq
-        (H_A := H_A) (H_B := H_B)
-        (A0 := S.A0) (A1 := S.A1) (ψ := S.psi) hA0_adj hA1_adj).symm
+      (anticommutator_inner_sq_eq_norm_sq (H_A := H_A) (H_B := H_B)
+        (A0 := S.A0) (A1 := S.A1) (ψ := S.psi)
+        (adjoint_eq_of_symm (A := S.A0) (IsBinaryObservable.symm (A := S.A0)))
+        (adjoint_eq_of_symm (A := S.A1) (IsBinaryObservable.symm (A := S.A1)))).symm
 
-  have hCbound : ‖((C ⊗ₗ idB) S.psi)‖ ^ 2 ≤ cConst * epsilon := by
-    rw [hC_eq_norm]
-    exact hAnti
+  have hCbound : ‖((C ⊗ₗ idB) S.psi)‖ ^ 2 ≤ cConst * epsilon := hC_eq_norm ▸ hAnti
 
   -- Core geometric step (Eq. (216) from the derivation):
   -- `‖((Δ ⊗ I) ψ)‖² ≤ ‖((C ⊗ I) ψ)‖²`.
@@ -890,107 +885,50 @@ lemma a1_extraction_error_sq_bound
 
     have hF0comp :
         (F0 ⊗ₗ idB) = (((embed (H := H_A) ket0) ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB)) := by
-      have hmap :
-          ((embed (H := H_A) ket0 ∘ₗ C) ⊗ₗ (idB ∘ₗ idB))
-            = (((embed (H := H_A) ket0) ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB)) := by
-        simpa using (TensorProduct.map_comp (embed (H := H_A) ket0) idB C idB)
-      simpa [F0, idB] using hmap
+      simpa [F0, idB] using TensorProduct.map_comp (embed (H := H_A) ket0) idB C idB
     have hF1comp :
         (F1 ⊗ₗ idB) =
-          (((embed (H := H_A) ket1) ⊗ₗ idB) ∘ₗ
-            (((S.A1 ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB)))) := by
-      have hmap1 :
-          ((embed (H := H_A) ket1 ∘ₗ (S.A1 ∘ₗ C)) ⊗ₗ (idB ∘ₗ idB))
-            = (((embed (H := H_A) ket1) ⊗ₗ idB) ∘ₗ (((S.A1 ∘ₗ C) ⊗ₗ idB))) := by
-        simpa using (TensorProduct.map_comp (embed (H := H_A) ket1) idB (S.A1 ∘ₗ C) idB)
-      have hmap2 :
-          ((S.A1 ∘ₗ C) ⊗ₗ idB) = ((S.A1 ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB)) := by
-        have : ((S.A1 ∘ₗ C) ⊗ₗ (idB ∘ₗ idB)) = ((S.A1 ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB)) := by
-          simpa using (TensorProduct.map_comp S.A1 idB C idB)
-        simpa [idB] using this
-      calc
-        (F1 ⊗ₗ idB)
-            = ((embed (H := H_A) ket1 ∘ₗ (S.A1 ∘ₗ C)) ⊗ₗ idB) := by
-                rfl
-        _ = ((embed (H := H_A) ket1 ⊗ₗ idB) ∘ₗ (((S.A1 ∘ₗ C) ⊗ₗ idB))) := by
-                simpa [idB] using hmap1
-        _ = (((embed (H := H_A) ket1) ⊗ₗ idB) ∘ₗ
-              (((S.A1 ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB)))) := by
-                rw [hmap2]
+          (((embed (H := H_A) ket1) ⊗ₗ idB) ∘ₗ ((S.A1 ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB))) := by
+      have h1 : (F1 ⊗ₗ idB) = ((embed (H := H_A) ket1 ⊗ₗ idB) ∘ₗ ((S.A1 ∘ₗ C) ⊗ₗ idB)) :=
+        by simpa [F1, idB] using TensorProduct.map_comp (embed (H := H_A) ket1) idB (S.A1 ∘ₗ C) idB
+      have h2 : ((S.A1 ∘ₗ C) ⊗ₗ idB) = (S.A1 ⊗ₗ idB) ∘ₗ (C ⊗ₗ idB) :=
+        by simpa [idB] using TensorProduct.map_comp S.A1 idB C idB
+      rw [h1, h2]
 
     have hF0norm :
         ‖((F0 ⊗ₗ idB) S.psi)‖ = ‖((C ⊗ₗ idB) S.psi)‖ := by
-      have happ := congrArg (fun F => F S.psi) hF0comp
-      calc
-        ‖((F0 ⊗ₗ idB) S.psi)‖
-            = ‖(((embed (H := H_A) ket0) ⊗ₗ idB) ((C ⊗ₗ idB) S.psi))‖ := by
-                simpa [LinearMap.comp_apply] using congrArg (fun z => ‖z‖) happ
-        _ = ‖((C ⊗ₗ idB) S.psi)‖ := hNormE0 _
+      have h : ((F0 ⊗ₗ idB) S.psi) =
+          ((embed (H := H_A) ket0) ⊗ₗ idB) ((C ⊗ₗ idB) S.psi) := by
+        simp [hF0comp, LinearMap.comp_apply]
+      rw [h]; exact hNormE0 _
     have hF1norm :
         ‖((F1 ⊗ₗ idB) S.psi)‖ = ‖((C ⊗ₗ idB) S.psi)‖ := by
-      have happ := congrArg (fun F => F S.psi) hF1comp
-      calc
-        ‖((F1 ⊗ₗ idB) S.psi)‖
-            = ‖(((embed (H := H_A) ket1) ⊗ₗ idB)
-                (((S.A1 ⊗ₗ idB) ((C ⊗ₗ idB) S.psi))))‖ := by
-                  simpa [LinearMap.comp_apply] using congrArg (fun z => ‖z‖) happ
-        _ = ‖((S.A1 ⊗ₗ idB) (((C ⊗ₗ idB) S.psi)))‖ := hNormE1 _
-        _ = ‖((C ⊗ₗ idB) S.psi)‖ := hNormA1 _
+      have h : ((F1 ⊗ₗ idB) S.psi) =
+          ((embed (H := H_A) ket1) ⊗ₗ idB) ((S.A1 ⊗ₗ idB) ((C ⊗ₗ idB) S.psi)) := by
+        simp [hF1comp, LinearMap.comp_apply]
+      rw [h, hNormE1, hNormA1]
 
     have hSq : ‖((Δ ⊗ₗ idB) S.psi)‖ ^ 2 ≤ ‖((C ⊗ₗ idB) S.psi)‖ ^ 2 := by
       letI : NormedAddCommGroup ((Qubit ⊗[ℂ] H_A) ⊗[ℂ] H_B) := TensorProduct.instNormedAddCommGroup
       letI : InnerProductSpace ℂ ((Qubit ⊗[ℂ] H_A) ⊗[ℂ] H_B) := TensorProduct.instInnerProductSpace
-      have hMapSmul :
-          (((1 / 2 : ℂ) • (F1 - F0)) ⊗ₗ idB) = (1 / 2 : ℂ) • (((F1 - F0) ⊗ₗ idB)) := by
-        simpa using
-          (TensorProduct.map_smul_left (r := (1 / 2 : ℂ)) (f := (F1 - F0)) (g := idB))
-      have hEq :
-          ((Δ ⊗ₗ idB) S.psi) = (1 / 2 : ℂ) • (((F1 - F0) ⊗ₗ idB) S.psi) := by
-        calc
-          ((Δ ⊗ₗ idB) S.psi)
-              = ((((1 / 2 : ℂ) • (F1 - F0)) ⊗ₗ idB) S.psi) := by
-                  simp [hDelta_formula]
-          _ = (((1 / 2 : ℂ) • (((F1 - F0) ⊗ₗ idB)) ) S.psi) := by
-                  simpa using congrArg (fun F => F S.psi) hMapSmul
-          _ = (1 / 2 : ℂ) • (((F1 - F0) ⊗ₗ idB) S.psi) := by
-                  simp
-      have hMapSub :
-          ((F1 - F0) ⊗ₗ idB) = (F1 ⊗ₗ idB) - (F0 ⊗ₗ idB) := by
+      have hMapSub : ((F1 - F0) ⊗ₗ idB) = (F1 ⊗ₗ idB) - (F0 ⊗ₗ idB) := by
         ext x y
         simp [sub_eq_add_neg, TensorProduct.map_tmul, TensorProduct.add_tmul, TensorProduct.neg_tmul]
-      have hMapSubApply :
-          (((F1 - F0) ⊗ₗ idB) S.psi)
-            = ((F1 ⊗ₗ idB) S.psi) - ((F0 ⊗ₗ idB) S.psi) := by
-        simp [hMapSub]
-      have hDeltaNorm :
-          ‖((Δ ⊗ₗ idB) S.psi)‖ ≤ ‖((C ⊗ₗ idB) S.psi)‖ := by
-        calc
-          ‖((Δ ⊗ₗ idB) S.psi)‖
-              = ‖((1 / 2 : ℂ) • (((F1 - F0) ⊗ₗ idB) S.psi))‖ := by
-                    simpa using congrArg (fun z => ‖z‖) hEq
-          _ = ‖(1 / 2 : ℂ)‖ * ‖(((F1 - F0) ⊗ₗ idB) S.psi)‖ := by
-                rw [norm_smul]
-          _ = (1 / 2 : ℝ) * ‖(((F1 - F0) ⊗ₗ idB) S.psi)‖ := by
-                norm_num
-          _ = (1 / 2 : ℝ) * ‖((F1 ⊗ₗ idB) S.psi - (F0 ⊗ₗ idB) S.psi)‖ := by
-                rw [hMapSubApply]
+      have hEq : ((Δ ⊗ₗ idB) S.psi) =
+          (1 / 2 : ℂ) • (((F1 ⊗ₗ idB) S.psi) - ((F0 ⊗ₗ idB) S.psi)) := by
+        simp [hDelta_formula, TensorProduct.map_smul_left, hMapSub]
+      have hDeltaNorm : ‖((Δ ⊗ₗ idB) S.psi)‖ ≤ ‖((C ⊗ₗ idB) S.psi)‖ :=
+        calc ‖((Δ ⊗ₗ idB) S.psi)‖
+            = (1 / 2 : ℝ) * ‖((F1 ⊗ₗ idB) S.psi - (F0 ⊗ₗ idB) S.psi)‖ := by
+                  rw [hEq, norm_smul]; norm_num
           _ ≤ (1 / 2 : ℝ) * (‖((F1 ⊗ₗ idB) S.psi)‖ + ‖((F0 ⊗ₗ idB) S.psi)‖) := by
-                gcongr
-                exact norm_sub_le _ _
-          _ = ‖((C ⊗ₗ idB) S.psi)‖ := by
-                rw [hF1norm, hF0norm]
-                ring
-      have habs : |‖((Δ ⊗ₗ idB) S.psi)‖| ≤ |‖((C ⊗ₗ idB) S.psi)‖| := by
-        simpa [abs_of_nonneg (norm_nonneg _), abs_of_nonneg (norm_nonneg _)] using hDeltaNorm
-      exact (sq_le_sq).2 habs
+                  gcongr; exact norm_sub_le _ _
+          _ = ‖((C ⊗ₗ idB) S.psi)‖ := by rw [hF1norm, hF0norm]; ring
+      exact sq_le_sq.2 (by simpa [abs_of_nonneg (norm_nonneg _), abs_of_nonneg (norm_nonneg _)]
+        using hDeltaNorm)
     exact hSq
 
-  have hGoalRewritten :
-      ‖(((((pauliX ⊗ₗ idA) ∘ₗ V_A) - (V_A ∘ₗ S.A1)) ⊗ₗ idB) S.psi)‖ ^ 2
-        ≤ cConst * epsilon := by
-    exact le_trans hDelta_le_C hCbound
-
-  simpa [Δ, V_A, idA, idB] using hGoalRewritten
+  simpa [Δ, V_A, idA, idB] using le_trans hDelta_le_C hCbound
 
 
 end ApproximateAnticomm
@@ -1049,65 +987,32 @@ theorem a1_extraction_approx
               (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ
             (V_A ⊗ₗ V_B)) S.psi)
         = -((Δ ⊗ₗ V_B) S.psi) := by
-    let P : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) :=
-      ((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ∘ₗ V_A)
-    let Q : H_A →ₗ[ℂ] (Qubit ⊗[ℂ] H_A) := (V_A ∘ₗ S.A1)
-    let a : (Qubit ⊗[ℂ] H_A) ⊗[ℂ] (Qubit ⊗[ℂ] H_B) :=
-      ((Q ⊗ₗ V_B) S.psi)
-    let b : (Qubit ⊗[ℂ] H_A) ⊗[ℂ] (Qubit ⊗[ℂ] H_B) :=
-      ((P ⊗ₗ V_B) S.psi)
-    have hmain :
-        (((V_A ⊗ₗ V_B) ∘ₗ (S.A1 ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) S.psi)
-          - ((((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
-                (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ
-              (V_A ⊗ₗ V_B)) S.psi)
-          = a - b := by
-      rw [hLeftMap, hRightMap]
-    have hΔapply : (Δ ⊗ₗ V_B) S.psi = b - a := by
-      have hmap_sub : (Δ ⊗ₗ V_B) = (P ⊗ₗ V_B) - (Q ⊗ₗ V_B) := by
-        ext x y
-        simp [Δ, P, Q, sub_eq_add_neg, TensorProduct.map_tmul,
+    have hΔV : (Δ ⊗ₗ V_B) S.psi =
+        (((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ∘ₗ V_A) ⊗ₗ V_B) S.psi
+          - ((V_A ∘ₗ S.A1) ⊗ₗ V_B) S.psi := by
+      have : (Δ ⊗ₗ V_B) =
+          (((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ∘ₗ V_A) ⊗ₗ V_B)
+            - ((V_A ∘ₗ S.A1) ⊗ₗ V_B) := by
+        ext x y; simp [Δ, sub_eq_add_neg, TensorProduct.map_tmul,
           TensorProduct.add_tmul, TensorProduct.neg_tmul]
-      calc
-        (Δ ⊗ₗ V_B) S.psi = ((P ⊗ₗ V_B) - (Q ⊗ₗ V_B)) S.psi := by rw [hmap_sub]
-        _ = b - a := by simp [a, b]
-    have hab : a - b = -(b - a) := by
-      simp [sub_eq_add_neg, add_comm]
-    calc
-      (((V_A ⊗ₗ V_B) ∘ₗ (S.A1 ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) S.psi)
-          - ((((pauliX ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ⊗ₗ
-                (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ
-              (V_A ⊗ₗ V_B)) S.psi)
-          = a - b := hmain
-      _ = -(b - a) := hab
-      _ = -((Δ ⊗ₗ V_B) S.psi) := by rw [hΔapply]
+      simp [this]
+    simp only [hLeftMap, hRightMap, hΔV, neg_sub]
 
-  have hVB : Isometry V_B := by
-    simpa using (VB_is_isometry (H := H_B) S.B0 S.B1)
-  let VBᵢ : H_B →ₗᵢ[ℂ] (Qubit ⊗[ℂ] H_B) :=
-    { toLinearMap := V_B
-      norm_map' := (AddMonoidHomClass.isometry_iff_norm V_B).1 hVB }
-  let idQAᵢ : (Qubit ⊗[ℂ] H_A) →ₗᵢ[ℂ] (Qubit ⊗[ℂ] H_A) := LinearIsometry.id
+  have hVB : Isometry V_B := by simpa using VB_is_isometry (H := H_B) S.B0 S.B1
   have hNorm_idVB (x : (Qubit ⊗[ℂ] H_A) ⊗[ℂ] H_B) :
-      ‖(((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ V_B) x)‖ = ‖x‖ := by
-    simpa [idQAᵢ, VBᵢ] using
-      (TensorProduct.norm_map (𝕜 := ℂ) (f := idQAᵢ) (g := VBᵢ) (x := x))
+      ‖(((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ V_B) x)‖ = ‖x‖ :=
+    tensor_map_norm_eq (f := LinearMap.id) (g := V_B) linearMap_id_isometry hVB x
   have hCompDelta :
       (Δ ⊗ₗ V_B)
         = (((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ V_B) ∘ₗ
             (Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) := by
-    ext x y
-    simp [LinearMap.comp_apply, TensorProduct.map_tmul]
+    ext x y; simp [LinearMap.comp_apply, TensorProduct.map_tmul]
   have hNormTransport :
       ‖(Δ ⊗ₗ V_B) S.psi‖ = ‖((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ := by
-    have happ := congrArg (fun F => F S.psi) hCompDelta
-    calc
-      ‖(Δ ⊗ₗ V_B) S.psi‖
-          =
-            ‖(((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ V_B)
-              (((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)))‖ := by
-                simpa [LinearMap.comp_apply] using congrArg (fun z => ‖z‖) happ
-      _ = ‖((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ := hNorm_idVB _
+    have h : (Δ ⊗ₗ V_B) S.psi =
+        (LinearMap.id ⊗ₗ V_B) ((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi) := by
+      simp [hCompDelta, LinearMap.comp_apply]
+    rw [h]; exact hNorm_idVB _
 
   calc
     ‖(((V_A ⊗ₗ V_B) ∘ₗ (S.A1 ⊗ₗ LinearMap.id)) S.psi)
@@ -1116,9 +1021,8 @@ theorem a1_extraction_approx
             (V_A ⊗ₗ V_B)) S.psi)‖
         = ‖-((Δ ⊗ₗ V_B) S.psi)‖ := by
             simpa [LinearMap.id] using congrArg (fun z => ‖z‖) hDiff
-    _ = ‖(Δ ⊗ₗ V_B) S.psi‖ := by
-          exact norm_neg ((Δ ⊗ₗ V_B) S.psi)
-    _ = ‖((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ := hNormTransport
+    _ = ‖((Δ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) S.psi)‖ := by
+          rw [norm_neg]; exact hNormTransport
     _ ≤ Real.sqrt (cConst * epsilon) := hΔnorm
 
 set_option maxHeartbeats 1200000 in
@@ -1163,21 +1067,13 @@ theorem b1_extraction_approx
   have hSwapNorm :
       ‖((Δ0 ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi))‖
         = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ := by
-    have happ := congrArg (fun F => F S.psi) hSwapMap
-    calc
-      ‖((Δ0 ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi))‖
-          = ‖((TensorProduct.comm ℂ H_A (Qubit ⊗[ℂ] H_B))
-              (((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi))‖ := by
-                simpa [LinearMap.comp_apply] using congrArg (fun z => ‖z‖) happ
-      _ = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ := by
-            simp [TensorProduct.norm_comm]
+    have h : ((Δ0 ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi)) =
+        (TensorProduct.comm ℂ H_A (Qubit ⊗[ℂ] H_B)) (((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi) := by
+      simpa [LinearMap.comp_apply] using DFunLike.congr_fun hSwapMap S.psi
+    rw [h]; simp [TensorProduct.norm_comm]
 
   have hΔ0sq : ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ ^ 2 ≤ cConst * epsilon := by
-    calc
-      ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ ^ 2
-          = ‖((Δ0 ⊗ₗ (LinearMap.id : H_A →ₗ[ℂ] H_A)) ((TensorProduct.comm ℂ H_A H_B) S.psi))‖ ^ 2 := by
-              rw [hSwapNorm]
-      _ ≤ cConst * epsilon := hTΔsq
+    rw [← hSwapNorm]; exact hTΔsq
 
   have hAdj : (Rotation.adjoint : Qubit →ₗ[ℂ] Qubit) = Rotation :=
     (Rotation_adjoint : Rotation = Rotation.adjoint).symm
@@ -1243,35 +1139,13 @@ theorem b1_extraction_approx
             simp [LinearMap.comp_sub]
       _ = RotB ∘ₗ Δ0 := by rfl
 
-  have hSymmR : (Rotation : Qubit →ₗ[ℂ] Qubit).IsSymmetric := by
-    have hSelfAdj : IsSelfAdjoint (Rotation : Qubit →ₗ[ℂ] Qubit) := by
-      refine (LinearMap.isSelfAdjoint_iff' (A := (Rotation : Qubit →ₗ[ℂ] Qubit))).2 ?_
-      exact (Rotation_adjoint : Rotation = Rotation.adjoint).symm
-    exact (LinearMap.isSymmetric_iff_isSelfAdjoint (A := (Rotation : Qubit →ₗ[ℂ] Qubit))).2 hSelfAdj
-  letI : IsBinaryObservable (Rotation : Qubit →ₗ[ℂ] Qubit) :=
-    { symm := hSymmR
-      sq_one := Rotation_sq }
   have hRotIso : Isometry (Rotation : Qubit →ₗ[ℂ] Qubit) :=
-    isometry_of_isBinaryObservable (H := Qubit) (A := (Rotation : Qubit →ₗ[ℂ] Qubit))
-  let rotLI : Qubit →ₗᵢ[ℂ] Qubit :=
-    { toLinearMap := (Rotation : Qubit →ₗ[ℂ] Qubit)
-      norm_map' := (AddMonoidHomClass.isometry_iff_norm (Rotation : Qubit →ₗ[ℂ] Qubit)).1 hRotIso }
-  let idBᵢ : H_B →ₗᵢ[ℂ] H_B := LinearIsometry.id
-  have hRotBIso : Isometry RotB := by
-    have hIso :
-        Isometry (fun x => TensorProduct.map rotLI.toLinearMap idBᵢ.toLinearMap x) := by
-      simpa [TensorProduct.mapIsometry_apply] using (TensorProduct.mapIsometry rotLI idBᵢ).isometry
-    change Isometry (fun x => TensorProduct.map rotLI.toLinearMap idBᵢ.toLinearMap x)
-    exact hIso
-
-  let idAᵢ : H_A →ₗᵢ[ℂ] H_A := LinearIsometry.id
-  let RotBᵢ : (Qubit ⊗[ℂ] H_B) →ₗᵢ[ℂ] (Qubit ⊗[ℂ] H_B) :=
-    { toLinearMap := RotB
-      norm_map' := (AddMonoidHomClass.isometry_iff_norm RotB).1 hRotBIso }
+    isometry_of_adjoint_eq_self_and_sq_one Rotation Rotation_adjoint.symm Rotation_sq
+  have hRotBIso : Isometry RotB :=
+    tensor_map_isometry Rotation idB hRotIso linearMap_id_isometry
   have hNorm_idRot (x : H_A ⊗[ℂ] (Qubit ⊗[ℂ] H_B)) :
-      ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ RotB) x)‖ = ‖x‖ := by
-    simpa [idAᵢ, RotBᵢ] using
-      (TensorProduct.norm_map (𝕜 := ℂ) (f := idAᵢ) (g := RotBᵢ) (x := x))
+      ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ RotB) x)‖ = ‖x‖ :=
+    tensor_map_norm_eq LinearMap.id RotB linearMap_id_isometry hRotBIso x
 
   have hCompDeltaB :
       ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB)
@@ -1284,96 +1158,47 @@ theorem b1_extraction_approx
     simpa [idA, hDeltaB_formula] using hmap
 
   have hΔBsq : ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ ^ 2 ≤ cConst * epsilon := by
-    have happ := congrArg (fun F => F S.psi) hCompDeltaB
-    have hnorm :
-        ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖
-          = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ := by
-      calc
-        ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖
-            = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ RotB)
-                (((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi))‖ := by
-                  simpa [LinearMap.comp_apply] using congrArg (fun z => ‖z‖) happ
-        _ = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ := hNorm_idRot _
-    calc
-      ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ ^ 2
-          = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ ^ 2 := by rw [hnorm]
-      _ ≤ cConst * epsilon := hΔ0sq
+    have : ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ =
+        ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ Δ0) S.psi)‖ := by
+      simp only [hCompDeltaB, LinearMap.comp_apply]; exact hNorm_idRot _
+    rw [this]; exact hΔ0sq
   have hΔBnorm : ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ ≤ Real.sqrt (cConst * epsilon) :=
     norm_le_sqrt_of_sq_le hΔBsq
 
   have hLeftMap :
       (V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B1)
         = (V_A ⊗ₗ (V_B ∘ₗ S.B1)) := by
-    ext x y
-    simp [LinearMap.comp_apply, TensorProduct.map_tmul]
+    ext x y; simp [LinearMap.comp_apply, TensorProduct.map_tmul]
   have hRightMap :
       (((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
           (pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ
           (V_A ⊗ₗ V_B))
         = (V_A ⊗ₗ ((pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) ∘ₗ V_B)) := by
-    ext x y
-    simp [LinearMap.comp_apply, TensorProduct.map_tmul]
+    ext x y; simp [LinearMap.comp_apply, TensorProduct.map_tmul]
 
+  have hΔBV : (V_A ⊗ₗ ΔB) =
+      (V_A ⊗ₗ ((pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) ∘ₗ V_B)) - (V_A ⊗ₗ (V_B ∘ₗ S.B1)) := by
+    ext x y; simp [ΔB, idB, TensorProduct.map_tmul, TensorProduct.tmul_sub, LinearMap.sub_apply]
   have hDiff :
       (((V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B1)) S.psi)
         - ((((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
               (pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ
             (V_A ⊗ₗ V_B)) S.psi)
         = -((V_A ⊗ₗ ΔB) S.psi) := by
-    let P : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) :=
-      ((pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B)) ∘ₗ V_B)
-    let Q : H_B →ₗ[ℂ] (Qubit ⊗[ℂ] H_B) := (V_B ∘ₗ S.B1)
-    let a : (Qubit ⊗[ℂ] H_A) ⊗[ℂ] (Qubit ⊗[ℂ] H_B) := ((V_A ⊗ₗ Q) S.psi)
-    let b : (Qubit ⊗[ℂ] H_A) ⊗[ℂ] (Qubit ⊗[ℂ] H_B) := ((V_A ⊗ₗ P) S.psi)
-    have hmain :
-        (((V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B1)) S.psi)
-          - ((((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
-                (pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ
-              (V_A ⊗ₗ V_B)) S.psi)
-          = a - b := by
-      rw [hLeftMap, hRightMap]
-    have hΔapply : (V_A ⊗ₗ ΔB) S.psi = b - a := by
-      have hmap_sub : (V_A ⊗ₗ ΔB) = (V_A ⊗ₗ P) - (V_A ⊗ₗ Q) := by
-        ext x y
-        simp [ΔB, P, Q, idB, TensorProduct.map_tmul, TensorProduct.tmul_sub]
-      calc
-        (V_A ⊗ₗ ΔB) S.psi = ((V_A ⊗ₗ P) - (V_A ⊗ₗ Q)) S.psi := by rw [hmap_sub]
-        _ = b - a := by simp [a, b]
-    have hab : a - b = -(b - a) := by
-      abel
-    calc
-      (((V_A ⊗ₗ V_B) ∘ₗ ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ S.B1)) S.psi)
-          - ((((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
-                (pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ
-              (V_A ⊗ₗ V_B)) S.psi)
-          = a - b := hmain
-      _ = -(b - a) := hab
-      _ = -((V_A ⊗ₗ ΔB) S.psi) := by rw [hΔapply]
+    simp only [hLeftMap, hRightMap, hΔBV, LinearMap.sub_apply, neg_sub]
 
-  have hVA : Isometry V_A := by
-    simpa using (VA_is_isometry (H := H_A) S.A0 S.A1)
-  let VAᵢ : H_A →ₗᵢ[ℂ] (Qubit ⊗[ℂ] H_A) :=
-    { toLinearMap := V_A
-      norm_map' := (AddMonoidHomClass.isometry_iff_norm V_A).1 hVA }
-  let idQBᵢ : (Qubit ⊗[ℂ] H_B) →ₗᵢ[ℂ] (Qubit ⊗[ℂ] H_B) := LinearIsometry.id
+  have hVA : Isometry V_A := by simpa using (VA_is_isometry (H := H_A) S.A0 S.A1)
   have hNormVA_id (x : H_A ⊗[ℂ] (Qubit ⊗[ℂ] H_B)) :
-      ‖((V_A ⊗ₗ (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) x)‖ = ‖x‖ := by
-    simpa [VAᵢ, idQBᵢ] using
-      (TensorProduct.norm_map (𝕜 := ℂ) (f := VAᵢ) (g := idQBᵢ) (x := x))
-  have hCompVA :
-      (V_A ⊗ₗ ΔB)
-        = ((V_A ⊗ₗ (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) ∘ₗ
-            ((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB)) := by
-    ext x y
-    simp [LinearMap.comp_apply, TensorProduct.map_tmul]
+      ‖((V_A ⊗ₗ (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B))) x)‖ = ‖x‖ :=
+    tensor_map_norm_eq V_A LinearMap.id hVA linearMap_id_isometry x
   have hNormTransport :
       ‖(V_A ⊗ₗ ΔB) S.psi‖ = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ := by
-    have happ := congrArg (fun F => F S.psi) hCompVA
+    have hcomp : (V_A ⊗ₗ ΔB) = (V_A ⊗ₗ LinearMap.id) ∘ₗ (LinearMap.id ⊗ₗ ΔB) := by
+      ext x y; simp [TensorProduct.map_tmul]
     calc
       ‖(V_A ⊗ₗ ΔB) S.psi‖
-          = ‖((V_A ⊗ₗ (LinearMap.id : (Qubit ⊗[ℂ] H_B) →ₗ[ℂ] (Qubit ⊗[ℂ] H_B)))
-              ((((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)))‖ := by
-                simpa [LinearMap.comp_apply] using congrArg (fun z => ‖z‖) happ
+          = ‖(V_A ⊗ₗ LinearMap.id) ((LinearMap.id ⊗ₗ ΔB) S.psi)‖ := by
+              simpa [LinearMap.comp_apply] using congrArg (‖·‖) (DFunLike.congr_fun hcomp S.psi)
       _ = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ := hNormVA_id _
 
   calc
@@ -1381,9 +1206,8 @@ theorem b1_extraction_approx
         - ((((LinearMap.id : (Qubit ⊗[ℂ] H_A) →ₗ[ℂ] (Qubit ⊗[ℂ] H_A)) ⊗ₗ
               (pauliZHZ ⊗ₗ (LinearMap.id : H_B →ₗ[ℂ] H_B))) ∘ₗ
             (V_A ⊗ₗ V_B)) S.psi)‖
-        = ‖-((V_A ⊗ₗ ΔB) S.psi)‖ := by
-            simpa [LinearMap.id] using congrArg (fun z => ‖z‖) hDiff
-    _ = ‖(V_A ⊗ₗ ΔB) S.psi‖ := by exact norm_neg ((V_A ⊗ₗ ΔB) S.psi)
+        = ‖(V_A ⊗ₗ ΔB) S.psi‖ := by
+            simpa [norm_neg, LinearMap.id] using congrArg (fun z => ‖z‖) hDiff
     _ = ‖(((LinearMap.id : H_A →ₗ[ℂ] H_A) ⊗ₗ ΔB) S.psi)‖ := hNormTransport
     _ ≤ Real.sqrt (cConst * epsilon) := hΔBnorm
 
