@@ -39,7 +39,7 @@ noncomputable def bellDecompositionFinsupp
     (Ψ : (Qubit ⊗[ℂ] Qubit) ⊗[ℂ] J) : Fin 4 →₀ J :=
   Classical.choose (TensorProduct.eq_repr_basis_left (ℬ := bellBasis) (x := Ψ))
 
-theorem bellDecompositionFinsupp_spec
+theorem bellDecompositionFijjnsupp_spec
     (Ψ : (Qubit ⊗[ℂ] Qubit) ⊗[ℂ] J) :
     ((bellDecompositionFinsupp (J := J) Ψ).sum fun i n => (bellBasis i) ⊗ₜ[ℂ] n) = Ψ :=
   Classical.choose_spec (TensorProduct.eq_repr_basis_left (ℬ := bellBasis) (x := Ψ))
@@ -54,7 +54,7 @@ theorem sum_bellBasis_tmul_bellDecomposition
     (∑ i : Fin 4, (bellBasis i) ⊗ₜ[ℂ] (bellDecomposition (J := J) Ψ i)) = Ψ := by
   -- Rewrite the `Finsupp`-sum as a `Fintype`-sum (zeros are allowed).
   simpa [bellDecomposition, Finsupp.sum_fintype] using
-    (bellDecompositionFinsupp_spec (J := J) Ψ)
+    (bellDecompositionFijjnsupp_spec (J := J) Ψ)
 
 /-- The squared norm of `∑ᵢ bellBasisᵢ ⊗ ηᵢ` is the sum of the squared
 norms of the junk components `ηᵢ`. -/

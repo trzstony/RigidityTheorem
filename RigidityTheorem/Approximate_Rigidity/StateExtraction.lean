@@ -47,12 +47,11 @@ theorem inner_K_tensor_id_eq_bellDecomposition
     ⟪Ψ, ((K ⊗ₗ (LinearMap.id)) Ψ)⟫_ℂ =
       2 * Real.sqrt 2 * (‖bellDecomposition Ψ 0‖ ^ 2 - ‖bellDecomposition Ψ 3‖ ^ 2) := by
   classical
-  -- Expand `Ψ` in the Bell basis.
   let η : Fin 4 → (H_A ⊗[ℂ] H_B) := bellDecomposition (J := (H_A ⊗[ℂ] H_B)) Ψ
   have hΨ : Ψ = ∑ i : Fin 4, (bellBasis i) ⊗ₜ[ℂ] (η i) := by
     simpa [η] using
       (sum_bellBasis_tmul_bellDecomposition (J := (H_A ⊗[ℂ] H_B)) Ψ).symm
-  -- `K` acts diagonally on the Bell basis.
+  -- `K` is diagonal on the Bell basis with eigenvalues `2√2, 0, 0, -2√2`.
   let eig : Fin 4 → ℂ
     | 0 => (2 * Real.sqrt 2 : ℂ)
     | 1 => 0
@@ -65,66 +64,27 @@ theorem inner_K_tensor_id_eq_bellDecomposition
     · simp [eig, bellBasis_apply, bellVec, K_Φ_minus]
     · simp [eig, bellBasis_apply, bellVec, K_Ψ_plus]
     · simp [eig, bellBasis_apply, bellVec, K_Ψ_minus]
-  -- Compute the expectation by bilinearity + orthonormality (only diagonal terms survive).
+  let f : Fin 4 → (Qubit ⊗[ℂ] Qubit) ⊗[ℂ] (H_A ⊗[ℂ] H_B) := fun i => bellBasis i ⊗ₜ[ℂ] η i
   have hexpand :
-      ⟪Ψ, ((K ⊗ₗ (LinearMap.id)) Ψ)⟫_ℂ
-        = ∑ i : Fin 4, (eig i) * (‖η i‖ ^ 2) := by
-    let s : Finset (Fin 4) := Finset.univ
-    let f : Fin 4 → (Qubit ⊗[ℂ] Qubit) ⊗[ℂ] (H_A ⊗[ℂ] H_B) :=
-      fun i => (bellBasis i) ⊗ₜ[ℂ] (η i)
-    let g : Fin 4 → (Qubit ⊗[ℂ] Qubit) ⊗[ℂ] (H_A ⊗[ℂ] H_B) :=
-      fun i => (K (bellBasis i)) ⊗ₜ[ℂ] (η i)
-    have hg : g = fun i => eig i • (f i) := by
-      funext i
-      simp only [g, f, happlyK i, TensorProduct.smul_tmul']
-    have hmap :
-        ((K ⊗ₗ (LinearMap.id)) (∑ i : Fin 4, f i))
-          = ∑ i : Fin 4, g i := by
-      simp [f, g]
-    calc
-      ⟪Ψ, ((K ⊗ₗ (LinearMap.id)) Ψ)⟫_ℂ
-          = ⟪(∑ i : Fin 4, f i),
-              ((K ⊗ₗ (LinearMap.id)) (∑ i : Fin 4, f i))⟫_ℂ := by
-              simp [hΨ, f]
-      _ = ⟪(∑ i : Fin 4, f i), (∑ j : Fin 4, g j)⟫_ℂ := by
-            simp [hmap]
-      _ = ⟪(∑ i : Fin 4, f i), (∑ j : Fin 4, eig j • (f j))⟫_ℂ := by
-            simp only [hg]
-      _ = ∑ i ∈ s, ∑ j ∈ s, (eig j) * ⟪f i, f j⟫_ℂ := by
-            rw [sum_inner (𝕜 := ℂ) (s := s) (f := f) (x := ∑ j ∈ s, eig j • (f j))]
-            -- Expand the inner product against a sum in the right slot, then pull out scalars.
-            refine Finset.sum_congr rfl ?_
-            intro i hi
-            calc
-              ⟪f i, ∑ x ∈ s, eig x • f x⟫_ℂ = ∑ x ∈ s, ⟪f i, eig x • f x⟫_ℂ := by
-                simpa using
-                  (inner_sum (𝕜 := ℂ) (s := s) (f := fun x => eig x • f x) (x := f i))
-              _ = ∑ x ∈ s, eig x * ⟪f i, f x⟫_ℂ := by
-                refine Finset.sum_congr rfl ?_
-                intro x hx
-                simpa using
-                  (inner_smul_right (𝕜 := ℂ) (x := f i) (y := f x) (r := eig x))
-      _ = ∑ i ∈ s, ∑ j ∈ s, (eig j) * (⟪bellBasis i, bellBasis j⟫_ℂ * ⟪η i, η j⟫_ℂ) := by
+      ⟪Ψ, ((K ⊗ₗ (LinearMap.id)) Ψ)⟫_ℂ = ∑ i : Fin 4, eig i * ‖η i‖ ^ 2 := by
+    have hmap : (K ⊗ₗ LinearMap.id) (∑ i : Fin 4, f i) = ∑ i : Fin 4, eig i • f i := by
+      have hpt : ∀ i : Fin 4, (K ⊗ₗ LinearMap.id) (f i) = eig i • f i := fun i => by
+        simp only [f, TensorProduct.map_tmul, LinearMap.id_apply, happlyK i,
+                   TensorProduct.smul_tmul']
+      simp only [map_sum, hpt]
+    calc ⟪Ψ, (K ⊗ₗ LinearMap.id) Ψ⟫_ℂ
+        = ⟪∑ i : Fin 4, f i, ∑ j : Fin 4, eig j • f j⟫_ℂ := by
+            rw [show Ψ = ∑ i : Fin 4, f i from hΨ, hmap]
+      _ = ∑ i : Fin 4, ∑ j : Fin 4, eig j * ⟪f i, f j⟫_ℂ := by
+            simp only [sum_inner (𝕜 := ℂ), inner_sum (𝕜 := ℂ), inner_smul_right (𝕜 := ℂ)]
+      _ = ∑ i : Fin 4, ∑ j : Fin 4,
+              eig j * ((if i = j then 1 else 0) * ⟪η i, η j⟫_ℂ) := by
             simp only [f, TensorProduct.inner_tmul]
-      _ = ∑ i ∈ s, ∑ j ∈ s, (eig j) * ((if i = j then 1 else 0) * ⟪η i, η j⟫_ℂ) := by
             simp_rw [orthonormal_iff_ite.mp bellBasis_orthonormal]
-      _ = ∑ i : Fin 4, (eig i) * ⟪η i, η i⟫_ℂ := by
-            classical
-            -- Only diagonal terms survive.
-            simp [s, ite_mul, mul_ite]
-      _ = ∑ i : Fin 4, (eig i) * (‖η i‖ ^ 2) := by
-            classical
-            -- Rewrite each `⟪η i, η i⟫` as `(‖η i‖ : ℂ)^2`.
-            refine Fintype.sum_congr _ _ ?_
-            intro i
-            exact
-              congrArg (fun z : ℂ => (eig i) * z)
-                (inner_self_eq_norm_sq_to_K (𝕜 := ℂ) (η i))
-  -- Evaluate the finite sum: only indices `0` and `3` contribute.
-  -- Then rewrite `η` back to `bellDecomposition Ψ`.
-  -- (The remaining algebra is a straightforward simplification.)
+      _ = ∑ i : Fin 4, eig i * ‖η i‖ ^ 2 := by
+            simp [ite_mul, mul_ite, inner_self_eq_norm_sq_to_K]
   simp [η, eig, Fin.sum_univ_four, hexpand, sub_eq_add_neg, mul_add, add_mul,
-  mul_left_comm, mul_comm]
+        mul_left_comm, mul_comm]
 
 example (u v : (H_A ⊗[ℂ] H_B)) : ‖u ⊗ₜ[ℂ] v‖ = ‖u‖ * ‖v‖ := by
   simp only [TensorProduct.norm_tmul]
